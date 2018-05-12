@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous">
+
+<!--potrebno za nav-tabs-->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous">
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous">
+    </script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous">
+    </script>
+<!-- do tuda -->
+    <title></title>
+
+    <style media="screen">
+      .col-centered{
+        float: none;
+        margin: 0 auto;
+        }
+    </style>
+  </head>
+  <body>
+
+<ul>
+  <li> Koji nacin uzeti? </li>
+  <li> Koji poredak gumba? </li>
+  <li> Kod prvoga ako sam si dobro prevela ne moze spanjiti ovaj login </li>
+  <li> Meni je fora ovaj sa nav-tabs</li>
+  <li> Ovaj treci ako zelite da bude u liniji </li>
+</ul>
+
+
+<h1> prvi nacin </h1>
+
+    <div class="container">
+        <div class="row ">
+          <div class="col-md-4 pull-left card"  style="margin: 20px; border-radius: 25px;">
+
+
+              <div class="card-body">
+                <h5 class="card-title">LOG IN</h5>
+
+                <form class="" action="" method="post">
+
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Username">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                  </div>
+
+                  <button type="submit" class="btn btn-success">LOG IN</button>
+                  <button type="submit" class="btn btn-secondary">Cancel</button>
+
+                </form>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="col-md-5 pull-right card" style="margin: 20px; border-radius: 25px;">
+
+              <div class="card-body">
+                <h5 class="card-title">SIGN UP</h5>
+
+                <form class="" action="" method="post">
+
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Username">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                      Your password must be 8-20 characters long, contain letters and numbers,
+                      and must not contain spaces, special characters, or emoji.
+                    </small>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email@example.com ">
+                      <small id="emailHelp" class="form-text text-muted">Need email for verification.</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-success float-right">SIGN UP</button>
+                    <button type="submit" class="btn btn-secondary float-right">Cancel</button>
+
+                </form>
+
+              </div>
+
+
+          </div>
+        </div>
+    </div>
+
+<h1> drgi nacin </h1>
+<div class="col-lg-11 col-centered" style="width: 27rem;">
+    <ul class="nav nav-tabs" id="myTab" role="tablist" >
+      <li class="nav-item">
+        <a class="nav-link active" id="log_in-tab" data-toggle="tab" href="#log_in" role="tab" aria-controls="log_in" aria-selected="true">LOG IN</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="sign_up-tab" data-toggle="tab" href="#sign_up" role="tab" aria-controls="sign_up" aria-selected="false">SIGN UP</a>
+      </li>
+
+    </ul>
+    <div class="tab-content" id="myTabContent" >
+      <div class="tab-pane fade show active" id="log_in" role="tabpanel" aria-labelledby="log_in-tab">
+
+        <div style="margin: 20px;"> <!-- style="width: 27rem;"-->
+          <form class="" action="" method="post">
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+          </div>
+
+          <button type="submit" class="btn btn-success">LOG IN</button>
+          <button type="submit" class="btn btn-secondary">Cancel</button>
+
+
+        </form>
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="sign_up" role="tabpanel" aria-labelledby="sign_up-tab">
+
+        <div style="margin: 20px;">
+          <form class="" action="" method="post">
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+            <small id="passwordHelpBlock" class="form-text text-muted">
+              Your password must be 8-20 characters long, contain letters and numbers,
+              and must not contain spaces, special characters, or emoji.
+            </small>
+          </div>
+
+          <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email@example.com ">
+              <small id="emailHelp" class="form-text text-muted">Need email for verification.</small>
+          </div>
+
+          <button type="submit" class="btn btn-success float-right">SIGN UP</button>
+          <button type="submit" class="btn btn-secondary float-right">Cancel</button>
+
+        </form>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+  $('#myTab a').on('click', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+
+
+</script>
+<h1> treci nacin </h1>
+
+<!-- ILI NA OVAJ NAČIN ?-->
+    <div class="card" style="width: 27rem;">
+      <div class="card-body">
+        <h5 class="card-title">LOG IN</h5>
+
+        <form class="" action="" method="post">
+
+          <div class="form-group row">
+            <label for="username" class="col-sm-3 col-form-label">Username</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="username" placeholder="Username">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="password" class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
