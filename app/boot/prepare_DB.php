@@ -106,7 +106,7 @@ catch( PDOException $e ) { exit( "PDO error #5: " . $e->getMessage() ); }
 */
 
 
-//PROBLEM SU ID-OVI
+
 //Ubaci neke korisnike unutra
 
 try
@@ -156,23 +156,23 @@ try
 	$st = $db->prepare( 'INSERT INTO Troškovi(kategorija_naziv, korisničko_ime, naziv_troška, iznos_troška, datum_troška, ponavljanje_troška, opis_troška )
 	VALUES (:kategorija_naziv, :korisnicko_ime, :naziv_troska, :iznos_troska, :datum_troska, :ponavljanje_troska, :opis_troska)' );
 
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'petra', 'naziv_troska' => 'Ručak',     'iznos_troska' => 60.0,    'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'sara',  'naziv_troska' => 'Struja',    'iznos_troska' => 202.0,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'paula', 'naziv_troska' => 'Ručak',     'iznos_troska' => 160.0,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'ana',   'naziv_troska' => 'Ručak',     'iznos_troska' => 58.0,    'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'petra', 'naziv_troska' => 'Internet',  'iznos_troska' => 243,     'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'paula', 'naziv_troska' => 'Voda',      'iznos_troska' => 360.0,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'sara',  'naziv_troska' => 'Voda',      'iznos_troska' => 256.0,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'sara',  'naziv_troska' => 'Kolači',    'iznos_troska' => 70.0,    'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'ana',   'naziv_troska' => 'Torta',     'iznos_troska' => 160.0,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'ana',   'naziv_troska' => 'Internet',  'iznos_troska' => 134.7,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'petra', 'naziv_troska' => 'Internet',  'iznos_troska' => 167.9,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'sara',  'naziv_troska' => 'Palačinke', 'iznos_troska' => 34.7,    'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'paula', 'naziv_troska' => 'Vino',      'iznos_troska' => 59.9,    'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'paula', 'naziv_troska' => 'Struja',    'iznos_troska' => 206.5,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'sara',  'naziv_troska' => 'Krafna',    'iznos_troska' => 4.99,    'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'petra', 'naziv_troska' => 'Struja',    'iznos_troska' => 220.9,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'ana',   'naziv_troska' => 'Kava',      'iznos_troska' => 19.99,   'datum_troska' => '2018-04-17',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'petra', 'naziv_troska' => 'Ručak',     'iznos_troska' => 60.0,    'datum_troska' => '2018-01-12',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'sara',  'naziv_troska' => 'Struja',    'iznos_troska' => 202.0,   'datum_troska' => '2018-01-13',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'paula', 'naziv_troska' => 'Ručak',     'iznos_troska' => 160.0,   'datum_troska' => '2018-01-14',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'ana',   'naziv_troska' => 'Ručak',     'iznos_troska' => 58.0,    'datum_troska' => '2018-01-15',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'petra', 'naziv_troska' => 'Internet',  'iznos_troska' => 243,     'datum_troska' => '2018-01-16',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'paula', 'naziv_troska' => 'Voda',      'iznos_troska' => 360.0,   'datum_troska' => '2018-02-18',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'sara',  'naziv_troska' => 'Voda',      'iznos_troska' => 256.0,   'datum_troska' => '2018-02-13',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'sara',  'naziv_troska' => 'Kolači',    'iznos_troska' => 70.0,    'datum_troska' => '2018-02-14',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'ana',   'naziv_troska' => 'Torta',     'iznos_troska' => 160.0,   'datum_troska' => '2018-03-13',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'ana',   'naziv_troska' => 'Internet',  'iznos_troska' => 134.7,   'datum_troska' => '2018-04-22',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'petra', 'naziv_troska' => 'Internet',  'iznos_troska' => 167.9,   'datum_troska' => '2018-04-12',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'sara',  'naziv_troska' => 'Palačinke', 'iznos_troska' => 34.7,    'datum_troska' => '2018-05-10',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'paula', 'naziv_troska' => 'Vino',      'iznos_troska' => 59.9,    'datum_troska' => '2018-05-01',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'paula', 'naziv_troska' => 'Struja',    'iznos_troska' => 206.5,   'datum_troska' => '2018-03-02',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'sara',  'naziv_troska' => 'Krafna',    'iznos_troska' => 4.99,    'datum_troska' => '2018-02-09',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Računi', 'korisnicko_ime' => 'petra', 'naziv_troska' => 'Struja',    'iznos_troska' => 220.9,   'datum_troska' => '2018-05-24',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Hrana',  'korisnicko_ime' => 'ana',   'naziv_troska' => 'Kava',      'iznos_troska' => 19.99,   'datum_troska' => '2018-04-27',  'ponavljanje_troska' => 0, 'opis_troska' => '-' ) );
 
 }
 catch( PDOException $e ) { exit( "PDO error [troškovi]: " . $e->getMessage() ); }
@@ -185,23 +185,23 @@ try
 	$st = $db->prepare( 'INSERT INTO Primanja(kategorija_naziv, korisničko_ime, naziv_primanja, iznos_primanja, datum_primanja, ponavljanje_primanja, opis_primanja )
 	VALUES (:kategorija_naziv, :korisnicko_ime, :naziv_primanja, :iznos_primanja, :datum_primanja, :ponavljanje_primanja, :opis_primanja)' );
 
-	$st->execute( array( 'kategorija_naziv' => 'Plaća', 		 'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 2260, 'datum_primanja' => '2018-04-17', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća', 	   'korisnicko_ime' => 'paula',  'naziv_primanja' => '', 'iznos_primanja' => 4460, 'datum_primanja' => '2018-04-16', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'sara',   'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-04-15', 'ponavljanje_primanja' => 6, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'ana',    'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-04-14', 'ponavljanje_primanja' => 6, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-03-15', 'ponavljanje_primanja' => 6, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'paula',  'naziv_primanja' => '', 'iznos_primanja' => 3310, 'datum_primanja' => '2018-03-17', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'sara',   'naziv_primanja' => '', 'iznos_primanja' => 3360, 'datum_primanja' => '2018-03-14', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'ana',    'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-03-15', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 2260, 'datum_primanja' => '2018-02-14', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'paula',  'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-02-11', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'sara',   'naziv_primanja' => '', 'iznos_primanja' => 5360, 'datum_primanja' => '2018-02-10', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'ana',    'naziv_primanja' => '', 'iznos_primanja' => 1600, 'datum_primanja' => '2018-02-17', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 2260, 'datum_primanja' => '2018-01-16', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'paula',  'naziv_primanja' => '', 'iznos_primanja' => 2620, 'datum_primanja' => '2018-01-14', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'sara',   'naziv_primanja' => '', 'iznos_primanja' => 3360, 'datum_primanja' => '2018-01-13', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'ana',    'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-01-12', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
-	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-05-17', 'ponavljanje_primanja' => 0, 'opis_primanja' => '-' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća', 		 'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 2260, 'datum_primanja' => '2018-04-17', 'ponavljanje_primanja' => 0, 'opis_primanja' => 'studentski posao' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća', 	   'korisnicko_ime' => 'paula',  'naziv_primanja' => '', 'iznos_primanja' => 4460, 'datum_primanja' => '2018-04-16', 'ponavljanje_primanja' => 0, 'opis_primanja' => 'studentski posao' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'sara',   'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-04-15', 'ponavljanje_primanja' => 6, 'opis_primanja' => 'stipendija - 4.mj' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'ana',    'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-04-14', 'ponavljanje_primanja' => 6, 'opis_primanja' => 'stipendija - 4.mj' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-03-15', 'ponavljanje_primanja' => 6, 'opis_primanja' => 'stipendija - 4.mj' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'paula',  'naziv_primanja' => '', 'iznos_primanja' => 3310, 'datum_primanja' => '2018-03-17', 'ponavljanje_primanja' => 0, 'opis_primanja' => '' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'sara',   'naziv_primanja' => '', 'iznos_primanja' => 3360, 'datum_primanja' => '2018-03-14', 'ponavljanje_primanja' => 0, 'opis_primanja' => '' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'ana',    'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-03-15', 'ponavljanje_primanja' => 0, 'opis_primanja' => 'stipendija -> 3.mj' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 2260, 'datum_primanja' => '2018-02-14', 'ponavljanje_primanja' => 0, 'opis_primanja' => '' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'paula',  'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-02-11', 'ponavljanje_primanja' => 0, 'opis_primanja' => 'stipendija - 2.mj' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'sara',   'naziv_primanja' => '', 'iznos_primanja' => 5360, 'datum_primanja' => '2017-09-10', 'ponavljanje_primanja' => 0, 'opis_primanja' => 'ljetni posao' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'ana',    'naziv_primanja' => '', 'iznos_primanja' => 1600, 'datum_primanja' => '2018-02-17', 'ponavljanje_primanja' => 0, 'opis_primanja' => '' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 2260, 'datum_primanja' => '2018-01-16', 'ponavljanje_primanja' => 0, 'opis_primanja' => '' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'paula',  'naziv_primanja' => '', 'iznos_primanja' => 2620, 'datum_primanja' => '2018-01-14', 'ponavljanje_primanja' => 0, 'opis_primanja' => '' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Plaća',      'korisnicko_ime' => 'sara',   'naziv_primanja' => '', 'iznos_primanja' => 3360, 'datum_primanja' => '2018-01-13', 'ponavljanje_primanja' => 0, 'opis_primanja' => '' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'ana',    'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-01-12', 'ponavljanje_primanja' => 0, 'opis_primanja' => 'stipendija - 1.mj' ) );
+	$st->execute( array( 'kategorija_naziv' => 'Stipendija', 'korisnicko_ime' => 'petra',  'naziv_primanja' => '', 'iznos_primanja' => 1000, 'datum_primanja' => '2018-05-17', 'ponavljanje_primanja' => 0, 'opis_primanja' => 'stipendija - 5.mj' ) );
 
 }
 catch( PDOException $e ) { exit( "PDO error [troškovi]: " . $e->getMessage() ); }
