@@ -25,20 +25,22 @@ try
 }
 catch( PDOException $e ) { exit( "PDO error #1: " . $e->getMessage() ); }
 
+// u Troškovima i Primanjima umjesto username, staviti user_id
+
 //tablica Troškovi
 
 try
 {
 	$st = $db->prepare(
-		'CREATE TABLE IF NOT EXISTS Troškovi (' .
-		'id_troška int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
-		'kategorija_naziv varchar(20) NOT NULL,' .
-		'korisničko_ime varchar(20) NOT NULL,' .
-		'naziv_troška varchar(30) NOT NULL,'.
-		'iznos_troška double NOT NULL,' .
-		'datum_troška date NOT NULL,' .
-		'ponavljanje_troška int ,' .
-		'opis_troška varchar(50) )'
+		'CREATE TABLE IF NOT EXISTS Troškovi (' . // Expense
+		'id_troška int NOT NULL PRIMARY KEY AUTO_INCREMENT,' . //expense_id
+		'kategorija_naziv varchar(20) NOT NULL,' .	// category_name
+		'korisničko_ime varchar(20) NOT NULL,' . // username
+		'naziv_troška varchar(30) NOT NULL,'. // expense_name
+		'iznos_troška double NOT NULL,' .	// expense_value
+		'datum_troška date NOT NULL,' . // date
+	//	'ponavljanje_troška int ,' .	izbacujemo broj_ponavljanja iz baze i ostavljamo to da se odradi uz formu i for petlju
+		'opis_troška varchar(50) )' 	// expense_description
 
 	);
 
@@ -53,7 +55,7 @@ catch( PDOException $e ) { exit( "PDO error #2: " . $e->getMessage() ); }
 try
 {
 	$st = $db->prepare(
-		'CREATE TABLE IF NOT EXISTS Primanja (' .
+		'CREATE TABLE IF NOT EXISTS Primanja (' . 	// Income - analogno troškovima
 		'id_primanja int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
 		'kategorija_naziv varchar(20) NOT NULL,' .
 		'korisničko_ime varchar(20) NOT NULL,' .
@@ -73,10 +75,10 @@ catch( PDOException $e ) { exit( "PDO error #3: " . $e->getMessage() ); }
 try
 {
 	$st = $db->prepare(
-		'CREATE TABLE IF NOT EXISTS Kategorija (' .
-		'id_korisnika int NOT NULL ,' .
-		'kategorija_naziv varchar(20) NOT NULL ,' .
-		'vrsta varchar(20) NOT NULL,'.
+		'CREATE TABLE IF NOT EXISTS Kategorija (' .	// Category
+		'id_korisnika int NOT NULL ,' .			// user_id
+		'kategorija_naziv varchar(20) NOT NULL ,' .	// category_name
+		'vrsta varchar(20) NOT NULL,'.	// category_type
 		'PRIMARY KEY(id_korisnika, kategorija_naziv) )'
 	);
 
