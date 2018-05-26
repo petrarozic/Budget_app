@@ -1,0 +1,19 @@
+
+.title{
+  background-color:  #202020;
+  color: white;
+  padding: 30px;
+}
+
+h1{
+  display: inline;
+}
+
+li{
+	 text-align: center;
+   padding: 20%;
+}
+
+td, th{
+  text-align: center;
+}
