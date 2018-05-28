@@ -1,4 +1,4 @@
-<?php
+Budget<?php
 
 class LoginController extends BaseController
 {
@@ -17,7 +17,7 @@ class LoginController extends BaseController
 
 	public function obradaLogina()
 	{
-		$ls = new QuackService();
+		$ls = new BudgetService();
 
 		if(isset( $_POST['username'] ) && isset( $_POST['password'] ))
 		{
@@ -38,7 +38,7 @@ class LoginController extends BaseController
 	}
 	public function obradaSignUpa()
 	{
-		$ls = new QuackService();
+		$ls = new BudgetService();
 
 		if( !isset( $_POST['username'] ) || !isset( $_POST['password'] ) || !isset( $_POST['email'] ) )
 		{
@@ -88,7 +88,7 @@ class LoginController extends BaseController
 	}
 
  public function register(){
-	$ls = new QuackService();
+	$ls = new BudgetService();
 
 	if( !isset( $_GET['niz'] ) || !preg_match( '/^[a-z]{20}$/', $_GET['niz'] ) )
 		exit( 'Nešto ne valja s nizom.' );
