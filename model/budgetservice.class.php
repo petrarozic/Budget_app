@@ -123,6 +123,24 @@ class BudgetService
 
 	}
 
+	function getUserbById( $user_id){
+		try
+    {
+      $user = DB::getConnection();
+      $user_ = $user->prepare( 'SELECT * FROM User WHERE user_id LIKE :user_id');
+      $user_->execute( array('user_id' => $user_id ) );
+    }
+    catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+
+    $row = $user_->fetch();
+  	$user = new User( $row['user_id'], $row['username'], $row['password'], $row['email'],
+		 													$row['daily_limit'], $row['weekly_limit'], $row['monthly_limit'],
+															$row['registration_sequence'], $row['has_registered'] );
+
+    return $user;
+	}
+
 };
 
 //vraca array sa svim troskovima za logiranog korisnika

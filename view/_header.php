@@ -6,6 +6,24 @@
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <style>
+    .title{
+      background-color:  #202020;
+      color: white;
+      padding: 30px;
+    }
+
+    h1{
+      display: inline;
+    }
+    li{
+    	 text-align: center;
+       padding: 20%;
+    }
+    td, th{
+      text-align: center;
+    }
+    </style>
   </head>
 
     <body>
@@ -31,7 +49,7 @@
           <a class="nav-link" href="#">STATISTICS</a>
         </li>
         <li>
-        <a class="nav-link" href="#">PROFILE</a>
+        <a class="nav-link" href="<?php echo __SITE_URL; ?>/index.php?rt=profile">PROFILE</a>
         </li>
      </ul>
     </div>
