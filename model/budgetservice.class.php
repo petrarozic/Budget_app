@@ -85,7 +85,7 @@ class BudgetService
 	function getExpenseByID( $user_id ){
 			try{
 				$db = DB::getConnection();
-				$st = $db->prepare( 'SELECT * FROM  Expense WHERE user_id=:id ORDER BY date DESC' );
+				$st = $db->prepare( 'SELECT * FROM  Expense WHERE user_id=:id ORDER BY expense_date DESC' );
 				$st->execute( array( 'id' => $user_id ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
@@ -93,7 +93,7 @@ class BudgetService
 		$arr = array();
 		while( $row = $st->fetch() )
 		{
-			$arr[] = new expense( $row['expense_id'], $row['category_name'], $row['expense_name'], $row['expense_value'],
+			$arr[] = new Expense( $row['expense_id'], $row['category_name'], $row['user_id'], $row['expense_name'], $row['expense_value'],
 								$row['expense_date'], $row['expense_description']);
 		}
 
@@ -107,7 +107,7 @@ class BudgetService
 	function getIncomeByID( $user_id ){
 				try{
 					$db = DB::getConnection();
-					$st = $db->prepare( 'SELECT * FROM  Incomes WHERE user_id=:id ORDER BY date DESC' );
+					$st = $db->prepare( 'SELECT * FROM  Income WHERE user_id=:id ORDER BY income_date DESC' );
 					$st->execute( array( 'id' => $user_id ) );
 			}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
@@ -115,7 +115,7 @@ class BudgetService
 		$arr = array();
 		while( $row = $st->fetch() )
 		{
-			$arr[] = new income( $row['income_id'], $row['category_name'], $row['income_name'], $row['income_value'],
+			$arr[] = new Income( $row['income_id'], $row['category_name'], $row['user_id'], $row['income_name'], $row['income_value'],
 								$row['income_date'], $row['income_description']);
 		}
 
@@ -142,10 +142,6 @@ class BudgetService
 	}
 
 };
-
-//vraca array sa svim troskovima za logiranog korisnika
-
-
 
 
 

@@ -37,10 +37,10 @@
       return $this->$variable;
     }
 
-    function __set( $variable ){
+    function __set( $variable, $value ){
       $this->$variable = $value;
       return $this;
     }
-  }
+  };
 
  ?>

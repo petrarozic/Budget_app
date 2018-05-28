@@ -40,10 +40,10 @@
           <a class="nav-link" href="#">HOME<span class="sr-only">(current)</span></a>
         </li>
         <li>
-          <a class="nav-link" href="#">INCOMES</a>
+          <a class="nav-link" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/incomes">INCOMES</a>
         </li>
         <li>
-          <a class="nav-link" href="#">EXPENSES</a>
+          <a class="nav-link" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/expenses">EXPENSES</a>
         </li>
         <li>
           <a class="nav-link" href="#">STATISTICS</a>

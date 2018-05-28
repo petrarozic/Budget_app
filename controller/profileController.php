@@ -15,7 +15,7 @@
     function changeEmail(){
       $ls = new BudgetService();
 
-      $new_email = $_POST['']
+      $new_email = $_POST[''];
     }
 
     //..
