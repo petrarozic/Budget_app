@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </head>
+	<body>
+
+<div class="container">
+  <h1>Poziv pop_up-a</h1>
+
+<!-- Trigger the modal with a button -->
+
+<h5> Veća verzija + nastajanje </h5>
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Unesi trošak </button>
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-lg">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h2 class="modal-title"> Dodaj novi trošak: </h2>
+	      </div>
+	      <div class="modal-body">
+					<form class="form-vertical">
+					  <div class="form-group">
+					    <label for="naziv_trošak">Naziv troška</label>
+					    <input type="text" class="form-control" id="naziv_trošak" >
+					  </div>
+					  <div class="form-group">
+					    <label for="kategorija_trosak"> Kategorija </label>
+					    <select class="form-control" id="kategorija_trosak">
+					      <option> Stanarina </option>
+					      <option> Režije </option>
+					      <option> Hrana </option>
+					      <option> Izlasci </option>
+					    </select>
+					  </div>
+					  <div class="form-group">
+					    <label for="iznos_trošak"> Iznos </label>
+					    <input class="form-control" type="number" id="iznos_trošak"> HRK
+					  </div>
+					  <div class="form-group">
+					    <label for="datum_trosak">Datum</label>
+					    <input type="date" class="form-control" id="datum_trosak">
+					  </div>
+					</form>
+	      </div>
+				<div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Spremi trošak</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<h5> Manja verzija samo se stvori </h5>
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"> Unesi trošak </button>
+
+	<div id="myModal2" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> Dodaj novi trošak. </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+					<form>
+					  <div class="form-group">
+					    <label for="naziv_trošak">Naziv troška</label>
+					    <input type="text" class="form-control" id="naziv_trošak" >
+					  </div>
+					  <div class="form-group">
+					    <label for="kategorija_trosak"> Kategorija </label>
+					    <select class="form-control" id="kategorija_trosak">
+					      <option> Stanarina </option>
+					      <option> Režije </option>
+					      <option> Hrana </option>
+					      <option> Izlasci </option>
+					    </select>
+					  </div>
+					  <div class="form-group">
+					    <label for="iznos_trošak"> Iznos </label>
+					    <input type="number" class="form-control" id="iznos_trošak"> HRK
+					  </div>
+					  <div class="form-group">
+					    <label for="datum_trosak">Datum</label>
+					    <input type="date" class="form-control" id="datum_trosak">
+					  </div>
+						<div class="form-group">
+					    <label for="ponavaljanja_trošak"> Ponavljanje: </label>
+					    <input type="number" class="form-control" value="0" id="ponavljanja_trosak">
+					  </div>
+					</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Odustani </button>
+        <button type="button" class="btn btn-primary">Spremi trošak </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
