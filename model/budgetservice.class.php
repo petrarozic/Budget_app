@@ -82,7 +82,7 @@ class BudgetService
     return false;
   }
 
-	function getExpenseByID( $user_id ){
+	function getExpenseById( $user_id ){
 			try{
 				$db = DB::getConnection();
 				$st = $db->prepare( 'SELECT * FROM  Expense WHERE user_id=:id ORDER BY expense_date DESC' );
@@ -104,7 +104,7 @@ class BudgetService
 	//vraca array sa svim primanjima za logiranog korisnika
 
 
-	function getIncomeByID( $user_id ){
+	function getIncomeById( $user_id ){
 				try{
 					$db = DB::getConnection();
 					$st = $db->prepare( 'SELECT * FROM  Income WHERE user_id=:id ORDER BY income_date DESC' );

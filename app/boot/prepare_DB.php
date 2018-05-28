@@ -40,7 +40,7 @@ try
 		'expense_value double NOT NULL,' .											// expense_value
 		'expense_date date NOT NULL,' . 												// date
 //		'ponavljanje_troska int ,' .	//izbacujemo broj_ponavljanja iz baze i ostavljamo to da se odradi uz formu i for petlju
-		'expense_description varchar(50) )' 										// expense_description
+		'expense_description varchar(50) NOT NULL)' 										// expense_description
 
 	);
 
@@ -64,7 +64,7 @@ try
 		'income_value double NOT NULL,' .
 		'income_date date NOT NULL,' . // na datumu nisam izmjenila jos
 //		'ponavljanje_primanja int ,' .
-		'income_description  varchar(50) )'
+		'income_description  varchar(50) NOT NULL)'
 	);
 
 	$st->execute();
@@ -188,23 +188,23 @@ try
 	$st = $db->prepare( 'INSERT INTO Income(category_name, /*username*/user_id, income_name, income_value, income_date, /*ponavljanje_primanja,*/ income_description )
 	VALUES (:category_name, /*:username*/:user_id, :income_name, :income_value, :income_date, /*:ponavljanje_primanja,*/ :income_description)' );
 
-	$st->execute( array( 'category_name' => 'Placa', 		 'user_id' => '2',  'income_name' => '', 'income_value' => 2260, 'income_date' => '2018-04-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'studentski posao' ) );
-	$st->execute( array( 'category_name' => 'Placa', 	   'user_id' => '3',  'income_name' => '', 'income_value' => 4460, 'income_date' => '2018-04-16', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'studentski posao' ) );
-	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '1',   'income_name' => '', 'income_value' => 1000, 'income_date' => '2018-04-15', /*'ponavljanje_primanja' => 6,*/ 'income_description' => 'stipendija - 4.mj' ) );
-	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '4',    'income_name' => '', 'income_value' => 1000, 'income_date' => '2018-04-14', /*'ponavljanje_primanja' => 6,*/ 'income_description' => 'stipendija - 4.mj' ) );
-	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '2',  'income_name' => '', 'income_value' => 1000, 'income_date' => '2018-03-15', /*'ponavljanje_primanja' => 6,*/ 'income_description' => 'stipendija - 4.mj' ) );
-	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '3',  'income_name' => '', 'income_value' => 3310, 'income_date' => '2018-03-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '' ) );
-	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '1',   'income_name' => '', 'income_value' => 3360, 'income_date' => '2018-03-14', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '' ) );
-	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '4',    'income_name' => '', 'income_value' => 1000, 'income_date' => '2018-03-15', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija -> 3.mj' ) );
-	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '2',  'income_name' => '', 'income_value' => 2260, 'income_date' => '2018-02-14', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '' ) );
-	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '3',  'income_name' => '', 'income_value' => 1000, 'income_date' => '2018-02-11', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija - 2.mj' ) );
-	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '1',   'income_name' => '', 'income_value' => 5360, 'income_date' => '2017-09-10', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'ljetni posao' ) );
-	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '4',    'income_name' => '', 'income_value' => 1600, 'income_date' => '2018-02-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '' ) );
-	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '2',  'income_name' => '', 'income_value' => 2260, 'income_date' => '2018-01-16', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '' ) );
-	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '3',  'income_name' => '', 'income_value' => 2620, 'income_date' => '2018-01-14', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '' ) );
-	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '1',   'income_name' => '', 'income_value' => 3360, 'income_date' => '2018-01-13', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '' ) );
-	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '4',    'income_name' => '', 'income_value' => 1000, 'income_date' => '2018-01-12', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija - 1.mj' ) );
-	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '2',  'income_name' => '', 'income_value' => 1000, 'income_date' => '2018-05-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija - 5.mj' ) );
+	$st->execute( array( 'category_name' => 'Placa', 		 'user_id' => '2',  'income_name' => 'Posao: Konobarenje', 'income_value' => 2260, 'income_date' => '2018-04-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'studentski posao' ) );
+	$st->execute( array( 'category_name' => 'Placa', 	   'user_id' => '3',  'income_name' => '-', 'income_value' => 4460, 'income_date' => '2018-04-16', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'studentski posao' ) );
+	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '1',   'income_name' => '-', 'income_value' => 1000, 'income_date' => '2018-04-15', /*'ponavljanje_primanja' => 6,*/ 'income_description' => 'stipendija - 4.mj' ) );
+	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '4',    'income_name' => '-', 'income_value' => 1000, 'income_date' => '2018-04-14', /*'ponavljanje_primanja' => 6,*/ 'income_description' => 'stipendija - 4.mj' ) );
+	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '2',  'income_name' => '-', 'income_value' => 1000, 'income_date' => '2018-03-15', /*'ponavljanje_primanja' => 6,*/ 'income_description' => 'stipendija - 4.mj' ) );
+	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '3',  'income_name' => '-', 'income_value' => 3310, 'income_date' => '2018-03-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '-' ) );
+	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '1',   'income_name' => '-', 'income_value' => 3360, 'income_date' => '2018-03-14', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '-' ) );
+	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '4',    'income_name' => '-', 'income_value' => 1000, 'income_date' => '2018-03-15', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija -> 3.mj' ) );
+	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '2',  'income_name' => '-', 'income_value' => 2260, 'income_date' => '2018-02-14', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '-' ) );
+	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '3',  'income_name' => '-', 'income_value' => 1000, 'income_date' => '2018-02-11', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija - 2.mj' ) );
+	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '1',   'income_name' => '-', 'income_value' => 5360, 'income_date' => '2017-09-10', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'ljetni posao' ) );
+	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '4',    'income_name' => '-', 'income_value' => 1600, 'income_date' => '2018-02-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '-' ) );
+	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '2',  'income_name' => '-', 'income_value' => 2260, 'income_date' => '2018-01-16', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '-' ) );
+	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '3',  'income_name' => '-', 'income_value' => 2620, 'income_date' => '2018-01-14', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '-' ) );
+	$st->execute( array( 'category_name' => 'Placa',      'user_id' => '1',   'income_name' => '-', 'income_value' => 3360, 'income_date' => '2018-01-13', /*'ponavljanje_primanja' => 0,*/ 'income_description' => '-' ) );
+	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '4',    'income_name' => '-', 'income_value' => 1000, 'income_date' => '2018-01-12', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija - 1.mj' ) );
+	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '2',  'income_name' => '-', 'income_value' => 1000, 'income_date' => '2018-05-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija - 5.mj' ) );
 
 }
 catch( PDOException $e ) { exit( "PDO error [Expense]: " . $e->getMessage() ); }
