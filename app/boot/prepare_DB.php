@@ -1,7 +1,7 @@
 <?php
 
 
-require_once '../../Model/db.class.php';
+require_once '../../model/db.class.php';
 //require_once 'db.class.php';
 
 $db = DB::getConnection();

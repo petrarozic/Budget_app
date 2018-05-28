@@ -1,4 +1,4 @@
-Budget<?php
+<?php
 
 class LoginController extends BaseController
 {
