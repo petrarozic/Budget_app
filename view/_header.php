@@ -23,13 +23,21 @@
     td, th{
       text-align: center;
     }
+
+    .logout{
+      display: inline;
+    }
+
     </style>
   </head>
 
     <body>
     <div class="title">
       <h1>Budget-app</h1>
-      <button type="button" class="btn btn-outline-light" style="float:right;">logout</button>
+      <form class="logout" action="<?php echo __SITE_URL; ?>/index.php?rt=login" method="post">
+        <input type="hidden" name="logout">
+        <button type="submit" class="btn btn-outline-light" style="float:right; margin-top:25px;">logout</button>
+      </form>
     </div>
 
 <div class="row">
