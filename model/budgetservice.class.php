@@ -141,6 +141,14 @@ class BudgetService
     return $user;
 	}
 
+	function changeEmail($user_id, $new_email ){
+
+		// verificiraj
+		// provjeri je li vec u bazi
+		// promjeni
+		// vrati odgovarajuću poruku
+	}
+
 };
 
 
