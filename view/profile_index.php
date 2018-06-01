@@ -9,33 +9,46 @@
 
 <table class="table">
   <tr>
-    <th> Korisničko ime </th>
+    <th> Username </th>
     <td>  <?php echo $_SESSION['username']; ?> </td>
-    <td> <button type="submit">  Uredi </td>
+    <td> <button type="submit">  Edit </td>
   </tr>
   <tr>
     <th> Email </th>
     <td> <?php echo $user->email; ?> </td>
-    <td> <form method="post" action="<?php echo __SITE_URL; ?>/index.php?rt=profile/changeEmail" ><button type="submit" name="new_email"> </form> Uredi </td>
+    <td> <button type="button" name="new_email" data-toggle="modal" data-target="#changeEmail">Edit</button> </td>
   </tr>
   <tr>
-    <th> Lozinka  </th>
-    <td> _getati_lozinka_ispistai_zvjezdice_ </td>
-    <td> <button type="submit">  Uredi </td>
+    <th> Password  </th>
+    <td> ******** </td>
+    <td> <button type="submit">  Edit </td>
   </tr>
   <tr>
-    <th> Obavijesti  </th>
-    <td> Želim primati obavijesti na moju email adresu. </td>
+    <th> Daily limit </th>
+    <td>  <?php echo $user->daily_limit; ?> </td>
+    <td> <button type="submit">  Edit </td>
+  </tr>
+  <tr>
+    <th> Weekly limit </th>
+    <td>  <?php echo $user->weekly_limit; ?> </td>
+    <td> <button type="submit">  Edit </td>
+  </tr>
+  <tr>
+    <th> Monthly limit </th>
+    <td>  <?php echo $user->monthly_limit; ?> </td>
+    <td> <button type="submit">  Edit </td>
+  </tr>
+  <tr>
+    <th> Notifications  </th>
+    <td> I want to get notifications on my email address. </td>
     <td>  <input type="checkbox" >  </td>
   </tr>
   <tr>
-    <th> Moj profil  </th>
-    <td> Želim izbrisati korisnički račun. </td>
-    <td> <button type="submit">  Uredi </td>
+    <th> My profile  </th>
+    <td> I want to delete my user account.. </td>
+    <td> <button type="submit">  Edit </td>
   </tr>
 </table>
-
-
 </div>
 
 <?php
