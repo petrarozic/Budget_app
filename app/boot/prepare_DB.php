@@ -156,8 +156,8 @@ echo "Ubacio u tablicu Category.<br />";
 // // Ubaci neke troskove
 try
 {
-	$st = $db->prepare( 'INSERT INTO Expense(category_name, user_id, expense_name, expense_value, expense_date, /*ponavljanje_troska,*/ expense_description )
-	VALUES (:category_name, :user_id, :expense_name, :expense_value, :expense_date, /*:ponavljanje_troska,*/ :expense_description)' );
+	$st = $db->prepare( 'INSERT INTO Expense(category_name, user_id, expense_name, expense_value, expense_date, expense_description )
+	VALUES (:category_name, :user_id, :expense_name, :expense_value, :expense_date, :expense_description)' );
 
 	$st->execute( array( 'category_name' => 'Hrana',  'user_id' => '2', 'expense_name' => 'Rucak',     'expense_value' => 60.0,    'expense_date' => '2018-01-12',  /*'ponavljanje_troska' => 0,*/ 'expense_description' => '-' ) );
 	$st->execute( array( 'category_name' => 'Racuni', 'user_id' => '1',  'expense_name' => 'Struja',    'expense_value' => 202.0,   'expense_date' => '2018-01-13',  /*'ponavljanje_troska' => 0,*/ 'expense_description' => '-' ) );
@@ -185,8 +185,8 @@ echo "Ubacio u tablicu Expense.<br />";
 // // Ubaci neka primanja
 try
 {
-	$st = $db->prepare( 'INSERT INTO Income(category_name, /*username*/user_id, income_name, income_value, income_date, /*ponavljanje_primanja,*/ income_description )
-	VALUES (:category_name, /*:username*/:user_id, :income_name, :income_value, :income_date, /*:ponavljanje_primanja,*/ :income_description)' );
+	$st = $db->prepare( 'INSERT INTO Income(category_name, user_id, income_name, income_value, income_date,  income_description )
+	VALUES (:category_name, :user_id, :income_name, :income_value, :income_date, :income_description)' );
 
 	$st->execute( array( 'category_name' => 'Placa', 		 'user_id' => '2',  'income_name' => 'Posao: Konobarenje', 'income_value' => 2260, 'income_date' => '2018-04-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'studentski posao' ) );
 	$st->execute( array( 'category_name' => 'Placa', 	   'user_id' => '3',  'income_name' => '-', 'income_value' => 4460, 'income_date' => '2018-04-16', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'studentski posao' ) );
@@ -207,7 +207,7 @@ try
 	$st->execute( array( 'category_name' => 'Stipendija', 'user_id' => '2',  'income_name' => '-', 'income_value' => 1000, 'income_date' => '2018-05-17', /*'ponavljanje_primanja' => 0,*/ 'income_description' => 'stipendija - 5.mj' ) );
 
 }
-catch( PDOException $e ) { exit( "PDO error [Expense]: " . $e->getMessage() ); }
+catch( PDOException $e ) { exit( "PDO error [Income]: " . $e->getMessage() ); }
 
 echo "Ubacio u tablicu Income.<br />";
 
