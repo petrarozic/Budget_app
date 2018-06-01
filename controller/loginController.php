@@ -47,7 +47,7 @@ class LoginController extends BaseController
 			exit();
 		}
 
-		if( !preg_match( '/^[A-Za-z0-9]{1,20}$/', $_POST['username'] ) )
+		if( !preg_match( '/^[A-Za-z0-9_]{1,20}$/', $_POST['username'] ) )
 		{
 			$this->registry->template->show( '_header' );
 			header( 'Location: ' . __SITE_URL . '/index.php?rt=login');
