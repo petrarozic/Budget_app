@@ -33,18 +33,24 @@
     <div class="col-lg-11 col-centered" style="width: 27rem;">
         <ul class="nav nav-tabs" id="myTab" role="tablist" >
           <li class="nav-item">
-            <a class="nav-link active" id="log_in-tab" data-toggle="tab" href="#log_in" role="tab" aria-controls="log_in" aria-selected="true">LOG IN</a>
+            <?php echo '<a class="nav-link';
+             if(isset($l_flag) && $l_flag === 1) echo ' active"'; else echo '"';
+             echo ' id="log_in-tab" data-toggle="tab" href="#log_in" role="tab" aria-controls="log_in" aria-selected="true">LOG IN</a>'; ?>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="sign_up-tab" data-toggle="tab" href="#sign_up" role="tab" aria-controls="sign_up" aria-selected="false">SIGN UP</a>
+            <?php echo '<a class="nav-link';
+             if(!isset($l_flag) || $l_flag !== 1) echo ' active"'; else echo '"';
+             echo ' id="sign_up-tab" data-toggle="tab" href="#sign_up" role="tab" aria-controls="sign_up" aria-selected="false">SIGN UP</a>'; ?>
           </li>
 
         </ul>
         <div class="tab-content" id="myTabContent" >
-          <div class="tab-pane fade show active" id="log_in" role="tabpanel" aria-labelledby="log_in-tab">
+          <?php echo '<div class="tab-pane fade';
+           if(isset($l_flag) && $l_flag === 1) echo ' show active"'; else echo '"';
+           echo ' id="log_in" role="tabpanel" aria-labelledby="log_in-tab">'; ?>
 
             <div style="margin: 20px;"> <!-- style="width: 27rem;"-->
-              <form class="" action="<?php echo __SITE_URL; ?>/index.php?rt=login/obradaLogina" method="post">
+              <form class="" action="<?php echo __SITE_URL; ?>/index.php?rt=login/processLogin" method="post">
 
               <div class="form-group">
                 <label for="username">Username</label>
@@ -58,16 +64,25 @@
 
               <button type="submit" class="btn btn-success">LOG IN</button>
               <button type="reset" class="btn btn-secondary">Reset</button>
-
+              <br>
+              <br>
+              <p style="text-align:center"> <?php echo $lmessage; ?> </p>
 
             </form>
             </div>
 
           </div>
-          <div class="tab-pane fade" id="sign_up" role="tabpanel" aria-labelledby="sign_up-tab">
+          <?php echo '<div class="tab-pane fade';
+           if(!isset($l_flag) || $l_flag !== 1) echo ' show active"'; else echo '"';
+           echo ' id="sign_up" role="tabpanel" aria-labelledby="sign_up-tab">'; ?>
 
             <div style="margin: 20px;">
-              <form class="" action="<?php echo __SITE_URL; ?>/index.php?rt=login/obradaSignUpa" method="post">
+              <?php
+              if(isset($output))
+                echo '<p> '. $output. ' </p>';
+
+              else
+                echo '<form class="" action="'. __SITE_URL . '/index.php?rt=login/processSignUp" method="post">
 
               <div class="form-group">
                 <label for="username">Username</label>
@@ -78,7 +93,7 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 <small id="passwordHelpBlock" class="form-text text-muted">
-                  Your password must be 8-20 characters long, contain letters and numbers,
+                  Your password must be 3-20 characters long, contain letters and numbers,
                   and must not contain spaces, special characters, or emoji.
                 </small>
               </div>
@@ -91,6 +106,10 @@
 
               <button type="submit" class="btn btn-success float-right">SIGN UP</button>
               <button type="reset" class="btn btn-secondary float-right">Reset</button>
+              <br>
+              <br>
+              <br>
+              <p style="text-align:center"> ' . $smessage . ' </p>'; ?>
 
             </form>
             </div>

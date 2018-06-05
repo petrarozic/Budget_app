@@ -13,14 +13,14 @@ class BudgetService
 			$st = $db->prepare( 'SELECT * FROM User WHERE username=:username' );
 			$st->execute( array( 'username' => $username ) );
 		}
-		catch( PDOException $e ) { exit( 'Greška u bazi: ' . $e->getMessage() ); }
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
 		if( $st->rowCount() !== 0 )
 			return true;
 		return false;
 	}
 
-	function unesiKorisnika($username, $password, $email, $reg_seq )
+	function insertUser($username, $password, $email, $reg_seq )
 	{
 		try
 		{
@@ -32,32 +32,32 @@ class BudgetService
 												 'email' => $email,
 												 'reg_seq'  => $reg_seq ) );
 		}
-		catch( PDOException $e ) { exit( 'Greška u bazi: ' . $e->getMessage() ); }
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 	}
 
-	function findWithNiz($niz )
+	function findWithSequence($sequence )
 	{
 		try
 		{
 			$db = DB::getConnection();
 			$st = $db->prepare( 'SELECT * FROM User WHERE registration_sequence=:reg_seq' );
-			$st->execute( array( 'reg_seq' => $niz ) );
+			$st->execute( array( 'reg_seq' => $sequence ) );
 		}
-		catch( PDOException $e ) { exit( 'Greška u bazi: ' . $e->getMessage() ); }
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
 		$row = $st->fetch();
 
 		if( $st->rowCount() !== 1 )
-			exit( 'Taj registracijski niz ima ' . $st->rowCount() . 'korisnika, a treba biti točno 1 takav.' );
+			exit( 'That registration sequence has ' . $st->rowCount() . 'users and should be exactly one.' );
 		else
 		{
 			try
 			{
 				$db = DB::getConnection();
 				$st = $db->prepare( 'UPDATE User SET has_registered=1 WHERE registration_sequence=:reg_seq' );
-				$st->execute( array( 'reg_seq' => $niz ) );
+				$st->execute( array( 'reg_seq' => $sequence ) );
 			}
-			catch( PDOException $e ) { exit( 'Greška u bazi: ' . $e->getMessage() ); }
+			catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 	  }
 	}
 

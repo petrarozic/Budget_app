@@ -12,50 +12,69 @@ class LoginController extends BaseController
 			session_unset();
 			session_destroy();
 		}
+		$this->registry->template->lmessage = '';
+		$this->registry->template->smessage = '';
+		$this->registry->template->l_flag = 1;
 		$this->registry->template->show( 'login_sig_log' );
 	}
 
-	public function obradaLogina()
+	public function processLogin()
 	{
 		$ls = new BudgetService();
 
-		if(isset( $_POST['username'] ) && isset( $_POST['password'] ))
+		$this->registry->template->smessage = '';
+		if(isset( $_POST['username'] ) && isset( $_POST['password']) && $_POST['username'] !== '' && $_POST['password'] !== '')
 		{
 			$id = $ls->isInDB( $_POST['username'], $_POST['password']);
 			if($id === false){
-				header( 'Location: ' . __SITE_URL . '/index.php?rt=login');
+				$this->registry->template->l_flag = 1;
+				$this->registry->template->lmessage = "Username or password incorrect.";
+				$this->registry->template->show( 'login_sig_log' );
 				exit();
 			}
 
 			$_SESSION['user_id'] = $id;
 			$_SESSION['username'] = $_POST['username'];
-			$this->registry->template->show( '_table' );
+			$this->registry->template->show( '_table' );  //promijeniti kad napravimo home, email na hrv?, promijeniti ime u login_index, zbrisati pogledajMail i SignUp //login ili log in?
 		}
 		else{
-			header( 'Location: ' . __SITE_URL . '/index.php?rt=login');
+			$this->registry->template->l_flag = 1;
+			$this->registry->template->lmessage = "You have to enter username and password to log in.";
+			$this->registry->template->show( 'login_sig_log' );
 			exit();
 		}
 	}
-	public function obradaSignUpa()
+
+	public function processSignUp()
 	{
 		$ls = new BudgetService();
 
-		if( !isset( $_POST['username'] ) || !isset( $_POST['password'] ) || !isset( $_POST['email'] ) )
+		$this->registry->template->lmessage = '';
+		if( !isset( $_POST['username'] ) || !isset( $_POST['password'] ) || !isset( $_POST['email'] ) || $_POST['username'] === '' || $_POST['password'] === '' || $_POST['email'] === '')
 		{
-			$this->registry->template->show( '_header' );
-			header( 'Location: ' . __SITE_URL . '/index.php?rt=login');
+			$this->registry->template->smessage = "You have to enter username, password and email to sign up.";
+			$this->registry->template->show( 'login_sig_log' );
 			exit();
 		}
 
-		if( !preg_match( '/^[A-Za-z0-9_]{1,20}$/', $_POST['username'] ) )
+		else if( !preg_match( '/^[A-Za-z0-9_@ ]{1,40}$/', $_POST['username'] ) )
 		{
-			$this->registry->template->show( '_header' );
-			header( 'Location: ' . __SITE_URL . '/index.php?rt=login');
+			$this->registry->template->smessage = "Username should consist of letters and numbers.";
+			$this->registry->template->show( 'login_sig_log' );
 			exit();
 		}
+
+		else if( !preg_match( '/^[A-Za-z0-9]{3,20}$/', $_POST['password'] ) )
+		{
+			$this->registry->template->smessage = "Password should consist only of letters and numbers and be 3-20 characters long.";
+			$this->registry->template->show( 'login_sig_log' );
+			exit();
+		}
+
 		else if( !filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL) )
 		{
-			header( 'Location: ' . __SITE_URL . '/index.php?rt=login');
+			$this->registry->template->smessage = "Email is not valid.";
+			$this->registry->template->show( 'login_sig_log' );
 			exit();
 		}
 		else
@@ -63,7 +82,8 @@ class LoginController extends BaseController
 			$is = $ls->isAlreadyInDB( $_POST['username']);
 			if($is === true)
 			{
-				header( 'Location: ' . __SITE_URL . '/index.php?rt=login');
+				$this->registry->template->smessage = "There is already a user with username ". $_POST['username'] .". Please, choose another username or check if you have already registrated.";
+				$this->registry->template->show( 'login_sig_log' );
 				exit();
 			}
 
@@ -71,18 +91,19 @@ class LoginController extends BaseController
 			for( $i = 0; $i < 20; ++$i )
 				$reg_seq .= chr( rand(0, 25) + ord( 'a' ) );
 
-			$ls->unesiKorisnika( $_POST['username'], $_POST['password'], $_POST['email'], $reg_seq);
+			$ls->insertUser( $_POST['username'], $_POST['password'], $_POST['email'], $reg_seq);
 
 			$to       = $_POST['email'];
-			$subject  = 'Registracijski mail';
-			$message  = 'Poštovani ' . $_POST['username'] . "!\nZa dovršetak registracije kliknite na sljedeći link: ";
-			$message .= 'http://' . $_SERVER['SERVER_NAME']. __SITE_URL . '/index.php?rt=login/register&niz='. $reg_seq . "\n";
+			$subject  = 'Registration mail';
+			$message  = 'Dear ' . $_POST['username'] . ",\nTo complete the registration click on the following link: ";
+			$message .= 'http://' . $_SERVER['SERVER_NAME']. __SITE_URL . '/index.php?rt=login/register&sequence='. $reg_seq . "\n";
 			$headers  = 'From: rp2@studenti.math.hr' . "\r\n" .
 			            'Reply-To: rp2@studenti.math.hr' . "\r\n" .
 			            'X-Mailer: PHP/' . phpversion();
 
 			mail($to, $subject, $message, $headers);
-			$this->registry->template->show( 'login_pogledajMail' );
+			$this->registry->template->output = "Thank you for choosing Budget-app. To complete the registration, click on the link in the email we sent you.";
+			$this->registry->template->show( 'login_sig_log' );
 			exit();
 		}
 	}
@@ -90,11 +111,12 @@ class LoginController extends BaseController
  public function register(){
 	$ls = new BudgetService();
 
-	if( !isset( $_GET['niz'] ) || !preg_match( '/^[a-z]{20}$/', $_GET['niz'] ) )
-		exit( 'Nešto ne valja s nizom.' );
+	if( !isset( $_GET['sequence'] ) || !preg_match( '/^[a-z]{20}$/', $_GET['sequence'] ) )
+		exit( 'Something is wrong with the sequence.' );
 
-		$ls->findWithNiz( $_GET['niz']);
-		$this->registry->template->show( 'login_uspjesanSignUp' );
+		$ls->findWithSequence( $_GET['sequence']);
+		$this->registry->template->output = "Registration has been successfully completed, you can now log in.";
+		$this->registry->template->show( 'login_sig_log' );
 	}
 };
 
