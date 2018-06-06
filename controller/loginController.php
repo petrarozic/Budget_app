@@ -15,7 +15,7 @@ class LoginController extends BaseController
 		$this->registry->template->lmessage = '';
 		$this->registry->template->smessage = '';
 		$this->registry->template->l_flag = 1;
-		$this->registry->template->show( 'login_sig_log' );
+		$this->registry->template->show( 'login_index' );
 	}
 
 	public function processLogin()
@@ -29,7 +29,7 @@ class LoginController extends BaseController
 			if($id === false){
 				$this->registry->template->l_flag = 1;
 				$this->registry->template->lmessage = "Username or password incorrect.";
-				$this->registry->template->show( 'login_sig_log' );
+				$this->registry->template->show( 'login_index' );
 				exit();
 			}
 
@@ -40,7 +40,7 @@ class LoginController extends BaseController
 		else{
 			$this->registry->template->l_flag = 1;
 			$this->registry->template->lmessage = "You have to enter username and password to log in.";
-			$this->registry->template->show( 'login_sig_log' );
+			$this->registry->template->show( 'login_index' );
 			exit();
 		}
 	}
@@ -53,28 +53,28 @@ class LoginController extends BaseController
 		if( !isset( $_POST['username'] ) || !isset( $_POST['password'] ) || !isset( $_POST['email'] ) || $_POST['username'] === '' || $_POST['password'] === '' || $_POST['email'] === '')
 		{
 			$this->registry->template->smessage = "You have to enter username, password and email to sign up.";
-			$this->registry->template->show( 'login_sig_log' );
+			$this->registry->template->show( 'login_index' );
 			exit();
 		}
 
 		else if( !preg_match( '/^[A-Za-z0-9_@ ]{1,40}$/', $_POST['username'] ) )
 		{
 			$this->registry->template->smessage = "Username should consist of letters and numbers.";
-			$this->registry->template->show( 'login_sig_log' );
+			$this->registry->template->show( 'login_index' );
 			exit();
 		}
 
 		else if( !preg_match( '/^[A-Za-z0-9]{3,20}$/', $_POST['password'] ) )
 		{
 			$this->registry->template->smessage = "Password should consist only of letters and numbers and be 3-20 characters long.";
-			$this->registry->template->show( 'login_sig_log' );
+			$this->registry->template->show( 'login_index' );
 			exit();
 		}
 
 		else if( !filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL) )
 		{
 			$this->registry->template->smessage = "Email is not valid.";
-			$this->registry->template->show( 'login_sig_log' );
+			$this->registry->template->show( 'login_index' );
 			exit();
 		}
 		else
@@ -83,7 +83,7 @@ class LoginController extends BaseController
 			if($is === true)
 			{
 				$this->registry->template->smessage = "There is already a user with username ". $_POST['username'] .". Please, choose another username or check if you have already registrated.";
-				$this->registry->template->show( 'login_sig_log' );
+				$this->registry->template->show( 'login_index' );
 				exit();
 			}
 
@@ -103,7 +103,7 @@ class LoginController extends BaseController
 
 			mail($to, $subject, $message, $headers);
 			$this->registry->template->output = "Thank you for choosing Budget-app. To complete the registration, click on the link in the email we sent you.";
-			$this->registry->template->show( 'login_sig_log' );
+			$this->registry->template->show( 'login_index' );
 			exit();
 		}
 	}
@@ -116,7 +116,7 @@ class LoginController extends BaseController
 
 		$ls->findWithSequence( $_GET['sequence']);
 		$this->registry->template->output = "Registration has been successfully completed, you can now log in.";
-		$this->registry->template->show( 'login_sig_log' );
+		$this->registry->template->show( 'login_index' );
 	}
 };
 
