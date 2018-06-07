@@ -23,24 +23,24 @@ td, th{
 }
 
   /***********************************
-  * NAVBAR
+  * NAVBAR- tj LINKOVI
    ***********************************/
    .side_bar{
      background-color: darkgrey;
    }
 
-   .nav-ul{
+   .link-ul{
      list-style-type: none;
      padding-left: 10px;
    }
-   .nav-item{
+   .link-item{
      padding: 10px 5px;
      margin: 15px 10px;
      border-radius: 10px;
      text-align: center;
    }
 
-   .nav-ul .nav-item a{
+   .link-ul .link-item a{
      text-decoration: none;
      color: black;
      display: block;
@@ -51,7 +51,7 @@ td, th{
    color: white;
    }
 
-   .active {
+   .link-active {
    background-color: Gainsboro;
    font-weight: bold;
    }
