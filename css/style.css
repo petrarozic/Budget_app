@@ -23,6 +23,21 @@ td, th{
 }
 
   /***********************************
+  * LOG_IN page
+   ***********************************/
+   .log-body{
+     background-color: lightgrey;
+   }
+
+   .log-mainPart{
+     background: white;
+     padding: 10px;
+     border-radius: 15px;
+   }
+
+   /***********************************
+   ***********************************/
+  /***********************************
   * NAVBAR- tj LINKOVI
    ***********************************/
    .side_bar{
@@ -46,7 +61,7 @@ td, th{
      display: block;
    }
 
-   li:hover {
+   .link-ul li:hover {
    background-color: lightgrey;
    color: white;
    }

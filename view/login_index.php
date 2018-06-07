@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="<?php echo __SITE_URL;?>/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous">
@@ -20,7 +21,7 @@
       crossorigin="anonymous">
     </script>
 <!-- do tuda -->
-    <title></title>
+    <title>Budget_app</title>
 
     <style media="screen">
       .col-centered{
@@ -29,8 +30,12 @@
         }
     </style>
   </head>
-  <body>
-    <div class="col-lg-11 col-centered" style="width: 27rem;">
+  <body class="log-body">
+    <div class="title">
+      <h1>Budget-app</h1>
+    </div>
+
+    <div class="col-lg-11 col-centered log-mainPart" style="width: 27rem; margin-top: 5%;">
         <ul class="nav nav-tabs" id="myTab" role="tablist" >
           <li class="nav-item">
             <?php echo '<a class="nav-link';
