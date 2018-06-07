@@ -1,0 +1,76 @@
+
+.title{
+  background-color:  #202020;
+  color: white;
+  padding: 30px;
+}
+
+h1{
+  display: inline;
+}
+
+/* li{
+	 text-align: center;
+   padding: 20%;
+} */
+
+td, th{
+  text-align: center;
+}
+
+.logout{
+  display: inline;
+}
+
+  /***********************************
+  * NAVBAR
+   ***********************************/
+   .side_bar{
+     background-color: darkgrey;
+   }
+
+   .nav-ul{
+     list-style-type: none;
+     padding-left: 10px;
+   }
+   .nav-item{
+     padding: 10px 5px;
+     margin: 15px 10px;
+     border-radius: 10px;
+     text-align: center;
+   }
+
+   .nav-ul .nav-item a{
+     text-decoration: none;
+     color: black;
+     display: block;
+   }
+
+   li:hover {
+   background-color: lightgrey;
+   color: white;
+   }
+
+   .active {
+   background-color: Gainsboro;
+   font-weight: bold;
+   }
+
+/***********************************
+***********************************/
+
+/*
+.row{
+  margin-right: 30px;
+  float: left;
+}
+
+.wrapper{
+  padding: 10px;
+}
+
+.omotac{
+    float: right;
+    align-self: center;
+}
+*/
