@@ -54,7 +54,7 @@
            if(isset($l_flag) && $l_flag === 1) echo ' show active"'; else echo '"';
            echo ' id="log_in" role="tabpanel" aria-labelledby="log_in-tab">'; ?>
 
-            <div style="margin: 20px;"> <!-- style="width: 27rem;"-->
+            <div style="margin: 20px;">
               <form class="" action="<?php echo __SITE_URL; ?>/index.php?rt=login/processLogin" method="post">
 
               <div class="form-group">
