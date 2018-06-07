@@ -21,22 +21,34 @@
       </form>
     </div>
 
+    <?php require_once __SITE_PATH . '/view/_activPage.php'; ?>
+
     <div class="row">
       <div class="col-md-2 pull-left side_bar">
         <ul class="nav-ul">
-          <li class="nav-item active">
+          <li class="nav-item
+                <?php if ($extension === 'home') echo "active"; ?>
+          ">
             <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=home">HOME</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item
+                <?php if ($extension === 'incomes') echo "active"; ?>
+            ">
             <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/incomes">INCOMES</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item
+                <?php if ($extension === 'expenses') echo "active"; ?>
+            ">
             <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/expenses">EXPENSES</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item
+                <?php if ($extension === '#') echo "active"; ?>
+            ">
             <a class="" href="#">STATISTICS</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item
+                <?php if ($extension === 'profile') echo "active"; ?>
+            ">
           <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=profile">PROFILE</a>
           </li>
        </ul>
