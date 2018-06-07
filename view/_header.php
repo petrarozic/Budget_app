@@ -25,7 +25,7 @@
       <div class="col-md-2 pull-left side_bar">
         <ul class="nav-ul">
           <li class="nav-item active">
-            <a class="" href="#">HOME</a>
+            <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=home">HOME</a>
           </li>
           <li class="nav-item">
             <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/incomes">INCOMES</a>
