@@ -143,10 +143,26 @@ class BudgetService
 
 	function changeEmail($user_id, $new_email ){
 
-		// verificiraj
-		// provjeri je li vec u bazi
-		// promjeni
-		// vrati odgovarajuću poruku
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare('UPDATE User SET email=:new_email WHERE user_id LIKE :user_id');
+			$user_->execute( array( 'new_email' => $new_email, 'user_id' => $user_id) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		return;
+	}
+
+	function changeUsername($user_id, $new_username ){
+
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare('UPDATE User SET username=:new_username WHERE user_id LIKE :user_id');
+			$user_->execute( array( 'new_username' => $new_username, 'user_id' => $user_id) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		return;
 	}
 
 };
