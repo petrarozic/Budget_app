@@ -163,7 +163,9 @@ function getTransactionById($user_id){
 
 	//sortirati arr po datumu
 
-
+		usort($arr, function($a, $b) {
+		    return strcmp($a->tr_date, $b->tr_date);
+		});
 
 	return $arr;
 	}
