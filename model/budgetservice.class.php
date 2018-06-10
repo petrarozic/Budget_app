@@ -20,6 +20,7 @@ class BudgetService
 		return false;
 	}
 
+
 	function insertUser($username, $password, $email, $reg_seq )
 	{
 		try
@@ -34,6 +35,8 @@ class BudgetService
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 	}
+
+
 
 	function findWithSequence($sequence )
 	{
@@ -82,6 +85,8 @@ class BudgetService
     return false;
   }
 
+
+
 	function getExpenseById( $user_id ){
 			try{
 				$db = DB::getConnection();
@@ -102,10 +107,8 @@ class BudgetService
 
 
 	//vraca array sa svim primanjima za logiranog korisnika
-
-
 	function getIncomeById( $user_id ){
-				try{
+			try{
 					$db = DB::getConnection();
 					$st = $db->prepare( 'SELECT * FROM  Income WHERE user_id=:id ORDER BY income_date DESC' );
 					$st->execute( array( 'id' => $user_id ) );
@@ -122,6 +125,50 @@ class BudgetService
 		return $arr;
 
 	}
+
+
+	//sve transakcije (ne pozivam funkcije za income i expense zbog oznaka za razlikovanje u view-u)
+function getTransactionById($user_id){
+	$arr = array();
+
+	//incomes
+	try{
+			$db = DB::getConnection();
+			$st = $db->prepare( 'SELECT * FROM  Income WHERE user_id=:id' );
+			$st->execute( array( 'id' => $user_id ) );
+	}
+	catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+
+	while( $row = $st->fetch() )
+	{
+		$arr[] = new Transaction( $row['income_id'], $row['category_name'], $row['user_id'], $row['income_name'], $row['income_value'],
+							$row['income_date'], $row['income_description'], 'i');
+	}
+
+//expences
+	try{
+		$db = DB::getConnection();
+		$st = $db->prepare( 'SELECT * FROM  Expense WHERE user_id=:id ' );
+		$st->execute( array( 'id' => $user_id ) );
+	}
+	catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+
+	while( $row = $st->fetch() )
+	{
+	$arr[] = new Transaction( $row['expense_id'], $row['category_name'], $row['user_id'], $row['expense_name'], $row['expense_value'],
+						$row['expense_date'], $row['expense_description'], 'e' );
+	}
+
+	//sortirati arr po datumu
+
+
+
+	return $arr;
+	}
+
+
 
 	function getUserbById( $user_id){
 		try
@@ -140,6 +187,8 @@ class BudgetService
 
     return $user;
 	}
+
+
 
 	function changeEmail($user_id, $new_email ){
 
@@ -165,7 +214,11 @@ class BudgetService
 		return;
 	}
 
+
+
 };
+
+//fja za sortirati
 
 
 

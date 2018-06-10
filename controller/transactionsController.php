@@ -16,8 +16,6 @@
 
       $this->registry->template->transactionsList = $ls->getIncomeById($_SESSION['user_id']);
       $this->registry->template->flag = "income";
-
-
       $this->registry->template->show('transactions_index');
     }
 
@@ -30,5 +28,6 @@
       $this->registry->template->show('transactions_index');
     }
 
+  
   };
  ?>
