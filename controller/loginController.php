@@ -35,7 +35,7 @@ class LoginController extends BaseController
 
 			$_SESSION['user_id'] = $id;
 			$_SESSION['username'] = $_POST['username'];
-			$this->registry->template->show( '_table' );  //promijeniti kad napravimo home, email na hrv?, promijeniti ime u login_index, zbrisati pogledajMail i SignUp //login ili log in?
+			header( 'Location: ' . __SITE_URL . '/index.php?rt=home');
 		}
 		else{
 			$this->registry->template->l_flag = 1;
