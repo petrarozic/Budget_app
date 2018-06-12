@@ -22,6 +22,13 @@
       $this->registry->template->show('transactions_index');
     }
 
+    function removeTransaction(){
+      $ls = new BudgetService();
+      // $transaction_id;
+      $this->registry->template->removeTransaction = $ls->removeTransaction($_SESSION['user_id']);
+      $this->registry->template->show('transactions_index');
+    }
+
 
   };
  ?>

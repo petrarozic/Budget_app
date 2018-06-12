@@ -8,29 +8,30 @@
       <th>AMOUNT(HRK)</th>
       <th>DATE</th>
       <th>DESCRIPTION</th>
-      <th>erase/change</th>
+      <th>EDIT </th>
+      <th>REMOVE</th>
     </tr>
   </thead>
   <tbody>
     <?php
       if( empty($transactionsList) )
-          echo '<tr><td colspan="6">There are currently no subscribed expenses/incomes.</td></tr>';
+          echo '<tr><td colspan="7">There are currently no subscribed expenses/incomes.</td></tr>';
       else{
         foreach($transactionsList as $t){
           if( $flag === "expense"  ){
            echo '<tr><td>'.$t->category_name.'</td><td>'.$t->expense_name.'</td><td>'.$t->expense_value.'</td><td>'.$t->expense_date.'</td><td>'.$t->expense_description.'</td><td>';
-           echo '<button type="submit">Edit</button></td></tr>';
+           echo '<i class="far fa-edit"></i></td> <td>  <i class="far fa-trash-alt"></i> </td> </tr>';
           }
           else if($flag === "income"){
             echo '<tr><td>'.$t->category_name.'</td><td>'.$t->income_name.'</td><td>'.$t->income_value.'</td><td>'.$t->income_date.'</td><td>'.$t->income_description.'</td><td>';
-            echo '<button type="submit">Edit</button></td></tr>';
+            echo '<i class="far fa-edit"></i></td> <td> <i class="far fa-trash-alt"></i></td></tr>';
           }
           else /*if($flag === "transactions")*/{
             if($t->tr_type === 'e')
             echo '<tr bgcolor="lightpink"><td>'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td>'.$t->tr_value.'</td><td>'.$t->tr_date.'</td><td>'.$t->tr_description.'</td><td>';
             else
             echo '<tr bgcolor="lightgreen"><td>'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td>'.$t->tr_value.'</td><td>'.$t->tr_date.'</td><td>'.$t->tr_description.'</td><td>';
-            echo '<button type="submit">Edit</button></td></tr>';
+            echo '<i class="far fa-edit"></i></td> <td> <i class="far fa-trash-alt"></i></td></tr>';
           }
         }
       }
