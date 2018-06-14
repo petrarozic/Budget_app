@@ -116,22 +116,13 @@ td, th{
      font-weight: bold;
    }
 
+   #dropdownMenu{
+     background: rgba(255,222,173, 0.6);
+     margin: auto;
+     float: right;
+   }
 
-/***********************************
-***********************************/
-
-/*
-.row{
-  margin-right: 30px;
-  float: left;
-}
-
-.wrapper{
-  padding: 10px;
-}
-
-.omotac{
-    float: right;
-    align-self: center;
-}
-*/
+   #link-dropdown{
+     background: Wheat;
+     padding: 1em 1em 0em 1em;
+   }

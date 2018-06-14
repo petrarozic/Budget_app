@@ -17,10 +17,48 @@
   <body class="body_">
     <div class="title">
       <span class="title-name">Budget-app</span>
-      <form class="logout" action="<?php echo __SITE_URL; ?>/index.php?rt=login" method="post">
-        <input type="hidden" name="logout">
-        <button type="submit" class="btn btn-outline-light" style="float:right; margin-top:25px;">logout</button>
-      </form>
+
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        IKONA
+      </button>
+      <div class="dropdown-menu" id="link-dropdown" aria-labelledby="dropdownMenu_kajJeTo">
+        <ul class="link-ul">
+          <li class="link-item
+                <?php if ($extension === 'home') echo "link-active"; ?>
+          ">
+            <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=home">HOME</a>
+          </li>
+          <li class="link-item
+                <?php if ($extension === 'incomes') echo "link-active"; ?>
+            ">
+            <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/incomes">INCOMES</a>
+          </li>
+          <li class="link-item link-active
+                <?php if ($extension === 'expenses') echo "link-active"; ?>
+            ">
+            <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/expenses">EXPENSES</a>
+          </li>
+          <li class="link-item
+                <?php if ($extension === '#') echo "link-active"; ?>
+            ">
+            <a class="" id="STATISTICS" href="#">STATISTICS</a>
+          </li>
+       </ul>
+       <div class="dropdown-divider"></div>
+       <ul class="link-ul">
+         <li class="link-item
+               <?php if ($extension === 'profile') echo "link-active"; ?>
+           ">
+         <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=profile">PROFILE</a>
+         </li>
+         <li class="link-item">
+           <form class="logout" action="<?php echo __SITE_URL; ?>/index.php?rt=login" method="post">
+             <input type="hidden" name="logout">
+             <button type="submit" class="btn btn-outline-light">logout</button>
+           </form>
+         </li>
+       </ul>
+      </div>
     </div>
 
     <?php require_once __SITE_PATH . '/view/_activPage.php'; ?>
