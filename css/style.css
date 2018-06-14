@@ -2,6 +2,9 @@
   background: BlanchedAlmond;
 }
 
+/***********************************
+* NASLOVNA TRAKA  
+ ***********************************/
 .title{
   background-color: ForestGreen;
   color: white;
@@ -19,14 +22,42 @@
   display: inline;
 }
 
-h1{
-  display: inline;
+/***********************************
+* ispis LIMITA
+ ***********************************/
+.info{
+  margin-bottom: 2em;
+  margin-top: -3em;
+  padding-top: 1em;
+  background: rgba(46,139,87, 0.9);
+  height: 8em;
+  width: 80%;
+  margin-left: 10%;
+  box-shadow: 10px 10px 25px rgba(46,139,87, 0.8);
+  border-radius: 15px;
 }
 
-/* li{
-	 text-align: center;
-   padding: 20%;
-} */
+.info-box{
+  background: rgba(255,222,173, 0.6);
+  border-radius: 10px;
+  padding: 1em 2em;
+  text-align: center;
+  margin: auto;
+
+}
+
+.info-elem{
+  display: block;
+  color: white;
+  font-weight: bold;
+}
+
+.info-amount{
+  display: block;
+  color: white;
+}
+
+
 
 td, th{
   text-align: center;
@@ -49,8 +80,6 @@ td, th{
      border-radius: 15px;
    }
 
-   /***********************************
-   ***********************************/
   /***********************************
   * NAVBAR- tj LINKOVI
    ***********************************/

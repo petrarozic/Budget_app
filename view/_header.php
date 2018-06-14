@@ -56,4 +56,20 @@
        </ul>
       </div>
       <!--DIV za sredisnji dio stranice -->
-      <div class="col-md-10 pull-right">
+      <div class="col-md-10 pull-right mainContent">
+          <div class="info">
+            <div class="row">
+              <div class="info-box">
+                <span class="info-elem"> Daily limit </span>
+                <span class="info-amount">+100</span>
+              </div>
+              <div class="info-box">
+                <span class="info-elem" style="color: indianred"> Weekly limit </span>
+                <span class="info-amount" style="color: indianred">-20</span>
+              </div>
+              <div class="info-box">
+                <span class="info-elem"> Monthly limit </span>
+                <span class="info-amount">+100</span>
+              </div>
+            </div>
+          </div>
