@@ -1,8 +1,22 @@
+.body_{
+  background: BlanchedAlmond;
+}
 
 .title{
-  background-color:  #202020;
+  background-color: ForestGreen;
   color: white;
-  padding: 30px;
+  height: 10em;
+  width: -webkit-fill-available; /*prilagoduje se browseru*/
+  padding: 1em;
+  display: block;
+}
+
+.title-name{
+  font-size: 4em;
+  font-weight: bold;
+  font-family: 'Comic Sans MS';
+  margin-left: 1em;
+  display: inline;
 }
 
 h1{
