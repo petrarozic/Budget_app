@@ -170,6 +170,26 @@ function getTransactionById($user_id){
 	return $arr;
 	}
 
+	function removeExpense($user_id, $expense_id ){
+		try
+    {
+      $expenses = DB::getConnection();
+			$expenses_ = $expenses->prepare('DELETE FROM `Expense` WHERE ( user_id LIKE :user_id ) AND ( expense_id LIKE :expense_id )');
+			$expenses_->execute(array('user_id' => $user_id, 'expense_id' => $expense_id ));
+    }
+    catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+	}
+
+	function removeIncome($user_id, $income_id ){
+
+		try
+		{
+			$incomes = DB::getConnection();
+			$incomes_ = $incomes->prepare('DELETE FROM `Income` WHERE ( user_id LIKE :user_id ) AND ( income_id LIKE :income_id )');
+			$incomes_->execute(array('user_id' => $user_id, 'income_id' => $income_id ));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+	}
 
 
 	function getUserbById( $user_id){

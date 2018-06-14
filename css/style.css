@@ -130,3 +130,19 @@ td, th{
      background: Wheat;
      padding: 1em 1em 0em 1em;
    }
+
+   /***********************************
+   * Button for removing/editing  Button for adding transaction
+    ***********************************/
+    .IconButton, .AddButton{
+       background-color: Transparent;
+       background-repeat:no-repeat;
+       border: none;
+       cursor:pointer;
+       overflow: hidden;
+       outline:none;
+    }
+
+    .far, .fas{
+      font-size: 22px;
+    }

@@ -67,6 +67,9 @@
       <div class="info">
         <div class="row">
           <div class="info-box">
+            <button class="AddButton" type="submit" name="AddTransaction" data-toggle="modal" data-target="#AddTransaction" > <i class="fas fa-plus" style="font-size:3em;"></i></button>
+          </div>
+          <div class="info-box">
             <span class="info-elem"> Daily limit </span>
             <span class="info-amount">+100</span>
           </div>
