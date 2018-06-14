@@ -63,51 +63,20 @@
 
     <?php require_once __SITE_PATH . '/view/_activPage.php'; ?>
 
-    <div class="row">
-      <div class="col-md-2 pull-left side_bar">
-        <ul class="link-ul">
-          <li class="link-item
-                <?php if ($extension === 'home') echo "link-active"; ?>
-          ">
-            <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=home">HOME</a>
-          </li>
-          <li class="link-item
-                <?php if ($extension === 'incomes') echo "link-active"; ?>
-            ">
-            <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/incomes">INCOMES</a>
-          </li>
-          <li class="link-item
-                <?php if ($extension === 'expenses') echo "link-active"; ?>
-            ">
-            <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/expenses">EXPENSES</a>
-          </li>
-          <li class="link-item
-                <?php if ($extension === '#') echo "link-active"; ?>
-            ">
-            <a class="" href="#">STATISTICS</a>
-          </li>
-          <li class="link-item
-                <?php if ($extension === 'profile') echo "link-active"; ?>
-            ">
-          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=profile">PROFILE</a>
-          </li>
-       </ul>
-      </div>
-      <!--DIV za sredisnji dio stranice -->
-      <div class="col-md-10 pull-right mainContent">
-          <div class="info">
-            <div class="row">
-              <div class="info-box">
-                <span class="info-elem"> Daily limit </span>
-                <span class="info-amount">+100</span>
-              </div>
-              <div class="info-box">
-                <span class="info-elem" style="color: indianred"> Weekly limit </span>
-                <span class="info-amount" style="color: indianred">-20</span>
-              </div>
-              <div class="info-box">
-                <span class="info-elem"> Monthly limit </span>
-                <span class="info-amount">+100</span>
-              </div>
-            </div>
+    <div class="mainContent">
+      <div class="info">
+        <div class="row">
+          <div class="info-box">
+            <span class="info-elem"> Daily limit </span>
+            <span class="info-amount">+100</span>
           </div>
+          <div class="info-box">
+            <span class="info-elem" style="color: indianred"> Weekly limit </span>
+            <span class="info-amount" style="color: indianred">-20</span>
+          </div>
+          <div class="info-box">
+            <span class="info-elem"> Monthly limit </span>
+            <span class="info-amount">+100</span>
+          </div>
+        </div>
+      </div>
