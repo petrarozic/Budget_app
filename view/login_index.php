@@ -23,16 +23,10 @@
 <!-- do tuda -->
     <title>Budget_app</title>
 
-    <style media="screen">
-      .col-centered{
-        float: none;
-        margin: 0 auto;
-        }
-    </style>
   </head>
   <body class="log-body">
     <div class="title">
-      <h1>Budget-app</h1>
+      <span class="title-name">Budget-app</span>
     </div>
 
     <div class="col-lg-11 col-centered log-mainPart" style="width: 27rem; margin-top: 5%;">
