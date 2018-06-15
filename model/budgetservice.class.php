@@ -236,11 +236,76 @@ function getTransactionById($user_id){
 		return;
 	}
 
+	function changePassword( $user_id, $new_pass ){
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare('UPDATE User SET password=:new_pass WHERE user_id LIKE :user_id');
+			$user_->execute( array( 'new_pass' => password_hash( $new_pass, PASSWORD_DEFAULT ), 'user_id' => $user_id) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
+		return;
+	}
 
+	function changeDaily($user_id, $new_limit ){
+
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare('UPDATE User SET daily_limit=:new_limit WHERE user_id LIKE :user_id');
+			$user_->execute( array( 'new_limit' => $new_limit, 'user_id' => $user_id) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		return;
+	}
+
+	function changeWeekly($user_id, $new_limit ){
+
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare('UPDATE User SET weekly_limit=:new_limit WHERE user_id LIKE :user_id');
+			$user_->execute( array( 'new_limit' => $new_limit, 'user_id' => $user_id) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		return;
+	}
+
+	function changeMonthly($user_id, $new_limit ){
+
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare('UPDATE User SET monthly_limit=:new_limit WHERE user_id LIKE :user_id');
+			$user_->execute( array( 'new_limit' => $new_limit, 'user_id' => $user_id) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		return;
+	}
+
+	function accountDelete( $user_id ){
+		
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare('DELETE FROM User WHERE user_id LIKE :user_id');
+			$user_->execute( array( 'user_id' => $user_id ) );
+
+			$expense_ = $user->prepare('DELETE FROM Expense WHERE user_id LIKE :user_id');
+			$expense_->execute( array( 'user_id' => $user_id ) );
+
+			$income_ = $user->prepare('DELETE FROM Income WHERE user_id LIKE :user_id');
+			$income_->execute( array( 'user_id' => $user_id ) );
+
+			$categ_ = $user->prepare('DELETE FROM Category WHERE user_id LIKE :user_id'); 
+			$categ->execute( array( 'user_id' => $user_id ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		return;
+	}
 };
 
-//fja za sortirati
+	
 
 
 
