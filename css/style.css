@@ -74,6 +74,21 @@ td, th{
 /***********************************
 ***********************************/
 
+
+/***********************************
+* STATISTICS
+ ***********************************/
+ .group {
+ border-right: 1px solid lightgrey;
+ }
+
+ .title_canvas{
+   font-size: 24px;
+   margin: 15px 0px 15px 0px;
+   text-align: center;
+ }
+
+
 /*
 .row{
   margin-right: 30px;

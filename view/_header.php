@@ -10,6 +10,7 @@
           crossorigin="anonymous">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </head>
 
   <body>
@@ -17,7 +18,7 @@
       <h1>Budget-app</h1>
       <form class="logout" action="<?php echo __SITE_URL; ?>/index.php?rt=login" method="post">
         <input type="hidden" name="logout">
-        <button type="submit" class="btn btn-outline-light" style="float:right; margin-top:25px;">logout</button>
+        <button type="submit" class="btn btn-outline-light" style="float:right; margin-top:25px;">log out</button>
       </form>
     </div>
 
@@ -42,9 +43,9 @@
             <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/expenses">EXPENSES</a>
           </li>
           <li class="link-item
-                <?php if ($extension === '#') echo "link-active"; ?>
+                <?php if ($extension === 'statistics') echo "link-active"; ?>
             ">
-            <a class="" href="#">STATISTICS</a>
+            <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=statistics">STATISTICS</a>
           </li>
           <li class="link-item
                 <?php if ($extension === 'profile') echo "link-active"; ?>
