@@ -46,9 +46,9 @@
     <td>  <input type="checkbox" >  </td>
   </tr>
   <tr>
-    <th> My profile  </th>
+    <th> Delete account  </th>
     <td> I want to delete my user account.. </td>
-    <td> <button class = "IconButton" type="button" name="delete" data-toggle="modal" data-target="#changeDelete" > <i class="far fa-edit"></i></button> </td>
+    <td> <button class = "IconButton" type="button"  data-toggle="modal" data-target="#accountDelete" > <i class="far fa-edit"></i></button> </td>
   </tr>
 </table>
 </div>

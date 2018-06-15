@@ -284,7 +284,7 @@ function getTransactionById($user_id){
 	}
 
 	function accountDelete( $user_id ){
-		
+
 		try{
 			$user = DB::getConnection();
 			$user_ = $user->prepare('DELETE FROM User WHERE user_id LIKE :user_id');
@@ -296,8 +296,8 @@ function getTransactionById($user_id){
 			$income_ = $user->prepare('DELETE FROM Income WHERE user_id LIKE :user_id');
 			$income_->execute( array( 'user_id' => $user_id ) );
 
-			$categ_ = $user->prepare('DELETE FROM Category WHERE user_id LIKE :user_id'); 
-			$categ->execute( array( 'user_id' => $user_id ) );
+			$categ_ = $user->prepare('DELETE FROM Category WHERE user_id LIKE :user_id');
+			$categ_->execute( array( 'user_id' => $user_id ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
@@ -305,7 +305,7 @@ function getTransactionById($user_id){
 	}
 };
 
-	
+
 
 
 
