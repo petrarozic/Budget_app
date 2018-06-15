@@ -1,5 +1,3 @@
-  
-      </div> <!--kraj sredisnjed dijela -->
-    </div> <!--kraj dijela row -->
+    </div> <!--kraj sredisnjed dijela -->
   </body>
 </html>
