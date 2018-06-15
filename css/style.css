@@ -1,12 +1,12 @@
   .body_{
-    background: BlanchedAlmond;
+    /*background: BlanchedAlmond;*/
   }
 
   /***********************************
   * NASLOVNA TRAKA
    ***********************************/
   .title{
-    background-color: ForestGreen;
+    background-color: Forestgreen; /*#00994d*/
     color: white;
     height: 10em;
     width: -webkit-fill-available; /*prilagoduje se browseru*/
@@ -15,9 +15,9 @@
   }
 
   .title-name{
-    font-size: 4em;
-    font-weight: bold;
-    font-family: 'Comic Sans MS';
+    font-size: 3.5em;
+    /*font-weight: bold;
+    font-family: 'Comic Sans MS';*/
     margin-left: 1em;
     display: inline;
   }
@@ -29,11 +29,11 @@
     margin-bottom: 2em;
     margin-top: -3em;
     padding-top: 1em;
-    background: rgba(46,139,87, 0.9);
+    background: rgba(0, 153, 77, 0.9);
     height: 8em;
     width: 80%;
     margin-left: 10%;
-    box-shadow: 10px 10px 25px rgba(46,139,87, 0.8);
+    box-shadow: 10px 10px 25px rgba(0, 153, 77, 0.8);
     border-radius: 15px;
   }
 

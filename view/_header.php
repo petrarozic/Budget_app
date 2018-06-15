@@ -55,7 +55,7 @@
          <li class="link-item">
            <form class="logout" action="<?php echo __SITE_URL; ?>/index.php?rt=login" method="post">
              <input type="hidden" name="logout">
-             <button type="submit" class="btn btn-outline-light">logout</button>
+             <button type="submit" class="btn btn-outline-dark">logout</button>
            </form>
          </li>
        </ul>
