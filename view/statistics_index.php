@@ -118,7 +118,8 @@ for (obj of data) {
 </div>
 
 </div>
-<div class="col-md-6 pull-left">
+<div class="col-md-6 pull-right">
+<div class="row">
 <div class="class=col-md-5 card" style="margin: 20px; border-radius: 25px;">
   <div class="card-body">
    <div class="radio">
@@ -130,6 +131,7 @@ for (obj of data) {
      </select>
    </div>
   </div>
+</div>
 </div>
 <div class="title_canvas"> Monthly transactions </div>
 <script>
