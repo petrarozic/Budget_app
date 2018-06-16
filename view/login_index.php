@@ -29,7 +29,7 @@
       <span class="title-name">Budget-app</span>
     </div>
 
-    <div class="col-lg-11 col-centered log-mainPart" style="width: 27rem; margin-top: 5%;">
+    <div class="col-lg-11 col-centered log-mainPart" style="width: 30rem; margin-top: 4%;">
         <ul class="nav nav-tabs" id="myTab" role="tablist" >
           <li class="nav-item">
             <?php echo '<a class="nav-link';
@@ -61,7 +61,7 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
               </div>
 
-              <button type="submit" class="btn btn-success">LOG IN</button>
+              <button type="submit" class="btn bgreen">LOG IN</button>
               <button type="reset" class="btn btn-secondary">Reset</button>
               <br>
               <br>
@@ -103,7 +103,7 @@
                   <small id="emailHelp" class="form-text text-muted">Need email for verification.</small>
               </div>
 
-              <button type="submit" class="btn btn-success float-right">SIGN UP</button>
+              <button type="submit" class="btn bgreen float-right">SIGN UP</button>
               <button type="reset" class="btn btn-secondary float-right">Reset</button>
               <br>
               <br>

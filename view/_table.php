@@ -1,8 +1,9 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
-
+<div class="mtable">
 <table class="table">
-  <thead class="thead-light">
+ <div class="theadborder">
+  <thead class="green">
     <tr>
       <th style="text-align:center;">CATEGORY</th>
       <th style="text-align:center;">TITLE</th>
@@ -13,6 +14,7 @@
       <th style="text-align:center;"><!-- REMOVE --> </th>
     </tr>
   </thead>
+ </div>
   <tbody>
     <?php
       if( empty($transactionsList) )
@@ -20,20 +22,20 @@
       else{
         foreach($transactionsList as $t){
           if( $flag === "expense"  ){
-           echo '<tr><td>'.$t->category_name.'</td><td>'.$t->expense_name.'</td><td>'.$t->expense_value.'</td><td>'.$t->expense_date.'</td><td>'.$t->expense_description.'</td><td>';
+           echo '<tr><td>'.$t->category_name.'</td><td>'.$t->expense_name.'</td><td class="tred">'.$t->expense_value.'</td><td>'.$t->expense_date.'</td><td>'.$t->expense_description.'</td><td>';
            echo '<i class="far fa-edit"></i></td>';
            echo '<td><form action="'.__SITE_URL.'/index.php?rt=transactions/removeExpense" method="post"> <input type="hidden" name="transaction" value="'.$t->expense_id.'"> <button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td> </tr>';
           }
           else if($flag === "income"){
-            echo '<tr><td>'.$t->category_name.'</td><td>'.$t->income_name.'</td><td>'.$t->income_value.'</td><td>'.$t->income_date.'</td><td>'.$t->income_description.'</td><td>';
+            echo '<tr><td>'.$t->category_name.'</td><td>'.$t->income_name.'</td><td class="tgreen">'.$t->income_value.'</td><td>'.$t->income_date.'</td><td>'.$t->income_description.'</td><td>';
             echo '<i class="far fa-edit"></i></td>';
             echo '<td> <form action="'.__SITE_URL.'/index.php?rt=transactions/removeIncome" method="post"> <input type="hidden" name="income" value="'.$t->income_id.'"> <button type=submit class="IconButton" >  <i class="far fa-trash-alt"> </i> </button> </form></td></tr>';
           }
           else /*if($flag === "transactions")*/{
             if($t->tr_type === 'e')
-            echo '<tr bgcolor="lightpink"><td>'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td>'.$t->tr_value.'</td><td>'.$t->tr_date.'</td><td>'.$t->tr_description.'</td><td>';
+            echo '<tr><td>'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td class="tred">'.$t->tr_value.'</td><td>'.$t->tr_date.'</td><td>'.$t->tr_description.'</td><td>';
             else
-            echo '<tr bgcolor="lightgreen"><td>'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td>'.$t->tr_value.'</td><td>'.$t->tr_date.'</td><td>'.$t->tr_description.'</td><td>';
+            echo '<tr><td>'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td class="tgreen">'.$t->tr_value.'</td><td>'.$t->tr_date.'</td><td>'.$t->tr_description.'</td><td>';
             echo '<i class="far fa-edit"></i></td>';
             echo '<td> <form action="'.__SITE_URL.'/index.php?rt=transactions/removeTransaction" method="post"> <input type="hidden" name="transaction" value="'.$t->tr_id.'"> <input type="hidden" name="type" value="'.$t->tr_type.'"> <button class="IconButton" type=submit >  <i class="far fa-trash-alt"></i> </button> </form> </td></tr>';
           }
@@ -42,7 +44,7 @@
     ?>
   </tbody>
 </table>
-
+</div>
 
 <div id="AddTransaction" class="modal" tabindex="-1" role="dialog">
 <div class="modal-dialog modal-dialog-centered modal-sm" role="document">

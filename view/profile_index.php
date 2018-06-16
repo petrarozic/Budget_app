@@ -72,7 +72,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn bgreen">Save changes</button>
       </div>
       </form>
     </div>
@@ -98,7 +98,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn bgreen">Save changes</button>
       </div>
       </form>
     </div>
@@ -128,7 +128,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn bgreen">Save changes</button>
       </div>
       </form>
     </div>
@@ -155,7 +155,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn bgreen">Save changes</button>
       </div>
       </form>
     </div>
@@ -182,7 +182,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn bgreen">Save changes</button>
       </div>
       </form>
     </div>
@@ -209,7 +209,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn bgreen">Save changes</button>
       </div>
       </form>
     </div>
@@ -228,7 +228,7 @@
       </div>
       <div class="modal-footer"><form method="post" action="<?php echo __SITE_URL; ?>/index.php?rt=profile/accountDelete">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Yes</button>
+        <button type="submit" class="btn bgreen">Yes</button>
       </div>
       </form>
     </div>

@@ -1,163 +1,220 @@
-  .body_{
-    /*background: BlanchedAlmond;*/
-  }
-
-  /***********************************
-  * NASLOVNA TRAKA
-   ***********************************/
-  .title{
-    background-color: Forestgreen; /*#00994d*/
-    color: white;
-    height: 10em;
-    width: -webkit-fill-available; /*prilagoduje se browseru*/
-    padding: 1em;
-    display: block;
-  }
-
-  .title-name{
-    font-size: 3.5em;
-    /*font-weight: bold;
-    font-family: 'Comic Sans MS';*/
-    margin-left: 1em;
-    display: inline;
-  }
-
-  /***********************************
-  * ispis LIMITA
-   ***********************************/
-  .info{
-    margin-bottom: 2em;
-    margin-top: -3em;
-    padding-top: 1em;
-    background: rgba(0, 153, 77, 0.9);
-    height: 8em;
-    width: 80%;
-    margin-left: 10%;
-    box-shadow: 10px 10px 25px rgba(0, 153, 77, 0.8);
-    border-radius: 15px;
-  }
-
-  .info-box{
-    background: rgba(255,222,173, 0.6);
-    border-radius: 10px;
-    padding: 1em 2em;
-    text-align: center;
-    margin: auto;
-  }
-
-  .info-elem{
-    display: block;
-    color: white;
-    font-weight: bold;
-  }
-
-  .info-amount{
-    display: block;
-    color: white;
-  }
-
-
-
-td, th{
-  text-align: center;
+.body_{
+  /*background: BlanchedAlmond;*/
 }
 
-.logout{
+/***********************************
+* NASLOVNA TRAKA
+ ***********************************/
+.title{
+  background-color: #404040;/*#333333; /*#202020; /*#00994d*/
+  color: white;
+  height: 8em;
+  width: -webkit-fill-available; /*prilagoduje se browseru*/
+  padding: 1em;
+  display: block;
+}
+
+.title-name{
+  font-size: 43px;
+  /*font-weight: bold;
+  font-family: 'Comic Sans MS';*/
+  margin-left: 0.5em;
   display: inline;
 }
 
-  /***********************************
-  * LOG_IN page
-   ***********************************/
-   .col-centered{
-     float: none;
-     margin: auto;
-     }
 
-   .log-body{
-     background-color: lightgrey;
+/***********************************
+* ispis LIMITA
+ ***********************************/
+.info{
+  margin-bottom: 2em;
+  margin-top: -2.5em;
+  padding-top: 1em;
+  background: rgba(0, 153, 77, 0.91);
+  height: 6em;
+  width: 75%;
+  margin-left: 10%;
+  box-shadow: 10px 10px 25px rgba(0, 153, 77, 0.8);
+  border-radius: 15px;
+}
+
+.info-box{
+  background: rgba(255,222,173, 0.5);
+  border-radius: 10px;
+  padding: 0.5em 1em;
+  text-align: center;
+  margin: auto;
+}
+
+.info-elem{
+  display: block;
+  color: white;
+  font-weight: bold;
+}
+
+.info-amount{
+  display: block;
+  color: white;
+}
+
+#plus{
+  background: rgba(255,222,173, 0.6);
+  padding: 0.9em 2.1em;
+  box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.3);
+}
+
+
+td, th{
+text-align: center;
+}
+
+.logout{
+display: inline;
+}
+
+/***********************************
+* LOG_IN page
+ ***********************************/
+ .col-centered{
+   float: none;
+   margin: auto;
    }
 
-   .log-mainPart{
-     background: white;
-     padding: 10px;
+ .log-body{
+   /*background-color: lightgrey;*/
+ }
+
+ .log-mainPart{
+   /*background: white;
+   padding: 10px;
+   border-radius: 15px;
+   border: 1px solid lightgrey;*/
+ }
+
+/***********************************
+* NAVBAR- tj LINKOVI
+ ***********************************/
+ /*side_bar{
+   margin: 2em;
+   border-radius: 15px;
+   border: 1px solid lightgrey;
+   position: absolute;
+   width: 210px;
+ }*/
+
+ .link-ul{
+   list-style-type: none;
+   padding-left: 10px;
+   margin: 2em;
+   margin-left: 2.5em;
+   border-radius: 15px;
+   border: 1px solid lightgrey;
+ }
+ .link-item{
+   margin: auto;
+   padding: 10px 5px;
+   /* margin: 15px 10px; */
+   border-radius: 10px;
+   text-align: center;
+ }
+
+ .link-ul .link-item a{
+   text-decoration: none;
+   display: block;
+   color: #404040;
+ }
+
+ .link-ul li:hover a{
+   font-weight: bold;
+ }
+
+ .link-active a{
+   font-weight: bold;
+   color: black;
+ }
+
+ #dropdownMenu{
+   background-color: #404040;
+   margin: auto;
+   float: right;
+ }
+
+ #link-dropdown{
+   border-radius: 15px;
+   border: 1px solid lightgrey;
+ }
+
+ #personal{
+   padding:0;
+   margin:0;
+   border: none;
+ }
+ /***********************************
+ * BUTTONS
+  ***********************************/
+
+ .bgreen{
+   background-color: rgba(0, 153, 77, 0.9);
+   color: white;
+
+ }
+
+ /***********************************
+ * Button for removing/editing  Button for adding transaction
+  ***********************************/
+  .IconButton, .AddButton{
+     background-color: Transparent;
+     background-repeat:no-repeat;
+     border: none;
+     cursor:pointer;
+     overflow: hidden;
+     outline:none;
+  }
+
+  .far, .fas{
+    font-size: 22px;
+  }
+
+  /***********************************
+  * TABLE
+   ***********************************/
+   .green{
+     background-color: #8cd98c;
+    /* border: 1px solid lightgrey;
+     border-radius: 15px;*/
+   }
+
+   .theadborder{
+     /*border: 1px solid lightgrey;
+     border-radius: 15px;*/
+
+   }
+
+   .mtable{
+     border: 1px solid lightgrey;
      border-radius: 15px;
+     margin-left: -10px;
+     margin-right: 25px;
+
+   }
+
+   .tgreen{
+     color:rgb(0,128,64);
+   }
+
+   .tred{
+     color:#b30000;
    }
 
   /***********************************
-  * NAVBAR- tj LINKOVI
+  * STATISTICS
    ***********************************/
-   .side_bar{
-     background-color: Wheat;
-     padding-top: 1em;
+   .group {
+   border-right: 1px solid lightgrey;
    }
 
-   .link-ul{
-     list-style-type: none;
-     padding-left: 10px;
-   }
-   .link-item{
-     margin: auto;
-     padding: 10px 5px;
-     /* margin: 15px 10px; */
-     border-radius: 10px;
+   .title_canvas{
+     font-size: 24px;
+     margin: 15px 0px 15px 0px;
      text-align: center;
    }
-
-   .link-ul .link-item a{
-     text-decoration: none;
-     color: black;
-     display: block;
-   }
-
-   .link-ul li:hover {
-     background: rgba(154,205,50, 0.7);
-     color: white;
-   }
-
-   .link-active {
-     background: rgba(154,205,50, 0.5);
-     font-weight: bold;
-   }
-
-   #dropdownMenu{
-     background: rgba(255,222,173, 0.6);
-     margin: auto;
-     float: right;
-   }
-
-   #link-dropdown{
-     background: Wheat;
-     padding: 1em 1em 0em 1em;
-   }
-
-   /***********************************
-   * Button for removing/editing  Button for adding transaction
-    ***********************************/
-    .IconButton, .AddButton{
-       background-color: Transparent;
-       background-repeat:no-repeat;
-       border: none;
-       cursor:pointer;
-       overflow: hidden;
-       outline:none;
-    }
-
-    .far, .fas{
-      font-size: 22px;
-    }
-
-
-
-    /***********************************
-    * STATISTICS
-     ***********************************/
-     .group {
-     border-right: 1px solid lightgrey;
-     }
-
-     .title_canvas{
-       font-size: 24px;
-       margin: 15px 0px 15px 0px;
-       text-align: center;
-     }

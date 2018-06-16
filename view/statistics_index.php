@@ -149,7 +149,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		valueFormatString: "MMM"
 	},
 	axisY:{
-		title: "Price (in USD)",
 		valueFormatString: "$#0"
 	},
 	data: [{
