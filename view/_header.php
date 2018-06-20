@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title></title>
+    <title>Budget-app</title>
     <link rel="stylesheet" href="<?php echo __SITE_URL;?>/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -18,7 +18,7 @@
 <body class="body_">
   <div class="title">
     <span class="title-name">Budget-app</span>
-
+    <img src="money.png" alt=" " width="40" class="logo">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fas fa-user"> </i>
     </button>
@@ -45,6 +45,7 @@
 
     <div class="col-md-2 pull-left">
 
+
       <ul class="link-ul">
         <li class="link-item
               <?php if ($extension === 'home') echo "link-active"; ?>
@@ -67,6 +68,7 @@
           <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=statistics">STATISTICS</a>
         </li>
      </ul>
+
 
    </div>
 

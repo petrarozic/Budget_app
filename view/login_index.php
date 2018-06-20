@@ -21,15 +21,19 @@
       crossorigin="anonymous">
     </script>
 <!-- do tuda -->
-    <title>Budget_app</title>
+    <title>Budget-app</title>
 
   </head>
   <body class="log-body">
     <div class="title">
       <span class="title-name">Budget-app</span>
+      <img src="money.png" alt=" " width="40" class="logo">
     </div>
 
-    <div class="col-lg-11 col-centered log-mainPart" style="width: 30rem; margin-top: 4%;">
+    <div class="row">
+
+    <div class="col-md-6 pull-left">
+       <div class="col-lg-11 log-mainPart" style="max-width: 29rem; margin-top: 15%; float:right;">
         <ul class="nav nav-tabs" id="myTab" role="tablist" >
           <li class="nav-item">
             <?php echo '<a class="nav-link';
@@ -114,10 +118,18 @@
             </div>
           </div>
         </div>
-
+      </div>
+    </div>
+    <div class="col-md-4 pull-right" style="padding-left:0;">
+    <div class="col-lg-11" style="margin-top: 21%; padding-left:0;">
+    <div class="text-center">
+    <img src="money.png" alt=" " width="215" class="image">
+    </div>
+    <p class="description">Budget-app is an application for tracking personal finances. <br> Spend smart and enjoy the app!</p>
+    </div>
     </div>
 
-
+  </div>
 
     <script type="text/javascript">
       $('#myTab a').on('click', function (e) {
