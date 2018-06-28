@@ -239,3 +239,11 @@ display: inline;
      margin: 15px 0px 15px 0px;
      text-align: center;
    }
+
+   /***********************************
+   * FOOTER
+    ***********************************/
+    footer{
+      background-color: #404040;
+      color: white;
+    }
