@@ -65,7 +65,7 @@
 #plus{
   background: rgba(255,222,173, 0.6);
   padding: 0.9em 2.1em;
-  box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.3);
+/*  box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.3);*/
 }
 
 
@@ -186,10 +186,21 @@ display: inline;
   .IconButton, .AddButton{
      background-color: Transparent;
      background-repeat:no-repeat;
+     color: #888888;
      border: none;
      cursor:pointer;
      overflow: hidden;
      outline:none;
+  }
+
+  .IconButton:hover, .AddButton:hover{
+     background-color: Transparent;
+     background-repeat:no-repeat;
+     border: none;
+     cursor:pointer;
+     overflow: hidden;
+     outline:none;
+     color:black;
   }
 
   .far, .fas{
@@ -199,16 +210,13 @@ display: inline;
   /***********************************
   * TABLE
    ***********************************/
-   .green{
+   thead{
      background-color: #8cd98c;
-    /* border: 1px solid lightgrey;
-     border-radius: 15px;*/
    }
 
    .theadborder{
      /*border: 1px solid lightgrey;
      border-radius: 15px;*/
-
    }
 
    .mtable{
@@ -221,6 +229,18 @@ display: inline;
 
    .tgreen{
      color:rgb(0,128,64);
+   }
+
+   .headerButton{
+      background-color: Transparent;
+      background-repeat:no-repeat;
+      border: none;
+      cursor:pointer;
+      overflow: hidden;
+      font-weight: bold;
+   }
+   .headerButton:hover{
+     color: black;
    }
 
    .tred{

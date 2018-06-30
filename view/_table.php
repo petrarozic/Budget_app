@@ -1,20 +1,26 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
+<script language="JavaScript" type="text/javascript">
+function checkDelete(){
+    return confirm('By pressing OK you will delete selected transaction.');
+}
+</script>
+
 <div class="mtable">
 <table class="table">
- <div class="theadborder">
+  <!--<div class="theadborder">-->
   <thead class="green">
     <tr>
-      <th style="text-align:center;">CATEGORY</th>
-      <th style="text-align:center;">TITLE</th>
-      <th style="text-align:center;">AMOUNT(HRK)</th>
-      <th style="text-align:center;">DATE</th>
-      <th style="text-align:center;"> DESCRIPTION</th>
+      <th style="text-align:center;">  CATEGORY  </th>
+      <th style="text-align:center;">  TITLE  </th>
+      <th style="text-align:center;">   AMOUNT(HRK)  </th>
+      <th style="text-align:center;">  DATE  </th>
+      <th style="text-align:center;"> DESCRIPTION  </th>
       <th style="text-align:center;"> <!-- EDIT --> </th>
-      <th style="text-align:center;"><!-- REMOVE --> </th>
+      <th style="text-align:center;"> <!-- REMOVE --> </th>
     </tr>
   </thead>
- </div>
+ <!--</div>-->
   <tbody>
     <?php
       if( empty($transactionsList) )
@@ -36,8 +42,8 @@
             echo '<tr><td>'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td class="tred">'.$t->tr_value.'</td><td>'.$t->tr_date.'</td><td>'.$t->tr_description.'</td><td>';
             else
             echo '<tr><td>'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td class="tgreen">'.$t->tr_value.'</td><td>'.$t->tr_date.'</td><td>'.$t->tr_description.'</td><td>';
-            echo '<i class="far fa-edit"></i></td>';
-            echo '<td> <form action="'.__SITE_URL.'/index.php?rt=transactions/removeTransaction" method="post"> <input type="hidden" name="transaction" value="'.$t->tr_id.'"> <input type="hidden" name="type" value="'.$t->tr_type.'"> <button class="IconButton" type=submit >  <i class="far fa-trash-alt"></i> </button> </form> </td></tr>';
+            echo ' <button class="IconButton" id="edit" value="'.$t->tr_id.'" > <i class="far fa-edit"></i> </button> </td>';
+            echo '<td> <form action="'.__SITE_URL.'/index.php?rt=transactions/removeTransaction" method="post" onclick="return checkDelete()"> <input type="hidden" name="transaction" value="'.$t->tr_id.'"> <input type="hidden" name="type" value="'.$t->tr_type.'"> <button class="IconButton" type=submit >  <i class="far fa-trash-alt"></i> </button> </form> </td></tr>';
           }
         }
       }
@@ -102,9 +108,17 @@
 
 $( document ).ready( function()
     {
-      $.ajax(){
-        url: "index.php?rt=transactions/removeTransaction"
-      }
+      $("#plus").on( "click", function(){
+        $.ajax(){
+
+          //url:
+          //data:
+
+          // predati tip koji trazimo, income, expense, transaction
+          // u success funkciji povratne vrijednosti postaviti unutar "#category" kao option
+        }
+      });
+
 
     });
 </script>
