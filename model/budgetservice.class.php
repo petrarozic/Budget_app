@@ -328,6 +328,30 @@ function getTransactionById($user_id){
 		return $str[0];
 	}
 
+	function getCategoriesById( $user_id, $tip ){
+		if( $tip == "Income" )
+			$type ="Primanja";
+		else {
+			$type = "Troskovi";
+		}
+		try{
+				$db = DB::getConnection();
+				$categories = $db->prepare( 'SELECT category_name FROM  Category WHERE (category_type =:type) AND ( user_id  = :user_id )' );
+				$categories->execute( array( 'type' => $type, 'user_id' => $user_id ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$arr = array();
+
+		$i = 0;
+		while( $row = $categories->fetch() )
+		{
+			$arr[$i] = $row['category_name'];
+			$i++;
+		}
+		return $arr;
+	}
+
 };
 
 

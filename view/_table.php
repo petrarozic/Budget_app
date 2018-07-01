@@ -29,12 +29,12 @@ function checkDelete(){
         foreach($transactionsList as $t){
           if( $flag === "expense"  ){
            echo '<tr><td>'.$t->category_name.'</td><td>'.$t->expense_name.'</td><td class="tred">'.$t->expense_value.'</td><td>'.$t->expense_date.'</td><td>'.$t->expense_description.'</td><td>';
-           echo '<i class="far fa-edit"></i></td>';
+           echo '<button class="IconButton" id="edit" value="'.$t->expense_id.'" ><i class="far fa-edit"></i></button></td>';
            echo '<td><form action="'.__SITE_URL.'/index.php?rt=transactions/removeExpense" method="post"> <input type="hidden" name="transaction" value="'.$t->expense_id.'"> <button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td> </tr>';
           }
           else if($flag === "income"){
             echo '<tr><td>'.$t->category_name.'</td><td>'.$t->income_name.'</td><td class="tgreen">'.$t->income_value.'</td><td>'.$t->income_date.'</td><td>'.$t->income_description.'</td><td>';
-            echo '<i class="far fa-edit"></i></td>';
+            echo '<button class="IconButton" id="edit" value="'.$t->income_id.'" ><i class="far fa-edit"></i></button></td>';
             echo '<td> <form action="'.__SITE_URL.'/index.php?rt=transactions/removeIncome" method="post"> <input type="hidden" name="income" value="'.$t->income_id.'"> <button type=submit class="IconButton" >  <i class="far fa-trash-alt"> </i> </button> </form></td></tr>';
           }
           else /*if($flag === "transactions")*/{
@@ -66,7 +66,7 @@ function checkDelete(){
           <div class="form-group">
             <label for="type_of_transaction">  Type of transaction </label>
             <select class="form-control" id="type" >
-              <option></option>
+              <option disabled="disabled" selected="selected"> Choose type </option>
               <option> Expense </option>
               <option> Income </option>
             </select>

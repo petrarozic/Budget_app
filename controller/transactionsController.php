@@ -1,5 +1,22 @@
 <?php
 
+function sendJSONandExit( $message )
+{
+    header( 'Content-type:application/json;charset=utf-8' );
+    echo json_encode( $message );
+    flush();
+    exit( 0 );
+}
+
+function sendErrorAndExit( $messageText )
+{
+  $message = [];
+  $message[ 'error' ] = $messageText;
+
+  sendJSONandExit( $message );
+}
+
+
   class transactionsController extends BaseController{
 
     function index(){}
@@ -61,7 +78,19 @@
       $this->registry->template->show('transactions_index');
     }
 
+    function CategoryForSelect(){
+  
+      $ls = new BudgetService();
 
+      if ( isset( $_GET['tip']) ){
+        $tip = $_GET['tip'];
+
+      $message = $ls->getCategoriesById($_SESSION['user_id'], $tip);
+
+
+      sendJSONandExit( $message );
+      }
+    }
 
   };
  ?>
