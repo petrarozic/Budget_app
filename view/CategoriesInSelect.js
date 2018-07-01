@@ -1,14 +1,11 @@
 $( document ).ready( function()
     {
       $("#type").on("change", function(){
-        console.log("Pozdraav");
         var tip = $( this ).val();
-        console.log(tip);
-        console.log(window.location.protocol+window.location.host+window.location.pathname+"?rt=transactions/CategoryForSelect");
+
         $.ajax(
           {
           url: window.location.pathname+"?rt=transactions/CategoryForSelect",
-
           data:
           {
             tip : tip
@@ -27,7 +24,7 @@ $( document ).ready( function()
             for ( var i = 0; i < data.length ; ++i){
               selekt.append('<option>'+ data[i] +'</option>');
             }
-        }
+          }
         });
       });
     });
