@@ -1,5 +1,6 @@
 <?php
 
+// Datoteku treba preimenovati u db.class.php
 
 class DB
 {
@@ -15,13 +16,13 @@ class DB
 	    	try
 	    	{
 	    		// Unesi ispravni HOSTNAME, DATABASE, USERNAME i PASSWORD
-		    	DB::$db = new PDO( "mysql: host=localhost; dbname=budget; charset=utf8", 'root', 'paula5' );
+		    	DB::$db = new PDO( "mysql: host=rp2.studenti.math.hr;dbname=parac;charset=utf8",'student','pass.mysql' );
 		    	DB::$db-> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    }
 		    catch( PDOException $e ) { exit( 'PDO Error: ' . $e->getMessage() ); }
 	    }
 		return DB::$db;
 	}
-}
+};
 
 ?>

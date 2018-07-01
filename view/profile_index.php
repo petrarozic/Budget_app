@@ -119,11 +119,11 @@
         <form method="post" action="<?php echo __SITE_URL; ?>/index.php?rt=profile/changePassword">
           <div class="form-group">
             <label for="new_pass"> New password : </label>
-            <input type="text" class="form-control" placeholder="********" name="new_pass">
+            <input type="password" class="form-control" placeholder="********" name="new_pass">
            </div>
         <div class="form-group">
             <label for="new_pass_repeat"> Type your new password again: </label>
-            <input type="text" class="form-control" placeholder="********" name="new_pass_repeat">
+            <input type="password" class="form-control" placeholder="********" name="new_pass_repeat">
         </div>
       </div>
       <div class="modal-footer">

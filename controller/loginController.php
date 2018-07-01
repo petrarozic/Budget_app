@@ -103,6 +103,7 @@ class LoginController extends BaseController
 
 			mail($to, $subject, $message, $headers);
 			$this->registry->template->output = "Thank you for choosing Budget-app. To complete the registration, click on the link in the email we sent you.";
+			$this->registry->template->lmessage = '';
 			$this->registry->template->show( 'login_index' );
 			exit();
 		}

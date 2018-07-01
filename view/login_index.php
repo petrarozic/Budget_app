@@ -67,9 +67,10 @@
 
               <button type="submit" class="btn bgreen">LOG IN</button>
               <button type="reset" class="btn btn-secondary">Reset</button>
+              <a data-toggle="modal" href="#forgot">Forgot password?</a>
               <br>
               <br>
-              <p style="text-align:center"> <?php echo $lmessage; ?> </p>
+              <p style="text-align:center"> <?php if(isset($lmessage)) echo $lmessage; ?> </p>
 
             </form>
             </div>
@@ -84,8 +85,8 @@
               if(isset($output))
                 echo '<p> '. $output. ' </p>';
 
-              else
-                echo '<form class="" action="'. __SITE_URL . '/index.php?rt=login/processSignUp" method="post">
+              else{ ?>
+                <form class="" action="<?php echo __SITE_URL; ?>/index.php?rt=login/processSignUp" method="post">
 
               <div class="form-group">
                 <label for="username">Username</label>
@@ -112,9 +113,10 @@
               <br>
               <br>
               <br>
-              <p style="text-align:center"> ' . $smessage . ' </p>'; ?>
+              <p style="text-align:center"> <?php if(isset($smessage)) echo $smessage; ?></p>';
 
             </form>
+        <?php  } ?>
             </div>
           </div>
         </div>
@@ -138,4 +140,37 @@
       })
     </script>
 
+    <!--- Modal - forgot password--->
+    <div class="modal" id="forgot" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"> Forgot password </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+
+          <div class="modal-body">
+
+            <small id="passwordHelpBlock" class="form-text text-muted">
+              New password will be sent to your email. You can change it later.
+            </small>
+            <br>
+            <form method="post" action="<?php echo __SITE_URL; ?>/index.php?rt=profile/forgotPassword">
+              <div class="form-group">
+                <label for="username_forgot"> Your username: </label>
+                <input type="text" class="form-control" placeholder="username" name="username_forgot">
+               </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn bgreen">Submit</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
 <?php require_once __SITE_PATH . '/view/_footer.php'; ?>

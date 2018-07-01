@@ -15,9 +15,9 @@
 
       $ls = new BudgetService();
 
-      if( !preg_match( '/^[A-Za-z0-9_@ ]{1,40}$/', $_POST['new_username'] ) )
+      if( !preg_match( '/^[A-Za-z0-9_@ ]{3,20}$/', $_POST['new_username'] ) )
   		{
-  			$this->registry->template->smessage = "Username should consist of letters, numbers and special character _ or @.";
+  			$this->registry->template->smessage = "Username should consist of 3-20 letters, numbers and special character _ or @.";
   		}
       else{
       $new_username = $_POST['new_username'];
@@ -35,7 +35,7 @@
     function changeEmail(){
       $ls = new BudgetService();
 
-      if( !filter_var( $_POST[''], FILTER_VALIDATE_EMAIL) )
+      if( !filter_var( $_POST['new_email'], FILTER_VALIDATE_EMAIL) )
       {
         $this->registry->template->smessage = "Email is not valid.";
       }
@@ -55,50 +55,75 @@
 
     //password - forgot
     function forgotPassword(){
-      //generirati pass od 8 znakova
-
-      $new_pass = '';
-      for( $i = 0; $i < 8; ++$i )
-        $new_pass .= chr( rand(0, 25) + ord( 'a' ) );
-
-
-      //ubaci u bazu
 
       $ls = new BudgetService();
-
-      $this->registry->template->success = $ls->changePassword( $_SESSION['user_id'], $new_pass);
-      $this->registry->template->smessage = "New password has been sent to your email.";
-
-
-      $this->registry->template->user = $ls->getUserbById($_SESSION['user_id']);
+    
+      $this->registry->template->l_flag = 1;
 
 
-      //mail
-      $to       = 'email'; //e-mail dobiti iz baze
-			$subject  = 'Password';
-			$message  = 'Dear ' . $_SESSION['username'] . ",\nYour new Budget-app password is: ";
-			$message .=  $new_pass . "\n";
-			$headers  = 'From: rp2@studenti.math.hr' . "\r\n" .
-			            'Reply-To: rp2@studenti.math.hr' . "\r\n" .
-			            'X-Mailer: PHP/' . phpversion();
 
-			mail($to, $subject, $message, $headers);
+      if( $_POST['username_forgot'] === '' ){
+        $this->registry->template->lmessage = "You need to type your username.";
+        $this->registry->template->show( 'login_index' );
+  			exit();
+      }
+      else if( !preg_match( '/^[A-Za-z0-9_@ ]{3,20}$/', $_POST['username_forgot'] ))
+      {
+        $this->registry->template->lmessage = "Username should consist of letters, numbers and special character _ or @.";
+        $this->registry->template->show( 'login_index' );
+  			exit();
+      }
+      else if( !$ls->isAlreadyInDB( $_POST['username_forgot'] ) ){
+        $this->registry->template->lmessage = "Username is not valid.";
+        $this->registry->template->show( 'login_index' );
+        exit();
+      }
+      //generirati pass od 8 znakova
+      else{
+        $id = $ls->getUserId( $_POST['username_forgot'] );
+        $email = $ls->getUserEmail( $_POST['username_forgot'] );
+        $new_pass = '';
+        for( $i = 0; $i < 8; ++$i )
+          $new_pass .= chr( rand(0, 25) + ord( 'a' ) );
 
-      $this->registry->template->show( 'profile_index' );
+
+        //ubaci u bazu
+
+        $this->registry->template->success = $ls->changePassword( $id, $new_pass);
+        $this->registry->template->smessage = "New password has been sent to your email.";
+
+
+        $this->registry->template->user = $ls->getUserbById($id);
+
+
+        //mail
+        $to       = $email; //korisnik je unio svoj mail
+  			$subject  = 'Password';
+  			$message  = 'Dear ' . $_POST['username_forgot'] . ",\nYour new Budget-app password is: ";
+  			$message .=  $new_pass . "\n";
+  			$headers  = 'From: rp2@studenti.math.hr' . "\r\n" .
+  			            'Reply-To: rp2@studenti.math.hr' . "\r\n" .
+  			            'X-Mailer: PHP/' . phpversion();
+
+  			mail($to, $subject, $message, $headers);
+        $this->registry->template->smessage = "";
+        $this->registry->template->lmessage = 'Your new password has been sent on yout email.'; //samo da ne baca greske na sign_up
+    		$this->registry->template->l_flag = 1;
+        $this->registry->template->show( 'login_index' );
+      }
 
     }
 
     function changePassword(){
-      //generirati pass od 8 znakova
 
       $new_pass = $_POST['new_pass'];
       $new_pass_repeat = $_POST['new_pass_repeat'];
-
+      $ls = new BudgetService();
 
 
       //ubaci u bazu ako su oba unosa jednaka
     if( $new_pass === $new_pass_repeat){
-        $ls = new BudgetService();
+
         $this->registry->template->success = $ls->changePassword( $_SESSION['user_id'], $new_pass);
         $this->registry->template->smessage = "Password successfully changed.";
         $this->registry->template->user = $ls->getUserbById($_SESSION['user_id']);
@@ -106,6 +131,10 @@
       }
       else{
         //error
+        $this->registry->template->lmessage = "Username is not valid.";
+        $this->registry->template->l_flag = 1;
+        $this->registry->template->show( 'login_index' );
+        exit();
       }
     }
 

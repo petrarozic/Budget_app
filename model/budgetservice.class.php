@@ -303,6 +303,31 @@ function getTransactionById($user_id){
 
 		return;
 	}
+
+	function getUserId( $username ){
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare( 'SELECT user_id FROM User WHERE username LIKE :username');
+			$user_->execute( array( 'username' => $username ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$str = $user_->fetch();
+		return $str[0];
+	}
+
+	function getUserEmail( $username ){
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare( 'SELECT email FROM User WHERE username LIKE :username');
+			$user_->execute( array( 'username' => $username ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$str = $user_->fetch();
+		return $str[0];
+	}
+
 };
 
 
