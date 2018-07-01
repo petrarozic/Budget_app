@@ -164,7 +164,7 @@ function getTransactionById($user_id){
 	//sortirati arr po datumu
 
 		usort($arr, function($a, $b) {
-		    return strcmp($a->tr_date, $b->tr_date);
+		    return strcmp($b->tr_date,$a->tr_date);
 		});
 
 	return $arr;
@@ -351,6 +351,41 @@ function getTransactionById($user_id){
 		}
 		return $arr;
 	}
+
+	 function addTransaction($user_id, $type, $name, $category, $amount, $date, $description, $repeating){
+
+		 if( $type == "Expense" ){
+			 try{
+				 $db = DB::getConnection();
+				 for( $i = 0; $i < $repeating ; ++$i ) {
+					 $st = $db->prepare( 'INSERT INTO Expense(category_name, user_id, expense_name, expense_value, expense_date, expense_description )
+					 VALUES (:category_name, :user_id, :expense_name, :expense_value, :expense_date, :expense_description)' );
+					 $st->execute( array( "category_name" => $category, "user_id" => $user_id, "expense_name" => $name, "expense_value" => $amount, "expense_date" => $date, "expense_description" => $description ) );
+
+					 // promjeniti date - +1 mjesec
+					 $date = strtotime("+1 months", strtotime($date));
+					 $date = strftime ( '%Y-%m-%d' , $date );
+				 }
+			 }
+			 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+		 }
+
+		 else if( $type == "Income" ){
+			 try{
+				 $db = DB::getConnection();
+				 for( $i = 0; $i < $repeating ; ++$i ) {
+					 $st = $db->prepare( 'INSERT INTO Income(category_name, user_id, income_name, income_value, income_date, income_description )
+					 VALUES (:category_name, :user_id, :income_name, :income_value, :income_date, :income_description)' );
+					 $st->execute( array( "category_name" => $category, "user_id" => $user_id, "income_value" => $amount, "income_name" => $name, "income_date" => $date, "income_description" => $description ) );
+
+					 $date = strtotime("+1 months", strtotime($date));
+					 $date = strftime ( '%Y-%m-%d' , $date );
+				 }
+			 }
+			 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+		 }
+		 return;
+	 }
 
 };
 

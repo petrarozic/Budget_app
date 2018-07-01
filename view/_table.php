@@ -6,6 +6,8 @@ function checkDelete(){
 }
 </script>
 
+<?php if ( isset($message) ) echo $message; ?>
+
 <div class="mtable">
 <table class="table">
   <!--<div class="theadborder">-->
@@ -62,10 +64,10 @@ function checkDelete(){
       </button>
     </div>
     <div class="modal-body">
-        <form>
+        <form method="post"  action="<?php echo __SITE_URL; ?>/index.php?rt=transactions/addTransaction" >
           <div class="form-group">
             <label for="type_of_transaction">  Type of transaction </label>
-            <select class="form-control" id="type" >
+            <select class="form-control" id="type" name="type" >
               <option disabled="disabled" selected="selected"> Choose type </option>
               <option> Expense </option>
               <option> Income </option>
@@ -73,31 +75,35 @@ function checkDelete(){
           </div>
           <div class="form-group">
             <label for="transaction_name">  Name of transaction </label>
-            <input type="text" class="form-control" id="naziv_trošak" >
+            <input type="text" class="form-control" id="name" name="name" >
           </div>
           <div class="form-group">
             <label for="category"> Category </label>
-            <select class="form-control" id="category">
+            <select class="form-control" id="category" name="category">
             </select>
           </div>
           <div class="form-group">
             <label for="amount"> Amount </label>
-            <input type="number" class="form-control" id="amount"> HRK
+            <input type="number" class="form-control" id="amount" min="0" step="0.01" name="amount"> HRK
           </div>
           <div class="form-group">
             <label for="date">Date</label>
-            <input type="date" class="form-control" id="date">
+            <input type="date" class="form-control" id="date" name="date">
+          </div>
+          <div class="form-group">
+            <label for="description"> Description: </label>
+            <input type="text" class="form-control" id="description" name="description">
           </div>
           <div class="form-group">
             <label for="repeating"> Repeating: </label>
-            <input type="number" class="form-control" value="0" id="repeating">
+            <input type="number" class="form-control" value="1" min="1" defaul="1" id="repeating" name="repeating">
           </div>
-        </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancel </button>
-      <button type="button" class="btn btn-primary"> Submit </button>
+      <button type="submit" class="btn btn-primary" name="SubmitButton" value="<?php echo $flag; ?>" id="NewTransaction"> Submit </button>
     </div>
+      </form>
   </div>
 </div>
 </div>
