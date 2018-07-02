@@ -267,3 +267,23 @@ display: inline;
       background-color: #404040;
       color: white;
     }
+
+    .footer-elem{
+      font-weight: bold;
+      font-size: 1em;
+      margin-bottom: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .footer-elem-description{
+      font-size: 0.9em;
+    }
+
+    .fb_icon{
+      border-radius: 40%;
+      box-shadow: 3px 3px 25px blue;
+    }
+
+    .fb_icon:hover{
+      cursor:pointer;
+    }
