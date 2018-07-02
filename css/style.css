@@ -183,7 +183,7 @@ display: inline;
  /***********************************
  * Button for removing/editing  Button for adding transaction
   ***********************************/
-  .IconButton, .AddButton{
+  .IconButton, .IconButtonE, .AddButton{
      background-color: Transparent;
      background-repeat:no-repeat;
      color: #888888;
@@ -193,7 +193,7 @@ display: inline;
      outline:none;
   }
 
-  .IconButton:hover, .AddButton:hover{
+  .IconButton:hover, .IconButtonE:hover, .AddButton:hover{
      background-color: Transparent;
      background-repeat:no-repeat;
      border: none;

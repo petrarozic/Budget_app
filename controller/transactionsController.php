@@ -25,7 +25,7 @@ function sendErrorAndExit( $messageText )
     function incomes(){
       $ls = new BudgetService();
 
-      $this->registry->template->transactionsList = $ls->getIncomeById($_SESSION['user_id']);
+      $this->registry->template->transactionsList = $ls->getIncomesById($_SESSION['user_id']);
       $this->registry->template->flag = "income";
       $this->registry->template->show('transactions_index');
     }
@@ -34,7 +34,7 @@ function sendErrorAndExit( $messageText )
     function expenses(){
       $ls = new BudgetService();
 
-      $this->registry->template->transactionsList = $ls->getExpenseById($_SESSION['user_id']);
+      $this->registry->template->transactionsList = $ls->getExpensesById($_SESSION['user_id']);
       $this->registry->template->flag = "expense";
       $this->registry->template->show('transactions_index');
     }
@@ -45,7 +45,7 @@ function sendErrorAndExit( $messageText )
 
       $this->registry->template->removeExpense = $ls->removeExpense ($_SESSION['user_id'], $transaction_id);
 
-      $this->registry->template->transactionsList = $ls->getExpenseById($_SESSION['user_id']);
+      $this->registry->template->transactionsList = $ls->getExpensesById($_SESSION['user_id']);
       $this->registry->template->flag = "expense";
       $this->registry->template->show('transactions_index');
     }
@@ -56,7 +56,7 @@ function sendErrorAndExit( $messageText )
 
       $this->registry->template->removeIncome = $ls->removeIncome($_SESSION['user_id'], $transaction_id);
 
-      $this->registry->template->transactionsList = $ls->getIncomeById($_SESSION['user_id']);
+      $this->registry->template->transactionsList = $ls->getIncomesById($_SESSION['user_id']);
       $this->registry->template->flag = "income";
       $this->registry->template->show('transactions_index');
     }
@@ -73,7 +73,7 @@ function sendErrorAndExit( $messageText )
         $this->registry->template->removeIncome = $ls->removeIncome($_SESSION['user_id'], $transaction_id);
 
 
-      $this->registry->template->transactionsList = $ls->getTransactionById($_SESSION['user_id']);
+      $this->registry->template->transactionsList = $ls->getTransactionsById($_SESSION['user_id']);
       $this->registry->template->flag = "transactions";
       $this->registry->template->show('transactions_index');
     }
@@ -113,6 +113,9 @@ function sendErrorAndExit( $messageText )
       else if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{0,50}$/',$description )){
         $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
       }
+      else if( empty(strtotime($_POST['date'])) ){
+        $this->registry->template->message = "You must chose date.";
+      }
       else{
         if ( strlen($description) == 0 ){
           $description = "-";
@@ -122,19 +125,83 @@ function sendErrorAndExit( $messageText )
 
 
       if ( $_POST['SubmitButton'] == "expense" ){
-        $this->registry->template->transactionsList = $ls->getExpenseById( $user_id );
+        $this->registry->template->transactionsList = $ls->getExpensesById( $user_id );
         $this->registry->template->flag = "expense";
       }
       else if ( $_POST['SubmitButton'] == "income" ){
-        $this->registry->template->transactionsList = $ls->getIncomeById( $user_id );
+        $this->registry->template->transactionsList = $ls->getIncomesById( $user_id );
         $this->registry->template->flag = "income";
       }
       else if ( $_POST['SubmitButton'] == "transactions" ){
-        $this->registry->template->transactionsList = $ls->getTransactionById( $user_id );
+        $this->registry->template->transactionsList = $ls->getTransactionsById( $user_id );
         $this->registry->template->flag = "transactions";
       }
 
       $this->registry->template->show('transactions_index');
+    }
+
+
+    function getTransactionById(){
+
+      $ls = new BudgetService();
+
+      $user_id = $_SESSION['user_id'];
+
+      if (isset( $_GET['id'] ) && isset($_GET['type'])){
+        $transaction_id = $_GET['id'];
+        $type = $_GET['type'];
+
+        // trazim ili income ili expense, a imam user_id i tran_id
+        $transaction = $ls->getTransactionById( $user_id, $transaction_id, $type);
+
+        sendJSONandExit( $transaction );
+      }
+    }
+
+    function editTransaction(){
+
+      $ls = new BudgetService();
+
+      $transaction_id = $_POST['TranId'];
+      $name = $_POST['name'];
+      $category = $_POST['category'];
+      $type = $_POST['type'];
+      $date = $_POST['date'];
+      $amount = $_POST['amount'];
+      $description = $_POST['description'];
+      $user_id = $_SESSION['user_id'];
+
+      if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
+        $this->registry->template->message = "Name of transaction cannot be empty and must consist of at most 20 letters or numbers." ;
+      }
+      else if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{0,50}$/',$description )){
+        $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
+      }
+      else if( empty(strtotime($_POST['date'])) ){
+        $this->registry->template->message = "You must chose date.";
+      }
+      else{
+        if ( strlen($description) == 0 ){
+          $description = "-";
+        }
+        $ls->editingTransaction($user_id, $type, $transaction_id, $name, $category, $amount, $date, $description);
+      }
+
+      if ( $_POST['editButton'] == "expense" ){
+        $this->registry->template->transactionsList = $ls->getExpensesById( $user_id );
+        $this->registry->template->flag = "expense";
+      }
+      else if ( $_POST['editButton'] == "income" ){
+        $this->registry->template->transactionsList = $ls->getIncomesById( $user_id );
+        $this->registry->template->flag = "income";
+      }
+      else if ( $_POST['editButton'] == "transactions" ){
+        $this->registry->template->transactionsList = $ls->getTransactionsById( $user_id );
+        $this->registry->template->flag = "transactions";
+      }
+
+      $this->registry->template->show('transactions_index');
+
     }
 
   };
