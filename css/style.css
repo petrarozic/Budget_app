@@ -34,14 +34,21 @@
 .info{
   margin-bottom: 2em;
   margin-top: -2.5em;
-  padding-top: 1em;
+  padding: 1em;
   background: rgba(0, 153, 77, 0.91);
-  height: 6em;
+  height: auto;
   width: 75%;
   margin-left: 10%;
   box-shadow: 10px 10px 25px rgba(0, 153, 77, 0.8);
   border-radius: 15px;
 }
+
+@media (max-width: 575px) {
+  .info{
+    margin-top: 1em;
+  }
+}
+
 
 .info-box{
   background: rgba(255,222,173, 0.5);
@@ -49,6 +56,8 @@
   padding: 0.5em 1em;
   text-align: center;
   margin: auto;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
 .info-elem{
@@ -124,18 +133,17 @@ display: inline;
 
  .link-ul{
    list-style-type: none;
-   padding-left: 10px;
-   margin: 2em;
    margin-top:4em;
-   margin-left: 2.5em;
+   margin-left: 1em;
    border-radius: 15px;
    border: 1px solid lightgrey;
+   padding: 0;
+   min-width: 6.5em;
  }
+
  .link-item{
    margin: auto;
    padding: 10px 5px;
-   /* margin: 15px 10px; */
-   border-radius: 10px;
    text-align: center;
  }
 
@@ -211,20 +219,25 @@ display: inline;
   * TABLE
    ***********************************/
    thead{
+     border: none;
+     overflow: hidden;
      background-color: #8cd98c;
    }
 
-   .theadborder{
-     /*border: 1px solid lightgrey;
-     border-radius: 15px;*/
+   .table{
+     border: none;
+     border-radius: 15px;
+     overflow: hidden;
+     width: inherit;
+     height: inherit;
    }
 
-   .mtable{
-     border: 1px solid lightgrey;
+   .panel{
      border-radius: 15px;
      margin-left: -10px;
      margin-right: 25px;
-
+     border: 1px solid lightgrey;
+     min-width: max-content;
    }
 
    .tgreen{
@@ -281,7 +294,7 @@ display: inline;
 
     .fb_icon{
       border-radius: 40%;
-      box-shadow: 3px 3px 25px blue;
+      width: 40px;
     }
 
     .fb_icon:hover{

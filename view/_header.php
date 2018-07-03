@@ -17,6 +17,9 @@
     <script src="<?php echo __SITE_URL;?>/view/CategoriesInSelect.js"></script>
     <script src="<?php echo __SITE_URL;?>/view/FillingEditModule.js"></script>
 
+    <link rel="shortcut icon" href="<?php echo __SITE_URL;?>/budget.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo __SITE_URL;?>/budget.ico" type="image/x-icon">
+
   </head>
 
 <body class="body_">
@@ -47,9 +50,7 @@
 
   <div class="row">
 
-    <div class="col-md-2 pull-left">
-
-
+    <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2 pull-left">
       <ul class="link-ul">
         <li class="link-item
               <?php if ($extension === 'home') echo "link-active"; ?>
@@ -72,12 +73,9 @@
           <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=statistics">STATISTICS</a>
         </li>
      </ul>
-
-
    </div>
 
-
-   <div class="col-md-10 pull-right">
+   <div class="col-xs-6 col-sm-9 col-md-10 col-lg-10 pull-right">
     <div class="info">
       <div class="row">
         <div class="info-box" id="plus">

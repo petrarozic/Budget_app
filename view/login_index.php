@@ -21,6 +21,11 @@
       crossorigin="anonymous">
     </script>
 <!-- do tuda -->
+
+    <!-- ICON -->
+    <link rel="shortcut icon" href="<?php echo __SITE_URL;?>/budget.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo __SITE_URL;?>/budget.ico" type="image/x-icon">
+
     <title>Budget-app</title>
 
   </head>
