@@ -17,6 +17,9 @@
     <script src="<?php echo __SITE_URL;?>/view/CategoriesInSelect.js"></script>
     <script src="<?php echo __SITE_URL;?>/view/FillingEditModule.js"></script>
 
+    <link rel="shortcut icon" href="<?php echo __SITE_URL;?>/budget.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo __SITE_URL;?>/budget.ico" type="image/x-icon">
+
   </head>
 
 <body class="body_">
