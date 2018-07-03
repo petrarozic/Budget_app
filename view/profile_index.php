@@ -1,10 +1,22 @@
 <?php
   require_once "_header.php";
+
 ?>
 
-<?php if ( isset($smessage) )
-        echo '<p>'. $smessage. '</p>';
-?>
+  <script>
+
+        var fl = <?php if ( isset($smessage)) echo json_encode($_SESSION['flag']); else echo "2";?>;
+        var mess = <?php if ( isset($smessage)) echo json_encode($smessage); else echo "undefined";?>;
+
+          if(fl.toString() === '0')
+              $.notify(mess, "error");
+
+          else if(fl.toString() === '1')
+              $.notify(mess, "success");
+
+
+  </script>
+
 
 
 <div class="omotac">

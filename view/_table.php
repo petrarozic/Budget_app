@@ -6,7 +6,22 @@ function checkDelete(){
 }
 </script>
 
-<?php if ( isset($message) ) echo $message; ?>
+<?php //if ( isset($message) ) echo $message; ?>
+<script>
+
+      console.log("u scriptu");
+      var fl = <?php if ( isset($message)) echo json_encode($_SESSION['flag']); else echo "2";?>;
+      var mess = <?php if ( isset($message)) echo json_encode($message); else echo "undefined";?>;
+
+        if(fl.toString() === '0')
+            $.notify(mess, "error");
+
+        else if(fl.toString() === '1')
+            $.notify(mess, "success");
+
+
+</script>
+
 
 <div class="mtable">
 <table class="table">
