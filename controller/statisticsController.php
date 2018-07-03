@@ -6,7 +6,7 @@ class StatisticsController extends BaseController
 	{
     $ls = new BudgetService();
 
-    $list = $ls->getExpenseById($_SESSION['user_id']);
+    $list = $ls->getExpensesById($_SESSION['user_id']);
     $total = 0;
     $biggest = 0;
     foreach($list as $t){
@@ -27,7 +27,7 @@ class StatisticsController extends BaseController
 	{
 		$ls = new BudgetService();
 
-		$list = $ls->getIncomeById($_SESSION['user_id']);
+		$list = $ls->getIncomesById($_SESSION['user_id']);
 		$total = 0;
 		$biggest = 0;
 		foreach($list as $t){

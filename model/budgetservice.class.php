@@ -87,7 +87,7 @@ class BudgetService
 
 
 
-	function getExpenseById( $user_id ){
+	function getExpensesById( $user_id ){
 			try{
 				$db = DB::getConnection();
 				$st = $db->prepare( 'SELECT * FROM  Expense WHERE user_id=:id ORDER BY expense_date DESC' );
@@ -107,7 +107,7 @@ class BudgetService
 
 
 	//vraca array sa svim primanjima za logiranog korisnika
-	function getIncomeById( $user_id ){
+	function getIncomesById( $user_id ){
 			try{
 					$db = DB::getConnection();
 					$st = $db->prepare( 'SELECT * FROM  Income WHERE user_id=:id ORDER BY income_date DESC' );
@@ -128,7 +128,7 @@ class BudgetService
 
 
 	//sve transakcije (ne pozivam funkcije za income i expense zbog oznaka za razlikovanje u view-u)
-function getTransactionById($user_id){
+function getTransactionsById($user_id){
 	$arr = array();
 
 	//incomes
@@ -387,10 +387,66 @@ function getTransactionById($user_id){
 		 return;
 	 }
 
+	 function getTransactionById($user_id, $transaction_id, $type ){
+
+		 if( $type == "expense" || $type == "e" ){
+			 try{
+ 					$db = DB::getConnection();
+ 					$st = $db->prepare( 'SELECT * FROM  Expense WHERE ( user_id=:id ) AND ( expense_id = :transaction_id )' );
+ 					$st->execute( array( 'id' => $user_id, "transaction_id" => $transaction_id) );
+ 			}
+ 			catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		 }
+		 else if( $type == "income" || $type == "i" ){
+			 try{
+			 		$db = DB::getConnection();
+			 		$st = $db->prepare( 'SELECT * FROM  Income WHERE (user_id=:id) AND ( income_id = :transaction_id)' );
+			 		$st->execute( array( "id" => $user_id, "transaction_id" => $transaction_id ) );
+			 }
+			 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+		 }
+
+		 $arr = array();
+
+		 $i = 0;
+
+		 $podaci = $st->fetch();
+
+		 $arr['id'] = $podaci[0];
+		 $arr['category'] = $podaci[1];
+ 		 $arr['user_id'] = $podaci[2];
+		 $arr['name'] = $podaci[3];
+		 $arr['value'] = $podaci[4];
+		 $arr['date'] = $podaci[5];
+		 $arr['description'] = $podaci[6];
+
+		 return $arr;
+	 }
+
+
+	 function editingTransaction($user_id, $type, $transaction_id, $name, $category, $amount, $date, $description){
+
+		 if ( $type == "Income"){
+			 try{
+				 $user = DB::getConnection();
+				 $user_ = $user->prepare('UPDATE Income SET income_name =:name, category_name = :category, income_value = :amount, income_date = :date, income_description = :description WHERE ( user_id LIKE :user_id) AND ( income_id LIKE :transaction_id)');
+				 $user_->execute( array( 'name' => $name, 'category' => $category, 'amount' => $amount, 'date' => $date, 'description' => $description, 'user_id' => $user_id, 'transaction_id' => $transaction_id ) );
+			 }
+			 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+		 }
+		 else if ( $type == "Expense" ){
+			 try{
+				 $user = DB::getConnection();
+				 $user_ = $user->prepare('UPDATE Expense SET expense_name =:name, category_name = :category, expense_value = :amount, expense_date = :date, expense_description = :description WHERE ( user_id LIKE :user_id) AND ( expense_id LIKE :transaction_id)');
+				 $user_->execute( array( 'name' => $name, 'category' => $category, 'amount' => $amount, 'date' => $date, 'description' => $description, 'user_id' => $user_id, 'transaction_id' => $transaction_id ) );
+			 }
+			catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+		 }
+
+	 }
+
 };
-
-
-
 
 
 ?>
