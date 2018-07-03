@@ -124,18 +124,17 @@ display: inline;
 
  .link-ul{
    list-style-type: none;
-   padding-left: 10px;
-   margin: 2em;
    margin-top:4em;
-   margin-left: 2.5em;
+   margin-left: 1em;
    border-radius: 15px;
    border: 1px solid lightgrey;
+   padding: 0;
+   min-width: 6.5em;
  }
+
  .link-item{
    margin: auto;
    padding: 10px 5px;
-   /* margin: 15px 10px; */
-   border-radius: 10px;
    text-align: center;
  }
 
