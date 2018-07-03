@@ -182,7 +182,8 @@ display: inline;
  * BUTTONS
   ***********************************/
 
- .bgreen{
+ .bgreen, .modal-footer #NewTransaction, .modal-footer  #EditTransaction{
+   border: none;
    background-color: rgba(0, 153, 77, 0.9);
    color: white;
 
