@@ -1,9 +1,9 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
 <script language="JavaScript" type="text/javascript">
-function checkDelete(){
-    return confirm('By pressing OK you will delete selected transaction.');
-}
+  function checkDelete(){
+      return confirm('By pressing OK you will delete selected transaction.');
+  }
 </script>
 
 <?php //if ( isset($message) ) echo $message; ?>
@@ -45,12 +45,12 @@ function checkDelete(){
             if( $flag === "expense"  ){
              echo '<tr><td>'.$t->category_name.'</td><td>'.$t->expense_name.'</td><td class="tred">'.$t->expense_value.'</td><td>'.$t->expense_date.'</td><td>'.$t->expense_description.'</td><td>';
              echo '<button class="IconButtonE" id="EditIcon" name="'.$flag.'" data-toggle="modal" data-target="#EditTransaction" value="'.$t->expense_id.'" ><i class="far fa-edit"></i></button></td>';
-             echo '<td><form action="'.__SITE_URL.'/index.php?rt=transactions/removeExpense" method="post"> <input type="hidden" name="transaction" value="'.$t->expense_id.'"> <button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td> </tr>';
+             echo '<td><form action="'.__SITE_URL.'/index.php?rt=transactions/removeExpense" method="post"  onclick="return checkDelete()"> <input type="hidden" name="transaction" value="'.$t->expense_id.'"> <button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td> </tr>';
             }
             else if($flag === "income"){
               echo '<tr><td>'.$t->category_name.'</td><td>'.$t->income_name.'</td><td class="tgreen">'.$t->income_value.'</td><td>'.$t->income_date.'</td><td>'.$t->income_description.'</td><td>';
               echo '<button class="IconButtonE" id="EditIcon" name="'.$flag.'" data-toggle="modal" data-target="#EditTransaction" value="'.$t->income_id.'" ><i class="far fa-edit"></i></button></td>';
-              echo '<td> <form action="'.__SITE_URL.'/index.php?rt=transactions/removeIncome" method="post"> <input type="hidden" name="income" value="'.$t->income_id.'"> <button type=submit class="IconButton" >  <i class="far fa-trash-alt"> </i> </button> </form></td></tr>';
+              echo '<td> <form action="'.__SITE_URL.'/index.php?rt=transactions/removeIncome" method="post"  onclick="return checkDelete()"> <input type="hidden" name="income" value="'.$t->income_id.'"> <button type=submit class="IconButton" >  <i class="far fa-trash-alt"> </i> </button> </form></td></tr>';
             }
             else /*if($flag === "transactions")*/{
               if($t->tr_type === 'e')
