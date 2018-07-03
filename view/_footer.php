@@ -3,7 +3,7 @@
     <!--FOOTER -->
     <footer class="page-footer pt-1 mt-4">
       <div class="container text-center text-md-left">
-        <div class="row text-center text-md-left">
+        <div class="row text-center text-md-left pb-3">
 
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
             <p class="footer-elem">Budget-app</p>
@@ -40,7 +40,7 @@
             <hr>
             <p class="footer-elem">Follow</p>
             <a href="https://www.facebook.com">
-              <img src="fb_icon.png" alt="Facebook" width="40" class="fb_icon">
+              <img src="fb_icon.png" alt="Facebook" class="fb_icon">
             </a>
           </div>
 

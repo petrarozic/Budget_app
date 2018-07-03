@@ -281,7 +281,7 @@ display: inline;
 
     .fb_icon{
       border-radius: 40%;
-      box-shadow: 3px 3px 25px blue;
+      width: 40px;
     }
 
     .fb_icon:hover{
