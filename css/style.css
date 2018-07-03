@@ -211,20 +211,24 @@ display: inline;
   * TABLE
    ***********************************/
    thead{
+     border: none;
+     overflow: hidden;
      background-color: #8cd98c;
    }
 
-   .theadborder{
-     /*border: 1px solid lightgrey;
-     border-radius: 15px;*/
+   .table{
+     border: none;
+     border-radius: 15px;
+     overflow: hidden;
+     width: inherit;
+     height: inherit;
    }
 
-   .mtable{
-     border: 1px solid lightgrey;
+   .panel{
      border-radius: 15px;
      margin-left: -10px;
      margin-right: 25px;
-
+     border: 1px solid lightgrey;
    }
 
    .tgreen{
