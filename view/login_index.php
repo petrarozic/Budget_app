@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="<?php echo __SITE_URL;?>/view/notify.js"></script>
+
 
 <!--potrebno za nav-tabs-->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -24,7 +23,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous">
     </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="<?php echo __SITE_URL;?>/view/notify.js"></script>
 <!-- do tuda -->
     <title>Budget-app</title>
 
@@ -82,14 +82,14 @@
 
 
                     var fll = <?php   if ( isset($lmessage)) echo json_encode($_SESSION['flag']);   else echo "2"; ?>;
-                    var messa = <?php if ( isset($lmessage)) echo json_encode($lmessage);           else echo "undefined"; ?>;
+                    var mess = <?php if ( isset($lmessage)) echo json_encode($lmessage);           else echo "undefined"; ?>;
 
 
                       if(fll.toString() === '0')
-                          $.notify(messa, "error");
+                          $.notify(mess, "error");
 
                       else if(fll.toString() === '1')
-                          $.notify(messa, "success");
+                          $.notify(mess, "success");
 
 
               </script>
@@ -139,13 +139,13 @@
               <script>
 
                     console.log("u scriptu");
-                    var fl = <?php if ( isset($smessage)) echo json_encode($_SESSION['flag']); else echo "2"?>;
+                    var fls = <?php if ( isset($smessage)) echo json_encode($_SESSION['flag']); else echo "2"?>;
                     var mess = <?php if ( isset($smessage)) echo json_encode($smessage); else echo "undefined";?>;
 
-                      if(fl.toString() === '0')
+                      if(fls.toString() === '0')
                           $.notify(mess, "error");
 
-                      else if(fl.toString() === '1')
+                      else if(fls.toString() === '1')
                           $.notify(mess, "success");
 
 
