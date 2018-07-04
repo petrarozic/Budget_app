@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous">
+    <!--for mail icon-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 
 <!--potrebno za nav-tabs-->
@@ -38,7 +40,7 @@
     <div class="row">
 
     <div class="col-md-6 pull-left">
-       <div class="col-lg-11 log-mainPart" style="max-width: 29rem; margin-top: 15%; float:right;">
+       <div class="col-lg-11 log-mainPart" style="max-width: 29rem; margin-top: 3rem; float:right;">
         <ul class="nav nav-tabs" id="myTab" role="tablist" >
           <li class="nav-item">
             <?php echo '<a class="nav-link';
@@ -70,11 +72,11 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
               </div>
 
-              <button type="submit" class="btn bgreen">LOG IN</button>
-              <button type="reset" class="btn btn-secondary">Reset</button>
-              <a data-toggle="modal" href="#forgot">Forgot password?</a>
-              <br>
-              <br>
+              <button type="submit" class="btn bgreen float-right">LOG IN</button>
+              <button type="reset" class="btn btn-secondary float-right">Reset</button>
+              <br><br>
+              <a data-toggle="modal" href="#forgot" class="float-right">Forgot password?</a>
+              <br><br>
               <p style="text-align:center"> <?php //if(isset($lmessage)) echo $lmessage; ?> </p>
 
 
@@ -157,8 +159,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 pull-right" style="padding-left:0;">
-    <div class="col-lg-11" style="margin-top: 21%; padding-left:0;">
+    <div class="col-md-4 pull-right">
+    <div class="col-lg-11" style="margin-top: 3rem;">
     <div class="text-center">
     <img src="money.png" alt=" " width="215" class="image">
     </div>
