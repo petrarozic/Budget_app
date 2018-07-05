@@ -33,7 +33,7 @@ class LoginController extends BaseController
 				$this->registry->template->show( 'login_index' );
 				exit();
 			}
-			//
+			
 			$_SESSION['user_id'] = $id;
 			$_SESSION['username'] = $_POST['username'];
 			// $incomes = $ls->getIncomesById($_SESSION['user_id']);

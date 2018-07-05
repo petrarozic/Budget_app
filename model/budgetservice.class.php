@@ -20,7 +20,6 @@ class BudgetService
 		return false;
 	}
 
-
 	function insertUser($username, $password, $email, $reg_seq )
 	{
 		try
@@ -86,7 +85,7 @@ class BudgetService
     try
     {
       $db = DB::getConnection();
-      $st = $db->prepare( 'SELECT password, user_id FROM User WHERE username=:username');
+      $st = $db->prepare( 'SELECT password, user_id, has_registered FROM User WHERE username=:username');
       $st->execute( array( 'username' => $username));
     }
     catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
