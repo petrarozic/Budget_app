@@ -83,34 +83,34 @@
         </div>
         <!-- ovdje treba dodatiprae vrijednosti za prekoracenje-->
         <div class="info-box">
-          <?php if($iznos_d >= 0){
+          <?php // if($iznos_d >= 0){
           echo '<span class="info-elem"> Daily limit: </span>';
-          echo '<span class="info-amount">+'.$iznos_d.'</span>';
-        }
-        else{
+          //echo '<span class="info-amount">+'.$iznos_d.'</span>';
+        //}
+        //else{
           echo '<span class="info-elem" style="color: #b30000"> Daily limit: </span>';
-          echo '<span class="info-amount" style="color: #b30000">-'.$iznos_d.'</span>';
-        }?>
+          //echo '<span class="info-amount" style="color: #b30000">-'.$iznos_d.'</span>';
+        /*}*/?>
         </div>
         <div class="info-box">
-          <?php if($iznos_w >= 0){
+          <?php // if($iznos_w >= 0){
           echo '<span class="info-elem"> Weekly limit: </span>';
-          echo '<span class="info-amount">+'.$iznos_w.'</span>';
-        }
-        else{
+          //echo '<span class="info-amount">+'.$iznos_w.'</span>';
+        //}
+        //else{
           echo '<span class="info-elem" style="color: #b30000"> Weekly limit: </span>';
-          echo '<span class="info-amount" style="color: #b30000">-'.$iznos_w.'</span>';
-        }?>
+          //echo '<span class="info-amount" style="color: #b30000">-'.$iznos_w.'</span>';
+      /*  }*/?>
         </div>
         <div class="info-box">
-          <?php if($iznos_m >= 0){
+          <?php // if($iznos_m >= 0){
           echo '<span class="info-elem"> Monthly limit: </span>';
-          echo '<span class="info-amount">+'.$iznos_m.'</span>';
-        }
-        else{
+          //echo '<span class="info-amount">+'.$iznos_m.'</span>';
+      //  }
+        //else{
           echo '<span class="info-elem" style="color: #b30000"> Monthly limit: </span>';
-          echo '<span class="info-amount" style="color: #b30000">-'.$iznos_m.'</span>';
-        }?>
+          //echo '<span class="info-amount" style="color: #b30000">-'.$iznos_m.'</span>';
+        /*}*/?>
         </div>
       </div>
     </div>

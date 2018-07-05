@@ -34,7 +34,8 @@ class BudgetService
 												 'reg_seq'  => $reg_seq ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-	}
+
+		}
 
 
 
@@ -61,6 +62,21 @@ class BudgetService
 				$st->execute( array( 'reg_seq' => $sequence ) );
 			}
 			catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+			$username = $row['user_id'];
+			// Default categories
+			try
+			{
+				$db = DB::getConnection();
+				$st = $db->prepare( 'INSERT INTO Category(user_id, category_name, category_type) VALUES ' .
+													'(:user_id, :category_name, :category_type)' );
+				$st->execute( array('user_id' => $username, 'category_name' => "Stanarina", 'category_type' => "Troskovi") );
+				$st->execute( array('user_id' => $username, 'category_name' => "Hrana", 'category_type' => "Troskovi") );
+				$st->execute( array('user_id' => $username, 'category_name' => "Izlasci", 'category_type' => "Troskovi") );
+				$st->execute( array('user_id' => $username, 'category_name' => "Placa", 'category_type' => "Primanja") );
+				$st->execute( array('user_id' => $username, 'category_name' => "Stipendija", 'category_type' => "Primanja") );
+				$st->execute( array('user_id' => $username, 'category_name' => "Fondovi", 'category_type' => "Primanja") );
+			}
+			catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 	  }
 	}
 
@@ -78,8 +94,9 @@ class BudgetService
 		if( $row === false )
 			return false;
 		$hash = $row['password'];
-		if( password_verify( $password, $hash ) )
+		if( password_verify( $password, $hash ) && $row['has_registered'] == 1)
 		{
+
 			return $row['user_id'];
 		}
     return false;
