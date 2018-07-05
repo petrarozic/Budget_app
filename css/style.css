@@ -233,6 +233,12 @@ display: inline;
      height: inherit;
    }
 
+   .table-responsive{
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
    .panel{
      border-radius: 15px;
      margin-left: -10px;
@@ -314,4 +320,13 @@ display: inline;
         .panel{
           margin-left: 25px
         }
-      }
+    }
+
+    @media all and (max-width: 400px) {
+        .Removable2 {
+          display: none;
+        }
+        .panel{
+          margin-left: 25px
+        }
+    }
