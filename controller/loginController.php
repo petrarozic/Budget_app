@@ -34,8 +34,8 @@ class LoginController extends BaseController
 				exit();
 			}
 			//
-			// $_SESSION['user_id'] = $id;
-			// $_SESSION['username'] = $_POST['username'];
+			$_SESSION['user_id'] = $id;
+			$_SESSION['username'] = $_POST['username'];
 			// $incomes = $ls->getIncomesById($_SESSION['user_id']);
 			// $expenses  = $ls->getExpensesById($_SESSION['user_id']);
 			// $user_data = $ls->getUserById($_SESSION['user_id']);
