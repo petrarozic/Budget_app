@@ -26,8 +26,8 @@ class BudgetService
 		try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare( 'INSERT INTO User(username, password, email, registration_sequence, has_registered) VALUES ' .
-												'(:username, :password, :email, :reg_seq, 0)' );
+			$st = $db->prepare( 'INSERT INTO User(username, password, email, daily_limit, weekly_limit, monthly_limit, registration_sequence, has_registered) VALUES ' .
+												'(:username, :password, :email, 200, 1500, 5000, :reg_seq, 0)' );
 			$st->execute( array('username' => $username,
 												 'password' => password_hash( $password, PASSWORD_DEFAULT ),
 												 'email' => $email,
@@ -446,7 +446,9 @@ function getTransactionsById($user_id){
 
 	 }
 
+
 };
+
 
 
 ?>

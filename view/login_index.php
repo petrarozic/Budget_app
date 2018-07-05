@@ -136,7 +136,7 @@
               <br>
               <br>
               <br>
-              <p style="text-align:center"> <?php //if(isset($smessage)) echo $smessage; ?></p>';
+              <p style="text-align:center"> <?php //if(isset($smessage)) echo $smessage; ?></p>
 
               <script>
 

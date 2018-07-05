@@ -81,17 +81,36 @@
         <div class="info-box" id="plus">
           <button class="AddButton" type="submit" name="AddTransaction" data-toggle="modal" data-target="#AddTransaction" > <i class="fas fa-plus" style="font-size:2em;"></i></button>
         </div>
+        <!-- ovdje treba dodatiprae vrijednosti za prekoracenje-->
         <div class="info-box">
-          <span class="info-elem"> Daily limit: </span>
-          <span class="info-amount">+100</span>
+          <?php if($iznos_d >= 0){
+          echo '<span class="info-elem"> Daily limit: </span>';
+          echo '<span class="info-amount">+'.$iznos_d.'</span>';
+        }
+        else{
+          echo '<span class="info-elem" style="color: #b30000"> Daily limit: </span>';
+          echo '<span class="info-amount" style="color: #b30000">-'.$iznos_d.'</span>';
+        }?>
         </div>
         <div class="info-box">
-          <span class="info-elem" style="color: #b30000"> Weekly limit: </span>
-          <span class="info-amount" style="color: #b30000">-20</span>
+          <?php if($iznos_w >= 0){
+          echo '<span class="info-elem"> Weekly limit: </span>';
+          echo '<span class="info-amount">+'.$iznos_w.'</span>';
+        }
+        else{
+          echo '<span class="info-elem" style="color: #b30000"> Weekly limit: </span>';
+          echo '<span class="info-amount" style="color: #b30000">-'.$iznos_w.'</span>';
+        }?>
         </div>
         <div class="info-box">
-          <span class="info-elem"> Monthly limit: </span>
-          <span class="info-amount">+100</span>
+          <?php if($iznos_m >= 0){
+          echo '<span class="info-elem"> Monthly limit: </span>';
+          echo '<span class="info-amount">+'.$iznos_m.'</span>';
+        }
+        else{
+          echo '<span class="info-elem" style="color: #b30000"> Monthly limit: </span>';
+          echo '<span class="info-amount" style="color: #b30000">-'.$iznos_m.'</span>';
+        }?>
         </div>
       </div>
     </div>

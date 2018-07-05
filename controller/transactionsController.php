@@ -109,12 +109,15 @@ function sendErrorAndExit( $messageText )
 
       if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
         $this->registry->template->message = "Name of transaction must consist of at most 20 letters or numbers." ;
+        $_SESSION['flag'] = 0;
       }
       else if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{0,50}$/',$description )){
         $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
+        $_SESSION['flag'] = 0;
       }
       else if( empty(strtotime($_POST['date'])) ){
         $this->registry->template->message = "You must chose date.";
+        $_SESSION['flag'] = 0;
       }
       else{
         if ( strlen($description) == 0 ){
@@ -173,12 +176,15 @@ function sendErrorAndExit( $messageText )
 
       if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
         $this->registry->template->message = "Name of transaction cannot be empty and must consist of at most 20 letters or numbers." ;
+        $_SESSION['flag'] = 0;
       }
       else if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{0,50}$/',$description )){
         $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
+        $_SESSION['flag'] = 0;
       }
       else if( empty(strtotime($_POST['date'])) ){
         $this->registry->template->message = "You must chose date.";
+        $_SESSION['flag'] = 0;
       }
       else{
         if ( strlen($description) == 0 ){

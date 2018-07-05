@@ -12,8 +12,8 @@ class LoginController extends BaseController
 			session_unset();
 			session_destroy();
 		}
-		$this->registry->template->lmessage = '';
-		$this->registry->template->smessage = '';
+		//$this->registry->template->lmessage = '';
+		//$this->registry->template->smessage = '';
 		$this->registry->template->l_flag = 1;
 		$this->registry->template->show( 'login_index' );
 	}
@@ -29,17 +29,37 @@ class LoginController extends BaseController
 			if($id === false){
 				$this->registry->template->l_flag = 1;
 				$this->registry->template->lmessage = "Username or password incorrect.";
+				$_SESSION['flag'] = 0;
 				$this->registry->template->show( 'login_index' );
 				exit();
 			}
+			//
+			// $_SESSION['user_id'] = $id;
+			// $_SESSION['username'] = $_POST['username'];
+			// $incomes = $ls->getIncomesById($_SESSION['user_id']);
+			// $expenses  = $ls->getExpensesById($_SESSION['user_id']);
+			// $user_data = $ls->getUserById($_SESSION['user_id']);
+			//
+			// $today = date("Y-m-d");
+			// //pozbrajati sve income
+			// foreach ($variable as $key => $value) {
+			// 	# code...
+			// }
+			// //oduzeti sve expensove
+			// foreach ($variable as $key => $value) {
+			// 	# code...
+			// }
+			//
+			// $_SESSION['d_limit'];
+			// $_SESSION['w_limit'];
+			// $_SESSION['y_limit'];
 
-			$_SESSION['user_id'] = $id;
-			$_SESSION['username'] = $_POST['username'];
 			header( 'Location: ' . __SITE_URL . '/index.php?rt=home');
 		}
 		else{
 			$this->registry->template->l_flag = 1;
 			$this->registry->template->lmessage = "You have to enter username and password to log in.";
+			$_SESSION['flag'] = 0;
 			$this->registry->template->show( 'login_index' );
 			exit();
 		}
@@ -53,13 +73,15 @@ class LoginController extends BaseController
 		if( !isset( $_POST['username'] ) || !isset( $_POST['password'] ) || !isset( $_POST['email'] ) || $_POST['username'] === '' || $_POST['password'] === '' || $_POST['email'] === '')
 		{
 			$this->registry->template->smessage = "You have to enter username, password and email to sign up.";
+			$_SESSION['flag'] = 0;
 			$this->registry->template->show( 'login_index' );
 			exit();
 		}
 
-		else if( !preg_match( '/^[A-Za-z0-9_@ ]{1,40}$/', $_POST['username'] ) )
+		else if( !preg_match( '/^[A-Za-z0-9_@ ]{3,20}$/', $_POST['username'] ) )
 		{
 			$this->registry->template->smessage = "Username should consist of letters and numbers.";
+			$_SESSION['flag'] = 0;
 			$this->registry->template->show( 'login_index' );
 			exit();
 		}
@@ -67,6 +89,7 @@ class LoginController extends BaseController
 		else if( !preg_match( '/^[A-Za-z0-9]{3,20}$/', $_POST['password'] ) )
 		{
 			$this->registry->template->smessage = "Password should consist only of letters and numbers and be 3-20 characters long.";
+			$_SESSION['flag'] = 0;
 			$this->registry->template->show( 'login_index' );
 			exit();
 		}
@@ -74,6 +97,7 @@ class LoginController extends BaseController
 		else if( !filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL) )
 		{
 			$this->registry->template->smessage = "Email is not valid.";
+			$_SESSION['flag'] = 0;
 			$this->registry->template->show( 'login_index' );
 			exit();
 		}
@@ -83,6 +107,7 @@ class LoginController extends BaseController
 			if($is === true)
 			{
 				$this->registry->template->smessage = "There is already a user with username ". $_POST['username'] .". Please, choose another username or check if you have already registrated.";
+				$_SESSION['flag'] = 0;
 				$this->registry->template->show( 'login_index' );
 				exit();
 			}
@@ -103,7 +128,7 @@ class LoginController extends BaseController
 
 			mail($to, $subject, $message, $headers);
 			$this->registry->template->output = "Thank you for choosing Budget-app. To complete the registration, click on the link in the email we sent you.";
-			$this->registry->template->lmessage = '';
+
 			$this->registry->template->show( 'login_index' );
 			exit();
 		}
