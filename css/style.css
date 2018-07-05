@@ -301,3 +301,17 @@ display: inline;
     .fb_icon:hover{
       cursor:pointer;
     }
+
+
+    /***********************************
+    * TABLICA za male ekrane
+     ***********************************/
+
+    @media all and (max-width: 800px) {
+        .removable {
+          display: none;
+        }
+        .panel{
+          margin-left: 25px
+        }
+      }

@@ -96,10 +96,15 @@ function sendErrorAndExit( $messageText )
       $ls = new BudgetService();
       $user_id = $_SESSION['user_id'];
 
-      // Form data:
-      $type = $_POST['type'];
+      if( !isset( $_POST['type']) ){
+        $this->registry->template->message = "Please, chose type of transaction and category.";
+      }
+      else{
+        $type = $_POST['type'];
+        $type = $_POST['category'];
+      }
+
       $name = $_POST['name'];
-      $category = $_POST['category'];
       $amount = $_POST['amount'];
       $date = $_POST['date'];
       $description = $_POST['description'];
@@ -109,15 +114,15 @@ function sendErrorAndExit( $messageText )
 
       if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
         $this->registry->template->message = "Name of transaction must consist of at most 20 letters or numbers." ;
-        $_SESSION['flag'] = 0;
       }
       else if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{0,50}$/',$description )){
         $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
-        $_SESSION['flag'] = 0;
       }
       else if( empty(strtotime($_POST['date'])) ){
-        $this->registry->template->message = "You must chose date.";
-        $_SESSION['flag'] = 0;
+        $this->registry->template->message = "Please, chose date.";
+      }
+      else if( $_POST['type'] == "null" || !isset($_POST['type']) ){
+        $this->registry->template->message = "Please, chose type of transaction and category.";
       }
       else{
         if ( strlen($description) == 0 ){
@@ -176,15 +181,12 @@ function sendErrorAndExit( $messageText )
 
       if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
         $this->registry->template->message = "Name of transaction cannot be empty and must consist of at most 20 letters or numbers." ;
-        $_SESSION['flag'] = 0;
       }
       else if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{0,50}$/',$description )){
         $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
-        $_SESSION['flag'] = 0;
       }
       else if( empty(strtotime($_POST['date'])) ){
         $this->registry->template->message = "You must chose date.";
-        $_SESSION['flag'] = 0;
       }
       else{
         if ( strlen($description) == 0 ){
