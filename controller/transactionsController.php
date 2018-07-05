@@ -93,16 +93,11 @@ function sendErrorAndExit( $messageText )
     }
 
     function addTransaction(){
+
       $ls = new BudgetService();
+
       $user_id = $_SESSION['user_id'];
 
-      if( !isset( $_POST['type']) ){
-        $this->registry->template->message = "Please, chose type of transaction and category.";
-      }
-      else{
-        $type = $_POST['type'];
-        $type = $_POST['category'];
-      }
 
       $name = $_POST['name'];
       $amount = $_POST['amount'];
@@ -111,6 +106,7 @@ function sendErrorAndExit( $messageText )
       $repeating = $_POST['repeating'];
 
       // Validating data : name, description ( other are specified with form )
+
 
       if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
         $this->registry->template->message = "Name of transaction must consist of at most 20 letters or numbers." ;
@@ -121,13 +117,12 @@ function sendErrorAndExit( $messageText )
       else if( empty(strtotime($_POST['date'])) ){
         $this->registry->template->message = "Please, chose date.";
       }
-      else if( $_POST['type'] == "null" || !isset($_POST['type']) ){
-        $this->registry->template->message = "Please, chose type of transaction and category.";
-      }
       else{
         if ( strlen($description) == 0 ){
           $description = "-";
         }
+        $type = $_POST['type'];
+        $category = $_POST['category'];
         $this->registry->template->addingTransaction = $ls->addTransaction($user_id, $type, $name, $category, $amount, $date, $description, $repeating);
       }
 
