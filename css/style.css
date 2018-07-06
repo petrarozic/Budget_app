@@ -267,7 +267,7 @@ display: inline;
      color:#b30000;
    }
 
-   tr:hover{
+   .sortable:hover{
      cursor:ns-resize;
    }
 

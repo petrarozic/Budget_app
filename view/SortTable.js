@@ -1,6 +1,6 @@
 $( document ).ready( function()
   {
-      $("th").on('click', sortTable );
+      $(".sortable").on('click', sortTable );
   } );
 
 function sortTable(event) {

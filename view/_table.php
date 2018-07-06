@@ -28,11 +28,11 @@
     <table class="table">
     <thead>
       <tr>
-        <th class="removable" style="text-align:center; border:none;">  CATEGORY  </th>
-        <th style="text-align:center; border:none;">  TITLE  </th>
-        <th style="text-align:center; border:none;">   AMOUNT (HRK)  </th>
-        <th class="Removable2" style="text-align:center; border:none;">  DATE  </th>
-        <th class="removable" style="text-align:center; border:none;"> DESCRIPTION  </th>
+        <th class="removable sortable" style="text-align:center; border:none;">  CATEGORY  </th>
+        <th class="sortable" style="text-align:center; border:none;">  TITLE  </th>
+        <th class="sortable" style="text-align:center; border:none;">   AMOUNT (HRK)  </th>
+        <th class="Removable2 sortable" style="text-align:center; border:none;">  DATE  </th>
+        <th class="removable sortable" style="text-align:center; border:none;"> DESCRIPTION  </th>
         <th style="text-align:center; border:none;"> <!-- EDIT --> </th>
         <th style="text-align:center; border:none;"> <!-- REMOVE --> </th>
       </tr>
