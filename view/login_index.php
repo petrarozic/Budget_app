@@ -37,6 +37,7 @@
       <img src="money.png" alt=" " width="40" class="logo">
     </div>
 
+<div class="container-fluid">
     <div class="row">
 
     <div class="col-md-6 pull-left">
