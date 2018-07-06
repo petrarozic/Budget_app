@@ -84,34 +84,34 @@
         </div>
         <!-- ovdje treba dodatiprae vrijednosti za prekoracenje-->
         <div class="info-box">
-          <?php // if($iznos_d >= 0){
+          <?php  if($_SESSION['d_limit'] >= 0){
           echo '<span class="info-elem"> Daily limit: </span>';
-          //echo '<span class="info-amount">+'.$iznos_d.'</span>';
-        //}
-        //else{
+          echo '<span class="info-amount">+'.$_SESSION['d_limit'].'</span>';
+        }
+        else{
           echo '<span class="info-elem" style="color: #b30000"> Daily limit: </span>';
-          //echo '<span class="info-amount" style="color: #b30000">-'.$iznos_d.'</span>';
-        /*}*/?>
+          echo '<span class="info-amount" style="color: #b30000">'.$_SESSION['d_limit'].'</span>';
+        }?>
         </div>
         <div class="info-box">
-          <?php // if($iznos_w >= 0){
+          <?php  if( $_SESSION['w_limit'] >= 0 ){
           echo '<span class="info-elem"> Weekly limit: </span>';
-          //echo '<span class="info-amount">+'.$iznos_w.'</span>';
-        //}
-        //else{
+          echo '<span class="info-amount">+'.$_SESSION['w_limit'].'</span>';
+        }
+        else{
           echo '<span class="info-elem" style="color: #b30000"> Weekly limit: </span>';
-          //echo '<span class="info-amount" style="color: #b30000">-'.$iznos_w.'</span>';
-      /*  }*/?>
+          echo '<span class="info-amount" style="color: #b30000">'.$_SESSION['w_limit'].'</span>';
+        }?>
         </div>
         <div class="info-box">
-          <?php // if($iznos_m >= 0){
+          <?php  if($_SESSION['m_limit'] >= 0){
           echo '<span class="info-elem"> Monthly limit: </span>';
-          //echo '<span class="info-amount">+'.$iznos_m.'</span>';
-      //  }
-        //else{
+          echo '<span class="info-amount">+'.$_SESSION['m_limit'].'</span>';
+        }
+        else{
           echo '<span class="info-elem" style="color: #b30000"> Monthly limit: </span>';
-          //echo '<span class="info-amount" style="color: #b30000">-'.$iznos_m.'</span>';
-        /*}*/?>
+          echo '<span class="info-amount" style="color: #b30000">'.$_SESSION['m_limit'].'</span>';
+        }?>
         </div>
       </div>
     </div>
