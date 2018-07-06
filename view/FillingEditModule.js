@@ -43,7 +43,7 @@
 
             $.ajax(
               {
-              url: window.location.pathname+"?rt=transactions/CategoryForSelect",
+              url: window.location.pathname+"?rt=category/CategoryForSelect",
               data:
               {
                 tip : type

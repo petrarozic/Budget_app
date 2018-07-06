@@ -2,10 +2,11 @@ $( document ).ready( function()
     {
       $("#type").on("change", function(){
         var tip = $( this ).val();
-
+        console.log(window.location.pathname+"?rt=category/CategoryForSelect");
         $.ajax(
           {
-          url: window.location.pathname+"?rt=transactions/CategoryForSelect",
+          // Promjena transactions -> category
+          url: window.location.pathname+"?rt=category/CategoryForSelect",
           data:
           {
             tip : tip
