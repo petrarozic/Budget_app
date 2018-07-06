@@ -178,6 +178,23 @@ display: inline;
    margin:0;
    border: none;
  }
+
+ /***********************************
+ * Add category
+  ***********************************/
+.plusCategory{
+  margin-left: 1em;
+}
+
+.plusCategory .AddButton{
+  border-radius: 15px;
+  background: rgba(0, 153, 77, 0.3);
+  padding: 1em;
+  width: 100%
+}
+.plusCategory .AddButton:hover{
+  background: rgba(0, 153, 77, 0.5);
+}
  /***********************************
  * BUTTONS
   ***********************************/
