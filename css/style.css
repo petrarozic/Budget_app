@@ -1,7 +1,9 @@
 .body_{
   /*background: BlanchedAlmond;*/
 }
-
+container-fluid{
+  margin: 0px;
+}
 /***********************************
 * NASLOVNA TRAKA
  ***********************************/

@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <form method="post"  action="<?php echo __SITE_URL; ?>/index.php?rt=transactions/addCategory" >
+          <form method="post"  action="<?php echo __SITE_URL; ?>/index.php?rt=category/addCategory" >
             <div class="form-group">
               <label for="type_of_transaction">  Type of transaction </label>
               <select class="form-control" id="type" name="type" >

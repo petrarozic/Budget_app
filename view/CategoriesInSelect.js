@@ -1,6 +1,12 @@
 $( document ).ready( function()
     {
-      $("#type").on("change", function(){
+      console.log("Pozdrav sara");
+
+      $("#AddTransaction").on("click", function(){
+        console.log("I unutra smo");
+      });
+
+      $("#CateType").on("change", function(){
         var tip = $( this ).val();
         console.log(window.location.pathname+"?rt=category/CategoryForSelect");
         $.ajax(

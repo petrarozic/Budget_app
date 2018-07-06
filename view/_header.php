@@ -50,7 +50,6 @@
   <?php require_once __SITE_PATH . '/view/_activPage.php'; ?>
 
 <div class="container-fluid">
-
   <div class="row">
     <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2 pull-left">
       <ul class="link-ul">
@@ -85,7 +84,7 @@
     <div class="info">
       <div class="row">
         <div class="info-box" id="plus">
-          <button class="AddButton" type="submit" name="AddTransaction" data-toggle="modal" data-target="#AddTransaction" > <i class="fas fa-plus" style="font-size:2em;"></i></button>
+          <button class="AddButton" type="submit" name="AddTransaction" data-toggle="modal" data-target="#AddTransactionModal" > <i class="fas fa-plus" style="font-size:2em;"></i></button>
         </div>
         <!-- ovdje treba dodatiprae vrijednosti za prekoracenje-->
         <div class="info-box">

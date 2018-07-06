@@ -124,17 +124,24 @@ function sendErrorAndExit( $messageText )
       if ( $_POST['SubmitButton'] == "expense" ){
         $this->registry->template->transactionsList = $ls->getExpensesById( $user_id );
         $this->registry->template->flag = "expense";
+        $this->registry->template->show('transactions_index');
       }
       else if ( $_POST['SubmitButton'] == "income" ){
         $this->registry->template->transactionsList = $ls->getIncomesById( $user_id );
         $this->registry->template->flag = "income";
+        $this->registry->template->show('transactions_index');
       }
       else if ( $_POST['SubmitButton'] == "transactions" ){
         $this->registry->template->transactionsList = $ls->getTransactionsById( $user_id );
         $this->registry->template->flag = "transactions";
+        $this->registry->template->show('transactions_index');
+      }
+      else if ( $_POST['SubmitButton'] == "profile"){
+        $this->registry->template->user = $ls->getUserbById($_SESSION['user_id']);
+        $this->registry->template->show('profile_index');
       }
 
-      $this->registry->template->show('transactions_index');
+
 
     }
 

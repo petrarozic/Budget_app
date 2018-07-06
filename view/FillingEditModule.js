@@ -25,7 +25,7 @@
           },
           success: function( data )
           {
-            console.log(data.id+", "+data.category+", "+data.user_id+", "+data.name+", "+data.value+", "+data.date+", "+data.description);
+            //console.log(data.id+", "+data.category+", "+data.user_id+", "+data.name+", "+data.value+", "+data.date+", "+data.description);
 
             $("#EditTransaction #name").val(data.name);
             $("#EditTransaction #amount").val(data.value);
@@ -59,7 +59,6 @@
                 var selekt = $("#EditTransaction #category");
                 selekt.html("");
                 for ( var i = 0; i < data_cat.length ; ++i){
-                  console.log("JKaregorij: " + data_cat[i]);
                   if ( data_cat[i] == DataCategory )
                     selekt.append('<option selected="selected">'+ data_cat[i] +'</option>');
                   else

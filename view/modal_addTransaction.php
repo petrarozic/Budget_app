@@ -1,4 +1,4 @@
-<div id="AddTransaction" class="modal" tabindex="-1" role="dialog">
+<div id="AddTransactionModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,10 +11,10 @@
           <form method="post"  action="<?php echo __SITE_URL; ?>/index.php?rt=transactions/addTransaction" >
             <div class="form-group">
               <label for="type_of_transaction">  Type of transaction </label>
-              <select class="form-control" id="type" name="type" >
-                <option disabled="disabled" selected="selected" value="null"> Choose type </option>
-                <option <?php if( $flag == "expense") echo 'selected="selected"'; ?> > Expense </option>
-                <option <?php if( $flag == "income") echo 'selected="selected"'; ?> > Income </option>
+              <select class="form-control" id="CateType" name="type" >
+                <option selected="selected" value="null" disabled="disabled" > Choose type </option>
+                <option> Expense </option>
+                <option> Income </option>
               </select>
             </div>
             <div class="form-group">
