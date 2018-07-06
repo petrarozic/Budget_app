@@ -71,6 +71,23 @@ class categoryController extends BaseController
       $this->registry->template->user = $ls->getUserbById($_SESSION['user_id']);
       $this->registry->template->show('profile_index');
     }
+    else if ( $_POST['SubmitButton'] == "statistics"){
+/* Ovo nije dobro */
+      $list = $ls->getExpensesById($_SESSION['user_id']);
+      $total = 0;
+      $biggest = 0;
+      foreach($list as $t){
+        $total += $t->expense_value;
+        if($t->expense_value > $biggest)
+            $biggest = $t->expense_value;
+      }
+      $this->registry->template->total = $total;
+      $this->registry->template->average = sprintf('%0.2f', $total/sizeof($list));
+      $this->registry->template->apd = sprintf('%0.2f', $total/date("d"));
+      $this->registry->template->biggest = $biggest;
+      $this->registry->template->show('statistics_index');
+
+    }
 
 
   }

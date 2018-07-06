@@ -188,4 +188,9 @@ chart.render();
 
 
 
-<?php require_once __SITE_PATH . '/view/_footer.php'; ?>
+<?php
+  $flag = "statistics";
+  require_once __SITE_PATH . '/view/modal_addCategory.php';
+  require_once __SITE_PATH . '/view/modal_addTransaction.php';
+  require_once __SITE_PATH . '/view/_footer.php';
+?>
