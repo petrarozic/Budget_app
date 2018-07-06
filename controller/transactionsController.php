@@ -143,6 +143,7 @@ function sendErrorAndExit( $messageText )
         $this->registry->template->flag = "transactions";
       }
 
+      header( 'Location: ' . __SITE_URL . '/index.php?rt=home');
       $this->registry->template->show('transactions_index');
     }
 
