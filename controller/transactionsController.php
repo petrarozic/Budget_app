@@ -46,6 +46,7 @@ function sendErrorAndExit( $messageText )
       $this->registry->template->removeExpense = $ls->removeExpense ($_SESSION['user_id'], $transaction_id);
 
       $this->registry->template->transactionsList = $ls->getExpensesById($_SESSION['user_id']);
+      $ls->limits();
       $this->registry->template->flag = "expense";
       $this->registry->template->show('transactions_index');
     }
@@ -74,6 +75,7 @@ function sendErrorAndExit( $messageText )
 
 
       $this->registry->template->transactionsList = $ls->getTransactionsById($_SESSION['user_id']);
+      $ls->limits();
       $this->registry->template->flag = "transactions";
       $this->registry->template->show('transactions_index');
     }
@@ -115,6 +117,7 @@ function sendErrorAndExit( $messageText )
         $type = $_POST['type'];
         $category = $_POST['category'];
         $this->registry->template->addingTransaction = $ls->addTransaction($user_id, $type, $name, $category, $amount, $date, $description, $repeating);
+        $ls->limits();
       }
 
 
@@ -132,6 +135,7 @@ function sendErrorAndExit( $messageText )
       }
 
       $this->registry->template->show('transactions_index');
+
     }
 
 
@@ -182,6 +186,7 @@ function sendErrorAndExit( $messageText )
           $description = "-";
         }
         $ls->editingTransaction($user_id, $type, $transaction_id, $name, $category, $amount, $date, $description);
+        $ls->limits();
       }
 
       if ( $_POST['editButton'] == "expense" ){

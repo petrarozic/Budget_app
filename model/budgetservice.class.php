@@ -4,6 +4,7 @@ class BudgetService
 {
 
 
+
 	function isAlreadyInDB($username )
 	{
 
@@ -140,6 +141,38 @@ class BudgetService
 
 		return $arr;
 
+	}
+
+	/*******************************************************************************/
+	//RAČUNANJE PREKORAČENJA LIMITA
+	/*******************************************************************************/
+	function limits(){
+		$expenses  = $this->getExpensesById($_SESSION['user_id']);
+		$user_data = $this->getUserbById($_SESSION['user_id']);
+
+		//danasnji datum
+		$today = date("Y-m-d");
+		$this_month = date("Y-m");
+		$this_week = date("Y-W");
+
+		//sume
+		$daily_sum = 0;
+		$weekly_sum = 0;
+		$monthly_sum = 0;
+
+		//daily_sum, weekly_sum, monthly_sum
+		foreach ($expenses as $row) {
+					if( date("Y-m-d",strtotime( $row->expense_date) ) === $today )
+						$daily_sum += $row->expense_value;
+					if( date("Y-m", strtotime(  $row->expense_date) ) === $this_month )
+						$monthly_sum += $row->expense_value;
+					if(date( "Y-W", strtotime( $row->expense_date ) ) === $this_week )
+						$weekly_sum += $row->expense_value;
+		 }
+		//u sesiju stavi prekoracenja
+		 $_SESSION['d_limit'] = $user_data->daily_limit - $daily_sum;
+		 $_SESSION['w_limit'] = $user_data->weekly_limit - $weekly_sum;
+		 $_SESSION['m_limit'] = $user_data->monthly_limit - $monthly_sum;
 	}
 
 
