@@ -150,6 +150,11 @@
     }
 
 
+
+/*******************************************************************************/
+//CHANGE Daily
+/*******************************************************************************/
+
     function changeDaily(){
       $ls = new BudgetService();
 
@@ -161,6 +166,7 @@
       else{
       $new_daily = $_POST['new_daily'];
       $this->registry->template->success = $ls->changeDaily( $_SESSION['user_id'], $new_daily );
+      $ls->limits();
       $this->registry->template->smessage = "Daily limit has been successfully changed.";
       $_SESSION['flag'] = 1;
       }
@@ -170,6 +176,10 @@
       exit();
 
     }
+
+/*******************************************************************************/
+//CHANGE Weekly
+/*******************************************************************************/
 
     function changeWeekly(){
       $ls = new BudgetService();
@@ -182,6 +192,7 @@
       else{
       $new_weekly = $_POST['new_weekly'];
       $this->registry->template->success = $ls->changeWeekly( $_SESSION['user_id'], $new_weekly );
+      $ls->limits();
       $this->registry->template->smessage = "Weekly limit has been successfully changed.";
       $_SESSION['flag'] = 1;
       }
@@ -191,6 +202,10 @@
       exit();
 
     }
+
+/*******************************************************************************/
+//CHANGE Monthly
+/*******************************************************************************/
 
     function changeMonthly(){
       $ls = new BudgetService();
@@ -203,6 +218,7 @@
       else{
       $new_monthly = $_POST['new_monthly'];
       $this->registry->template->success = $ls->changeMonthly( $_SESSION['user_id'], $new_monthly );
+      $ls->limits();
       $this->registry->template->smessage = "Monthly limit has been successfully changed.";
       $_SESSION['flag'] = 1;
       }
