@@ -100,7 +100,12 @@ function sendErrorAndExit( $messageText )
       if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
         $this->registry->template->message = "Name of category must consist of at most 20 letters or numbers." ;
         $_SESSION['flag'] = 0;
-      }else {
+      }
+      else if( !isset($_POST['type']) ){
+        $this->registry->template->message = "Please, chose type of transaction." ;
+        $_SESSION['flag'] = 0;
+      }
+      else {
         $type = $_POST['type'];
         $this->registry->template->addingTransaction = $ls->addCategory($user_id, $type, $name);
       }
@@ -118,7 +123,7 @@ function sendErrorAndExit( $messageText )
         $this->registry->template->flag = "transactions";
       }
 
-      header( 'Location: ' . __SITE_URL . '/index.php?rt=home');
+    //header( 'Location: ' . __SITE_URL . '/index.php?rt=home');
       $this->registry->template->show('transactions_index');
 
     }
@@ -128,8 +133,6 @@ function sendErrorAndExit( $messageText )
       $ls = new BudgetService();
 
       $user_id = $_SESSION['user_id'];
-
-
       $name = $_POST['name'];
       $amount = $_POST['amount'];
       $date = $_POST['date'];
@@ -149,6 +152,10 @@ function sendErrorAndExit( $messageText )
       }
       else if( empty(strtotime($_POST['date'])) ){
         $this->registry->template->message = "Please, chose date.";
+        $_SESSION['flag'] = 0;
+      }
+      else if( !isset($_POST['type']) ){
+        $this->registry->template->message = "Please, chose type and category.";
         $_SESSION['flag'] = 0;
       }
       else{

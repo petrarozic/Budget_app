@@ -83,9 +83,9 @@
             <div class="form-group">
               <label for="type_of_transaction">  Type of transaction </label>
               <select class="form-control" id="type" name="type" >
-                <option disabled="disabled" selected="selected" value="null"> Choose type </option>
-                <option <?php if( $flag == "expense") echo 'selected="selected"'; ?> > Expense </option>
-                <option <?php if( $flag == "income") echo 'selected="selected"'; ?> > Income </option>
+                <option selected="selected" value="null"  disabled="disabled" > Choose type </option>
+                <option> Expense </option>
+                <option> Income </option>
               </select>
             </div>
             <div class="form-group">
