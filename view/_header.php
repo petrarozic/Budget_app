@@ -49,8 +49,9 @@
 
   <?php require_once __SITE_PATH . '/view/_activPage.php'; ?>
 
-  <div class="row">
+<div class="container-fluid">
 
+  <div class="row">
     <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2 pull-left">
       <ul class="link-ul">
         <li class="link-item
