@@ -73,7 +73,7 @@
               </div>
 
               <button type="submit" class="btn bgreen float-right">LOG IN</button>
-              <button type="reset" class="btn btn-secondary float-right">Reset</button>
+              <button type="reset" class="btn btn-secondary float-right" style="margin-right: 5px;">Reset</button>
               <br><br>
               <a data-toggle="modal" href="#forgot" class="float-right">Forgot password?</a>
               <br><br>
@@ -132,7 +132,7 @@
               </div>
 
               <button type="submit" class="btn bgreen float-right">SIGN UP</button>
-              <button type="reset" class="btn btn-secondary float-right">Reset</button>
+              <button type="reset" class="btn btn-secondary float-right" style="margin-right: 5px;">Reset</button>
               <br>
               <br>
               <br>
