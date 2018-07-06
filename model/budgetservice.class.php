@@ -368,6 +368,7 @@ function getTransactionsById($user_id){
 		return $arr;
 	}
 
+
 	 function addTransaction($user_id, $type, $name, $category, $amount, $date, $description, $repeating){
 
 		 if( $type == "Expense" ){
@@ -462,7 +463,18 @@ function getTransactionsById($user_id){
 
 	 }
 
+	 function addCategory($user_id, $type, $name){
+		 if( $type == "Expense" ) $type= "Troskovi";
+		 else $type= "Primanja";
+		 try{
+			 $db = DB::getConnection();
 
+			 $st = $db->prepare( 'INSERT INTO Category(user_id, category_name, category_type )
+			 VALUES (:user_id, :category_name, :category_type)' );
+			 $st->execute( array( "user_id" => $user_id, "category_name" => $name, "category_type" => $type) );
+		 }
+		 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+	 }
 };
 
 

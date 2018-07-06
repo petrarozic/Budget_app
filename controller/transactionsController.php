@@ -92,6 +92,37 @@ function sendErrorAndExit( $messageText )
       }
     }
 
+    function addCategory(){
+      $ls = new BudgetService();
+      $user_id = $_SESSION['user_id'];
+      $name = $_POST['name'];
+
+      if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
+        $this->registry->template->message = "Name of category must consist of at most 20 letters or numbers." ;
+        $_SESSION['flag'] = 0;
+      }else {
+        $type = $_POST['type'];
+        $this->registry->template->addingTransaction = $ls->addCategory($user_id, $type, $name);
+      }
+
+      if ( $_POST['SubmitButton'] == "expense" ){
+        $this->registry->template->transactionsList = $ls->getExpensesById( $user_id );
+        $this->registry->template->flag = "expense";
+      }
+      else if ( $_POST['SubmitButton'] == "income" ){
+        $this->registry->template->transactionsList = $ls->getIncomesById( $user_id );
+        $this->registry->template->flag = "income";
+      }
+      else if ( $_POST['SubmitButton'] == "transactions" ){
+        $this->registry->template->transactionsList = $ls->getTransactionsById( $user_id );
+        $this->registry->template->flag = "transactions";
+      }
+
+      header( 'Location: ' . __SITE_URL . '/index.php?rt=home');
+      $this->registry->template->show('transactions_index');
+
+    }
+
     function addTransaction(){
 
       $ls = new BudgetService();
@@ -143,7 +174,7 @@ function sendErrorAndExit( $messageText )
         $this->registry->template->flag = "transactions";
       }
 
-      header( 'Location: ' . __SITE_URL . '/index.php?rt=home');
+      //header( 'Location: ' . __SITE_URL . '/index.php?rt=home');
       $this->registry->template->show('transactions_index');
     }
 
