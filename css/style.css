@@ -267,6 +267,10 @@ display: inline;
      color:#b30000;
    }
 
+   tr:hover{
+     cursor:ns-resize;
+   }
+
   /***********************************
   * STATISTICS
    ***********************************/

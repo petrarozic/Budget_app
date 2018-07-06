@@ -64,9 +64,9 @@
           }
         }
       ?>
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <div id="AddTransaction" class="modal" tabindex="-1" role="dialog">
