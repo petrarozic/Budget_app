@@ -446,7 +446,132 @@ function getTransactionsById($user_id){
 
 	 }
 
-};
+	function getFirst( $user_id ){
+	 	 try{
+	 	 		$db = DB::getConnection();
+	 	 		$st = $db->prepare( 'SELECT expense_date FROM  Expense WHERE user_id=:id ORDER BY expense_date LIMIT 1' );
+	 	 		$st->execute( array( 'id' => $user_id ) );
+	 	 }
+	 	 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
+	   $date1 = $st->fetch();
+
+		 try{
+				$db2 = DB::getConnection();
+				$st2 = $db2->prepare( 'SELECT income_date FROM  Income WHERE user_id=:id ORDER BY income_date LIMIT 1' );
+				$st2->execute( array( 'id' => $user_id ) );
+		 }
+		 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		 $date2 = $st2->fetch();
+
+		 $date = $date1['expense_date'] < $date2['income_date'] ? $date1['expense_date'] : $date2['income_date'];
+
+		 $time = array();
+		 $time[0] = date("n", strtotime($date));
+		 $time[1] = date("Y", strtotime($date));
+	 	 return $time;
+	}
+
+	function ExpenseInMonth($user_id, $m, $y){
+		try{
+			 $db = DB::getConnection();
+			 $st = $db->prepare( 'SELECT expense_value, category_name FROM  Expense WHERE user_id=:id AND YEAR(expense_date)=:year AND MONTH(expense_date)=:month' );
+			 $st->execute( array( 'id' => $user_id, 'year'=> $y, 'month'=> $m + 1) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$expenses = array();
+		while( $row = $st->fetch() )
+		{
+			array_push($expenses, $row['expense_value']);
+		}
+
+		return $expenses;
+	}
+
+	function ExpenseInYear($user_id, $y){
+		try{
+			 $db = DB::getConnection();
+			 $st = $db->prepare( 'SELECT expense_value, category_name FROM  Expense WHERE user_id=:id AND YEAR(expense_date)=:year' );
+			 $st->execute( array( 'id' => $user_id, 'year'=> $y ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$expenses = array();
+		while( $row = $st->fetch() )
+		{
+			array_push($expenses, $row['expense_value']);
+		}
+
+		return $expenses;
+	}
+
+	function IncomeInMonth($user_id, $m, $y){
+		try{
+			 $db = DB::getConnection();
+			 $st = $db->prepare( 'SELECT income_value, category_name FROM  Income WHERE user_id=:id AND year(income_date)=:year AND month(income_date)=:month' );
+			 $st->execute( array( 'id' => $user_id, 'year'=> $y, 'month'=> $m + 1) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$incomes = array();
+		while( $row = $st->fetch() )
+		{
+			array_push($incomes, $row['income_value']);
+		}
+
+		return $incomes;
+	}
+
+
+	function IncomeInYear($user_id, $y){
+		try{
+			 $db = DB::getConnection();
+			 $st = $db->prepare( 'SELECT income_value, category_name FROM  Income WHERE user_id=:id AND year(income_date)=:year' );
+			 $st->execute( array( 'id' => $user_id, 'year'=> $y ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$incomes = array();
+		while( $row = $st->fetch() )
+		{
+			array_push($incomes, $row['income_value']);
+		}
+
+		return $incomes;
+	}
+
+	function lineYear($user_id, $y){
+		try{
+			 $db = DB::getConnection();
+			 $st = $db->prepare( 'SELECT income_value, income_date FROM  Income WHERE user_id=:id AND year(income_date)=:year' );
+			 $st->execute( array( 'id' => $user_id, 'year'=> $y ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$line = array(0,0,0,0,0,0,0,0,0,0,0,0);
+		while( $row = $st->fetch() )
+		{
+			$month = $row[0] - 1;
+			$line[$month] += $row['income_value'];
+		}
+
+		try{
+			 $db2 = DB::getConnection();
+			 $st2 = $db2->prepare( 'SELECT expense_value, month(expense_date) FROM  Expense WHERE user_id=:id AND year(expense_date)=:year' );
+			 $st2->execute( array( 'id' => $user_id, 'year'=> $y ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		while( $row = $st->fetch() )
+		{
+			$month = $row['month(expense_date)'] - 1;
+			$line[$month] -= $row['expense_value'];
+		}
+		return $line;
+	}
+
+};
 
 ?>

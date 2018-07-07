@@ -192,7 +192,7 @@ display: inline;
  /***********************************
  * Button for removing/editing  Button for adding transaction
   ***********************************/
-  .IconButton, .IconButtonE, .AddButton{
+  .IconButton, .IconButtonE, .AddButton, .ChangeButton{
      background-color: Transparent;
      background-repeat:no-repeat;
      color: #888888;
@@ -202,7 +202,7 @@ display: inline;
      outline:none;
   }
 
-  .IconButton:hover, .IconButtonE:hover, .AddButton:hover{
+  .IconButton:hover, .IconButtonE:hover, .AddButton:hover, .ChangeButton:hover{
      background-color: Transparent;
      background-repeat:no-repeat;
      border: none;
@@ -268,12 +268,21 @@ display: inline;
    border-right: 1px solid lightgrey;
    }
 
-   .title_canvas{
+   /*.title_canvas{
      font-size: 24px;
      margin: 15px 0px 15px 0px;
      text-align: center;
+   }*/
+
+   #choose{
+     margin-top:20px;
+     margin-bottom:30px;
    }
 
+   #time{
+     font-size: 18px;
+
+   }
    /***********************************
    * FOOTER
     ***********************************/
