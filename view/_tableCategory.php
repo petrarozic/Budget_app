@@ -42,7 +42,7 @@
                 foreach($inc_catList as $t){
                   echo '<tr>';
                   echo '<td>'.$t.'</td>';
-                  echo '<td><button class="IconButtonE" id="EditIcon" name="Income" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
+                  echo '<td><button class="IconButtonEC" id="EditIcon" name="Income" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
                   echo '<td><form action="'.__SITE_URL.'/index.php?rt=category/removeCategory" method="post"  onclick="return checkDelete()"> <input type="hidden" name="name" value="'.$t.'"> <input type="hidden" name="type" value="Income"><button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td>';
                   echo '</tr>';
                   }
@@ -72,7 +72,7 @@
                 foreach($exp_catList as $t){
                   echo '<tr>';
                   echo '<td>'.$t.'</td>';
-                  echo '<td><button class="IconButtonE" id="EditIcon" name="Expense" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
+                  echo '<td><button class="IconButtonEC" id="EditIcon" name="Expense" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
                   echo '<td><form action="'.__SITE_URL.'/index.php?rt=category/removeCategory" method="post"  onclick="return checkDelete()"> <input type="hidden" name="name" value="'.$t.'"> <input type="hidden" name="type" value="Expense"><button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td>';
                   echo '</tr>';
                   }

@@ -110,12 +110,13 @@ class categoryController extends BaseController
     }
 
   function editCategory(){
+    $old_category_name = $_POST['editButtonCa'];
     $category_name = $_POST['name'];
     $category_type = $_POST['type'];
     $ls = new BudgetService();
     $user_id = $_SESSION['user_id'];
 
-    if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $category_name )){
+    if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $category_name ) ){
       if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
         $this->registry->template->message = "Name of category cannot be empty and must consist of at most 20 letters or numbers." ;
       else if ( $_SESSION['lang'] == 'CRO' )
@@ -124,9 +125,11 @@ class categoryController extends BaseController
       $_SESSION['flag'] = 0;
     }
     else{
-      $this->registry->template->removeCategory = $ls->editCategory( $user_id, $category_name, $category_type );
-      $this->registry->template->categoryList = $ls->getCategoriesById( $user_id, $category_type );
+      $this->registry->template->removeCategory = $ls->editCategory( $user_id, $category_name, $category_type, $old_category_name );
     }
+    $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
+    $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
+
     if ( $_SESSION['lang'] == 'CRO' )
       $this->registry->template->show('category_indexCRO');
 		else if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )

@@ -21,7 +21,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancel </button>
-        <button type="submit" class="btn btn-primary" name="editButton" value="..." id="EditCategory"> Submit </button>
+        <button type="submit" class="btn btn-primary" name="editButtonCa" value="" id="EditCategoryB"> Submit </button>
       </div>
         </form>
     </div>

@@ -29,7 +29,7 @@
       <tr>
         <th class="removable sortable" style="text-align:center; border:none;">  KATEGORIJA  </th>
         <th class="sortable" style="text-align:center; border:none;">  NASLOV  </th>
-        <th class="sortable" style="text-align:center; border:none;">   IZNOS (HRK)  </th>
+        <th class="sortable" style="text-align:center; border:none;">IZNOS (HRK)</th>
         <th class="Removable2 sortable" style="text-align:center; border:none;">  DATUM  </th>
         <th class="removable sortable" style="text-align:center; border:none;"> OPIS  </th>
         <th style="text-align:center; border:none;"> <!-- EDIT --> </th>

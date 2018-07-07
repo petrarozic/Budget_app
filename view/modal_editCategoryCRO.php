@@ -21,7 +21,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"> Odustani </button>
-        <button type="submit" class="btn btn-primary" name="editButton" value="..." id="EditCategory"> Spremi promjene </button>
+        <button type="submit" class="btn btn-primary" name="editButtonCa" value="" id="EditCategoryB"> Spremi promjene </button>
       </div>
         </form>
     </div>

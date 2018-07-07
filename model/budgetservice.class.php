@@ -630,7 +630,7 @@ function getTransactionsById($user_id){
 		//UREĐIVANJE KATEGORIJE
 	/*****************************************************************************/
 
-	 function editCategory( $user_id, $category_name, $category_type ){
+	 function editCategory( $user_id, $category_name, $category_type, $old_category_name ){
 
 		 if( $category_type == "Income" )
   			$type ="Primanja";
@@ -641,16 +641,13 @@ function getTransactionsById($user_id){
 		 try{
 			 $user = DB::getConnection();
 
-			 $category = $user->prepare('UPDATE Category SET category_name = :new_name WHERE ( user_id LIKE :user_id) AND ( category_name LIKE :category_name) AND ( category_type LIKE :category_type)');
-			 $category->execute( array( 'new_name' => $_POST['name'], 'user_id' => $user_id, 'category_name' => $category_name, 'category_type' => $category_type ) );
-
-			 if($category_type === "Troskovi" ){
-					$expense = $user->prepare('UPDATE Expense SET category_name = :new_name WHERE ( user_id LIKE :user_id) AND ( category_name LIKE :category_name)');
-					$category->execute( array( 'new_name' => $_POST['name'], 'user_id' => $user_id, 'category_name' => $category_name ) );
+			 if($type === "Troskovi" ){
+					$expense = $user->prepare('UPDATE Category SET category_name = :new_name WHERE ( user_id LIKE :user_id) AND ( category_name LIKE :category_name)  AND ( category_type LIKE :type)');
+					$expense->execute( array( 'new_name' => $category_name, 'user_id' => $user_id, 'category_name' => $old_category_name, 'type' => $type ) );
 			 }
-			 if( $category_type === "Primanja" ){
-				 $income = $user->prepare('UPDATE Category SET category_name = :new_name WHERE ( user_id LIKE :user_id) AND ( category_name LIKE :category_name)');
-				 $category->execute( array( 'new_name' => $_POST['name'], 'user_id' => $user_id, 'category_name' => $category_name ) );
+			 if( $type === "Primanja" ){
+				 $income = $user->prepare('UPDATE Category SET category_name = :new_name WHERE ( user_id LIKE :user_id) AND ( category_name LIKE :category_name) AND ( category_type LIKE :type)');
+				 $income->execute( array( 'new_name' => $category_name, 'user_id' => $user_id, 'category_name' => $old_category_name, 'type' => $type ) );
 			 }
 
 		 }

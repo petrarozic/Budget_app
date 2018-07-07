@@ -28,9 +28,9 @@ function sortTable(event) {
       //console.log("VRIJEDNOSTI: j = ", value_j, "   next_j = ", value_next_j);
 
       //ako sortiramo po AMOUNT onda sortiramo Number (ne String)
-      if (event.currentTarget.innerText == "AMOUNT (HRK)") {
+      if (event.currentTarget.innerText == "AMOUNT (HRK)" || event.currentTarget.innerText == "IZNOS (HRK)") {
         value_j= Number(value_j);
-        value_next_j = Number (value_next_j);
+        value_next_j = Number(value_next_j);
       }
 
       if (value_j > value_next_j ) {
