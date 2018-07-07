@@ -182,7 +182,7 @@ td, th{
 /***********************************
 * BUTTONS
 ***********************************/
-.bgreen, .modal-footer #NewTransaction, .modal-footer  #EditTransaction, .modal-footer #NewCategory{
+.bgreen, .modal-footer #NewTransaction, .modal-footer  #EditTransaction, .modal-footer #NewCategory, .modal-footer #EditCategoryB{
   border: none;
   background-color: rgba(0, 153, 77, 0.9);
   color: white;
