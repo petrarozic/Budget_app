@@ -431,7 +431,7 @@ function getTransactionsById($user_id){
 	//SVE KATEGORIJE KORISNIKA OVISNO O TIPU
 	/*****************************************************************************/
 	function getCategoriesById( $user_id, $tip ){
-		if( $tip == "Income" )
+		if( $tip == "Income" || $tip =="Prihod")
 			$type ="Primanja";
 		else {
 			$type = "Troskovi";
@@ -459,7 +459,7 @@ function getTransactionsById($user_id){
 	/*****************************************************************************/
 	 function addTransaction($user_id, $type, $name, $category, $amount, $date, $description, $repeating){
 
-		 if( $type == "Expense" ){
+		 if( $type == "Expense" || $type == "Trošak" ){
 			 try{
 				 $db = DB::getConnection();
 				 for( $i = 0; $i < $repeating ; ++$i ) {
@@ -475,7 +475,7 @@ function getTransactionsById($user_id){
 			 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 		 }
 
-		 else if( $type == "Income" ){
+		 else if( $type == "Income"|| $type == "Prihod"  ){
 			 try{
 				 $db = DB::getConnection();
 				 for( $i = 0; $i < $repeating ; ++$i ) {
@@ -562,7 +562,7 @@ function getTransactionsById($user_id){
 	/*****************************************************************************/
 
 	 function addCategory($user_id, $type, $name){
-		 if( $type == "Expense" ) $type= "Troskovi";
+		 if( $type == "Expense" || $type == "Trošak" )  $type= "Troskovi";
 		 else $type= "Primanja";
 
 		//provjera postoji li vec ta kategorija

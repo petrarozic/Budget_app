@@ -25,7 +25,10 @@ class categoryController extends BaseController
     $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
     $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
 
-    $this->registry->template->show('category_index');
+    if ( $_SESSION['lang'] == 'CRO' )
+      $this->registry->template->show('category_indexCRO');
+		else if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+      $this->registry->template->show('category_index');
 
 
   }
@@ -67,8 +70,11 @@ class categoryController extends BaseController
 
     $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
     $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
-    $this->registry->template->show('category_index');
-  }
+    if ( $_SESSION['lang'] == 'CRO' )
+      $this->registry->template->show('category_indexCRO');
+		else if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+      $this->registry->template->show('category_index');
+    }
 
   function removeCategory(){
     $category_name = $_POST['name'];
@@ -83,8 +89,11 @@ class categoryController extends BaseController
     }
     $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
     $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
-    $this->registry->template->show('category_index');
-  }
+    if ( $_SESSION['lang'] == 'CRO' )
+      $this->registry->template->show('category_indexCRO');
+		else if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+      $this->registry->template->show('category_index');
+    }
 
   function editCategory(){
     $category_name = $_POST['name'];
@@ -100,8 +109,10 @@ class categoryController extends BaseController
       $this->registry->template->removeCategory = $ls->editCategory( $user_id, $category_name, $category_type );
       $this->registry->template->categoryList = $ls->getCategoriesById( $user_id, $category_type );
     }
-    $this->registry->template->show('category_index');
-
+    if ( $_SESSION['lang'] == 'CRO' )
+      $this->registry->template->show('category_indexCRO');
+		else if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+      $this->registry->template->show('category_index');
   }
 };
 
