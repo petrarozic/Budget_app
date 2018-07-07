@@ -61,55 +61,27 @@ class categoryController extends BaseController
       $this->registry->template->addingTransaction = $ls->addCategory($user_id, $type, $name);
     }
 
-    if ( $_POST['SubmitButton'] == "expense" ){
-      $this->registry->template->transactionsList = $ls->getExpensesById( $user_id );
-      $this->registry->template->flag = "expense";
-      $this->registry->template->show('transactions_index');
-    }
-    else if ( $_POST['SubmitButton'] == "income" ){
-      $this->registry->template->transactionsList = $ls->getIncomesById( $user_id );
-      $this->registry->template->flag = "income";
-      $this->registry->template->show('transactions_index');
-    }
-    else if ( $_POST['SubmitButton'] == "transactions" ){
-      $this->registry->template->transactionsList = $ls->getTransactionsById( $user_id );
-      $this->registry->template->flag = "transactions";
-      $this->registry->template->show('transactions_index');
-    }
-    else if ( $_POST['SubmitButton'] == "profile"){
-      $this->registry->template->user = $ls->getUserbById($_SESSION['user_id']);
-      $this->registry->template->show('profile_index');
-    }
-    else if ( $_POST['SubmitButton'] == "statistics"){
-/* Ovo nije dobro */
-      $list = $ls->getExpensesById($_SESSION['user_id']);
-      $total = 0;
-      $biggest = 0;
-      foreach($list as $t){
-        $total += $t->expense_value;
-        if($t->expense_value > $biggest)
-            $biggest = $t->expense_value;
-      }
-      $this->registry->template->total = $total;
-      $this->registry->template->average = sprintf('%0.2f', $total/sizeof($list));
-      $this->registry->template->apd = sprintf('%0.2f', $total/date("d"));
-      $this->registry->template->biggest = $biggest;
-      $this->registry->template->show('statistics_index');
-
-    }
+    $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
+    $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
+    $this->registry->template->show('category_index');
   }
 
-  function removeCategory( $category_name, $category_type ){
+  function removeCategory(){
+    $category_name = $_POST['name'];
+    $category_type = $_POST['type'];
     $ls = new BudgetService();
     $user_id = $_SESSION['user_id'];
 
     $this->registry->template->removeCategory = $ls->removeCategory( $user_id, $category_name, $category_type );
 
-    $this->registry->template->transactionsList = $ls->getCategoriesById( $user_id, $category_type );
+    $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
+    $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
     $this->registry->template->show('category_index');
   }
 
-  function editCategory( $category_name, $category_type ){
+  function editCategory(){
+    $category_name = $_POST['name'];
+    $category_type = $_POST['type'];
     $ls = new BudgetService();
     $user_id = $_SESSION['user_id'];
 
