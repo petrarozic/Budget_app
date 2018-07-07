@@ -19,7 +19,16 @@ function sendErrorAndExit( $messageText )
 class categoryController extends BaseController
 {
 
-  function index(){}
+  function index(){
+    $ls = new BudgetService();
+
+    $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
+    $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
+
+    $this->registry->template->show('category_index');
+
+
+  }
 
   function CategoryForSelect(){
     $ls = new BudgetService();
