@@ -33,8 +33,8 @@ class StatisticsController extends BaseController
   function lineChartYear(){
 		$ls = new BudgetService();
 		$user_id = $_SESSION['user_id'];
-		//$time = $ls->lineYear($user_id, $_GET['y']);
-    $time = array(1,2,3);
+		$time = $ls->lineYear($user_id, $_GET['y']);
+    //$time = array(1,2,3);
     $message = [];
 		$message[ 'line' ] = $time;
 		sendJSONandExit( $message );

@@ -711,15 +711,15 @@ function getTransactionsById($user_id){
 	function lineYear($user_id, $y){
 		try{
 			 $db = DB::getConnection();
-			 $st = $db->prepare( 'SELECT income_value, income_date FROM  Income WHERE user_id=:id AND year(income_date)=:year' );
+			 $st = $db->prepare( 'SELECT income_value, month(income_date) FROM  Income WHERE user_id=:id AND year(income_date)=:year' );
 			 $st->execute( array( 'id' => $user_id, 'year'=> $y ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
 		$line = array(0,0,0,0,0,0,0,0,0,0,0,0);
-		while( $row = $st->fetch() )
+		/*while( $row = $st->fetch() )
 		{
-			$month = $row[0] - 1;
+			$month = $row['month(income_date)'] - 1;
 			$line[$month] += $row['income_value'];
 		}
 
@@ -734,7 +734,7 @@ function getTransactionsById($user_id){
 		{
 			$month = $row['month(expense_date)'] - 1;
 			$line[$month] -= $row['expense_value'];
-		}
+		}*/
 		return $line;
 	}
 
