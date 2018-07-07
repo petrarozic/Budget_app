@@ -1,8 +1,3 @@
-<?php
-  require_once "_header.php";
-
-?>
-
   <script>
 
         var fl = <?php if ( isset($smessage)) echo json_encode($_SESSION['flag']); else echo "2";?>;
@@ -248,8 +243,4 @@
 </div>
 <?php
   $flag = "profile";
-  require_once __SITE_PATH . '/view/modal_addCategory.php';
-  require_once __SITE_PATH . '/view/modal_addTransaction.php';
-
-  require_once "_footer.php";
 ?>

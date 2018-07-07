@@ -73,12 +73,15 @@
           ">
           <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=statistics">STATISTICS</a>
         </li>
+        <li class="link-item
+              <?php if ($extension === 'category') echo "link-active"; ?>
+          ">
+          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=category">CATEGORY</a>
+        </li>
      </ul>
-
-     <div class="plusCategory">
-       <button class="AddButton" type="submit" name="AddCategory" data-toggle="modal" data-target="#AddCategory" > <i class="fas fa-plus" style="font-size:2em;"></i></button>
-     </div>
    </div>
+
+   <?php require_once __SITE_PATH . '/view/modal_addTransaction.php'; ?>
 
    <div class="col-xs-6 col-sm-9 col-md-10 col-lg-10 pull-right">
     <div class="info">

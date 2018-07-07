@@ -69,11 +69,4 @@
   </div>
 </div>
 
-
-
-<?php require_once __SITE_PATH . '/view/modal_addCategory.php'; ?>
-<?php require_once __SITE_PATH . '/view/modal_addTransaction.php'; ?>
 <?php require_once __SITE_PATH . '/view/modal_editTransaction.php'; ?>
-
-
-<?php require_once __SITE_PATH . '/view/_footer.php'; ?>

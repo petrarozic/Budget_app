@@ -10,7 +10,7 @@
       <div class="modal-body">
           <form method="post"  action="<?php echo __SITE_URL; ?>/index.php?rt=category/addCategory" >
             <div class="form-group">
-              <label for="type_of_transaction">  Type of transaction </label>
+              <label for="type_of_transaction">  Type of category </label>
               <select class="form-control" id="type" name="type" >
                 <option disabled="disabled" selected="selected" value="null"> Choose type </option>
                 <option value="Expense" <?php if( $flag == "expense") echo 'selected="selected"'; ?> > Expense </option>
