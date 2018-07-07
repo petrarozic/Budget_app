@@ -62,7 +62,7 @@ class categoryController extends BaseController
     else {
       $type = $_POST['type'];
       $test = $ls->addCategory($user_id, $type, $name);
-      if($test === 'false'){
+      if($test === false ){
         $_SESSION['flag'] = 0;
         $this->registry->template->message = 'Category with given name already exists.';
       }
@@ -83,7 +83,7 @@ class categoryController extends BaseController
     $user_id = $_SESSION['user_id'];
 
     $test = $ls->removeCategory( $user_id, $category_name, $category_type );
-    if($test === 'false'){
+    if($test === false){
       $_SESSION['flag'] = 0;
       $this->registry->template->message = 'First you need to delete all transactions with given category name.';
     }
