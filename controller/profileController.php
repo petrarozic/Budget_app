@@ -7,7 +7,10 @@
 
       $this->registry->template->user = $ls->getUserbById($_SESSION['user_id']);
 
-      $this->registry->template->show('profile_index');
+      if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+        $this->registry->template->show('profile_index');
+      else if ( $_SESSION['lang'] == 'CRO' )
+        $this->registry->template->show('profile_indexCRO');
     }
 
 // anlogno daily, weekly, monthly ....
