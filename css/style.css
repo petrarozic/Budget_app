@@ -211,6 +211,12 @@ td, th{
   color:black;
 }
 
+.changeLang{
+  float: right;
+}
+
+
+
 .far, .fas{
   font-size: 22px;
 }
