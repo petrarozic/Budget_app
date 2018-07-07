@@ -113,12 +113,12 @@
 
               <div class="form-group">
                 <label for="username">Korisničko ime</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Korisničko ime">
               </div>
 
               <div class="form-group">
                 <label for="password">Lozinka</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Lozinka">
                 <small id="passwordHelpBlock" class="form-text text-muted">
                   Vaša lozinka se mora sastojati od 3 do 20 slova, brojeva, specijalnih znakova ili smajlica.
                 </small>
@@ -126,7 +126,7 @@
 
               <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="email@example.com ">
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="email@primjer.com ">
                   <small id="emailHelp" class="form-text text-muted"> Vaša email adresa je potrebna za verifikaciju računa.</small>
               </div>
 
