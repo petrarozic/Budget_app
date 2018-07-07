@@ -16,6 +16,7 @@
     <script src="<?php echo __SITE_URL;?>/view/notify.js"></script>
     <script src="<?php echo __SITE_URL;?>/view/CategoriesInSelect.js"></script>
     <script src="<?php echo __SITE_URL;?>/view/FillingEditModule.js"></script>
+    <script src="<?php echo __SITE_URL;?>/view/FillingEditModuleC.js"></script>
     <script src="<?php echo __SITE_URL;?>/view/SortTable.js"></script>
 
     <link rel="shortcut icon" href="<?php echo __SITE_URL;?>/budget.ico" type="image/x-icon">
@@ -23,7 +24,10 @@
 
   </head>
 
-<?php     $_SESSION['lang'] = 'CRO'; ?>
+<?php
+    $_SESSION['lang'] = 'CRO';
+    require_once __SITE_PATH . '/view/modal_addTransactionCRO.php';
+ ?>
 
 <body class="body_">
   <div class="title">
@@ -81,11 +85,14 @@
           ">
           <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=statistics">STATISTIKA</a>
         </li>
+        <li class="link-item
+              <?php if ($extension === 'category') echo "link-active"; ?>
+          ">
+          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=category">KATEGORIJA</a>
+        </li>
      </ul>
 
-     <div class="plusCategory">
-       <button class="AddButton" type="submit" name="AddCategory" data-toggle="modal" data-target="#AddCategoryCRO" > <i class="fas fa-plus" style="font-size:2em;"></i></button>
-     </div>
+
    </div>
 
    <div class="col-xs-6 col-sm-9 col-md-10 col-lg-10 pull-right">

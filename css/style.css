@@ -191,7 +191,7 @@ td, th{
 /***********************************
 * Button for removing/editing  Button for adding transaction
 ***********************************/
-.IconButton, .IconButtonE, .AddButton{
+.IconButton, .IconButtonE, .AddButton, .IconButtonEC {
   background-color: Transparent;
   background-repeat:no-repeat;
   color: #888888;
@@ -201,7 +201,7 @@ td, th{
   outline:none;
 }
 
-.IconButton:hover, .IconButtonE:hover, .AddButton:hover{
+.IconButton:hover, .IconButtonE:hover, .AddButton:hover, .IconButtonEC:hover{
   background-color: Transparent;
   background-repeat:no-repeat;
   border: none;

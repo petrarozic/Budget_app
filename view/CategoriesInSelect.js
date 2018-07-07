@@ -1,14 +1,9 @@
 $( document ).ready( function()
     {
-      console.log("Pozdrav sara");
-
-      $("#AddTransaction").on("click", function(){
-        console.log("I unutra smo");
-      });
 
       $("#CateType").on("change", function(){
-        var tip = $( this ).val();
-        console.log(window.location.pathname+"?rt=category/CategoryForSelect");
+        var tip = $(this).val();
+        console.log("tip je :" +tip );
         $.ajax(
           {
           // Promjena transactions -> category

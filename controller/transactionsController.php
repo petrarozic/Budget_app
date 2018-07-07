@@ -27,8 +27,12 @@ function sendErrorAndExit( $messageText )
 
       $this->registry->template->transactionsList = $ls->getIncomesById($_SESSION['user_id']);
       $this->registry->template->flag = "income";
-      $this->registry->template->show('transactions_index');
-    }
+      if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+        $this->registry->template->show('transactions_index');
+      else if ( $_SESSION['lang'] == 'CRO' )
+        $this->registry->template->show('transactions_indexCRO');
+
+      }
 
 
     function expenses(){
@@ -36,8 +40,12 @@ function sendErrorAndExit( $messageText )
 
       $this->registry->template->transactionsList = $ls->getExpensesById($_SESSION['user_id']);
       $this->registry->template->flag = "expense";
-      $this->registry->template->show('transactions_index');
+      if ( $_SESSION['lang'] == 'CRO' )
+        $this->registry->template->show('transactions_indexCRO');
+      else if ($_SESSION['lang'] == 'ENG' )
+        $this->registry->template->show('transactions_index');
     }
+
 
     function removeExpense(){
       $ls = new BudgetService();
@@ -48,7 +56,10 @@ function sendErrorAndExit( $messageText )
       $this->registry->template->transactionsList = $ls->getExpensesById($_SESSION['user_id']);
       $ls->limits();
       $this->registry->template->flag = "expense";
-      $this->registry->template->show('transactions_index');
+      if ( $_SESSION['lang'] == 'CRO' )
+        $this->registry->template->show('transactions_indexCRO');
+      else if ($_SESSION['lang'] == 'ENG' )
+        $this->registry->template->show('transactions_index');
     }
 
     function removeIncome(){
@@ -59,8 +70,10 @@ function sendErrorAndExit( $messageText )
 
       $this->registry->template->transactionsList = $ls->getIncomesById($_SESSION['user_id']);
       $this->registry->template->flag = "income";
-      $this->registry->template->show('transactions_index');
-    }
+      if ( $_SESSION['lang'] == 'CRO' )
+        $this->registry->template->show('transactions_indexCRO');
+      else if ($_SESSION['lang'] == 'ENG' )
+        $this->registry->template->show('transactions_index');    }
 
     function removeTransaction(){
       $ls = new BudgetService();
@@ -77,8 +90,10 @@ function sendErrorAndExit( $messageText )
       $this->registry->template->transactionsList = $ls->getTransactionsById($_SESSION['user_id']);
       $ls->limits();
       $this->registry->template->flag = "transactions";
-      $this->registry->template->show('transactions_index');
-    }
+      if ( $_SESSION['lang'] == 'CRO' )
+              $this->registry->template->show('transactions_indexCRO');
+            else if ($_SESSION['lang'] == 'ENG' )
+              $this->registry->template->show('transactions_index');    }
 
 
     function addTransaction(){
@@ -95,19 +110,34 @@ function sendErrorAndExit( $messageText )
       // Validating data : name, description ( other are specified with form )
 
       if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
-        $this->registry->template->message = "Name of transaction must consist of at most 20 letters or numbers." ;
+        if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+          $this->registry->template->message = "Name of transaction must consist of at most 20 letters or numbers." ;
+        else if ( $_SESSION['lang'] ==  'CRO')
+          $this->registry->template->message = "Ime transakcije mora se sadržavati od najviše 20 slova i ne smije biti prazno." ;
+
+
+
         $_SESSION['flag'] = 0;
       }
       else if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{0,50}$/',$description )){
-        $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
+        if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+          $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
+        else if ( $_SESSION['lang'] ==  'CRO')
+          $this->registry->template->message = "Opis se treba sadržavati od najvie 50 slova, brojeva ili specijalnih znakova . i -." ;
         $_SESSION['flag'] = 0;
       }
       else if( empty(strtotime($_POST['date'])) ){
-        $this->registry->template->message = "Please, chose date.";
+        if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+          $this->registry->template->message = "Please, chose date.";
+        else if ( $_SESSION['lang'] ==  'CRO')
+          $this->registry->template->message = "Molim Vas, izaberite datum.";
         $_SESSION['flag'] = 0;
       }
       else if( !isset($_POST['type']) ){
-        $this->registry->template->message = "Please, chose type and category.";
+        if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+          $this->registry->template->message = "Please, chose type and category.";
+        else if ( $_SESSION['lang'] ==  'CRO')
+          $this->registry->template->message = "Molim Vas, odaberite tip transakcije i kategoriju.";
         $_SESSION['flag'] = 0;
       }
       else{
@@ -124,42 +154,25 @@ function sendErrorAndExit( $messageText )
       if ( $_POST['SubmitButton'] == "expense" ){
         $this->registry->template->transactionsList = $ls->getExpensesById( $user_id );
         $this->registry->template->flag = "expense";
-        $this->registry->template->show('transactions_index');
-      }
+        if ( $_SESSION['lang'] == 'CRO' )
+          $this->registry->template->show('transactions_indexCRO');
+        else if ($_SESSION['lang'] == 'ENG' )
+          $this->registry->template->show('transactions_index');      }
       else if ( $_POST['SubmitButton'] == "income" ){
         $this->registry->template->transactionsList = $ls->getIncomesById( $user_id );
         $this->registry->template->flag = "income";
-        $this->registry->template->show('transactions_index');
-      }
+        if ( $_SESSION['lang'] == 'CRO' )
+          $this->registry->template->show('transactions_indexCRO');
+        else if ($_SESSION['lang'] == 'ENG' )
+          $this->registry->template->show('transactions_index');      }
       else if ( $_POST['SubmitButton'] == "transactions" ){
         $this->registry->template->transactionsList = $ls->getTransactionsById( $user_id );
         $this->registry->template->flag = "transactions";
-        $this->registry->template->show('transactions_index');
-      }
-      else if ( $_POST['SubmitButton'] == "profile"){
-        $this->registry->template->user = $ls->getUserbById($_SESSION['user_id']);
-        $this->registry->template->show('profile_index');
-      }
-      else if ( $_POST['SubmitButton'] == "statistics"){
-  /* Ovo nije dobro */
-        $list = $ls->getExpensesById($_SESSION['user_id']);
-        $total = 0;
-        $biggest = 0;
-        foreach($list as $t){
-          $total += $t->expense_value;
-          if($t->expense_value > $biggest)
-              $biggest = $t->expense_value;
+        if ( $_SESSION['lang'] == 'CRO' )
+          $this->registry->template->show('transactions_indexCRO');
+        else if ($_SESSION['lang'] == 'ENG' )
+          $this->registry->template->show('transactions_index');
         }
-        $this->registry->template->total = $total;
-        $this->registry->template->average = sprintf('%0.2f', $total/sizeof($list));
-        $this->registry->template->apd = sprintf('%0.2f', $total/date("d"));
-        $this->registry->template->biggest = $biggest;
-        $this->registry->template->show('statistics_index');
-
-      }
-
-
-
     }
 
 
@@ -194,11 +207,17 @@ function sendErrorAndExit( $messageText )
       $user_id = $_SESSION['user_id'];
 
       if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
-        $this->registry->template->message = "Name of transaction cannot be empty and must consist of at most 20 letters or numbers." ;
+        if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+          $this->registry->template->message = "Name of transaction must consist of at most 20 letters or numbers." ;
+        else if ( $_SESSION['lang'] ==  'CRO')
+          $this->registry->template->message = "Ime transakcije mora se sadržavati od najviše 20 slova i ne smije biti prazno." ;
         $_SESSION['flag'] = 0;
-      }
+        }
       else if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{0,50}$/',$description )){
-        $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
+        if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+          $this->registry->template->message = "Description of transaction must consist of at most 50 letters or numbers.";
+        else if ( $_SESSION['lang'] ==  'CRO')
+          $this->registry->template->message = "Opis se treba sadržavati od najvie 50 slova, brojeva ili specijalnih znakova . i -." ;
         $_SESSION['flag'] = 0;
       }
       else if( empty(strtotime($_POST['date'])) ){
@@ -226,8 +245,10 @@ function sendErrorAndExit( $messageText )
         $this->registry->template->flag = "transactions";
       }
 
-      $this->registry->template->show('transactions_index');
-
+      if ( $_SESSION['lang'] == 'CRO' )
+        $this->registry->template->show('transactions_indexCRO');
+      else if ($_SESSION['lang'] == 'ENG' )
+        $this->registry->template->show('transactions_index');
     }
 
   };

@@ -5,6 +5,7 @@
   {
     $(".IconButtonE").on( "click", function()
     {
+        console.log("U trazeoj funkciji");
         var id = $(this).val();
         var type = $(this).attr("name");
         // dohvatiti podatke preko ajaxa iz baze - na osnovu id-a + flag?
@@ -27,11 +28,12 @@
           {
             //console.log(data.id+", "+data.category+", "+data.user_id+", "+data.name+", "+data.value+", "+data.date+", "+data.description);
 
-            $("#EditTransaction #name").val(data.name);
-            $("#EditTransaction #amount").val(data.value);
-            $("#EditTransaction #description").val(data.description);
-            $("#EditTransaction #date").val(data.date);
-            $("#EditTransaction #TranId").val(id);
+
+            $(" #name").val(data.name);
+            $(" #amount").val(data.value);
+            $(" #description").val(data.description);
+            $(" #date").val(data.date);
+            $(" #TranId").val(id);
 
             if( type == "e" || type == "expense" ){
               type = "Expense";
@@ -56,7 +58,7 @@
               },
               success: function( data_cat )
               {
-                var selekt = $("#EditTransaction #category");
+                var selekt = $(" #category");
                 selekt.html("");
                 for ( var i = 0; i < data_cat.length ; ++i){
                   if ( data_cat[i] == DataCategory )
@@ -64,7 +66,7 @@
                   else
                     selekt.append('<option>'+ data_cat[i] +'</option>');
                 }
-                $("#EditTransaction #type").val(type);
+                $(" #type").val(type);
               }
           });
           }
