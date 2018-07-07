@@ -181,15 +181,12 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title"> Zaboravljnea lozinka </h5>
+            <h5 class="modal-title"> Zaboravljena lozinka </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-
-
           <div class="modal-body">
-
             <small id="passwordHelpBlock" class="form-text text-muted">
               Nova lozinka biti će poslana na Vašu email adresu.
             </small>
@@ -199,7 +196,6 @@
                 <label for="username_forgot"> Vaše Korisničko ime: </label>
                 <input type="text" class="form-control" placeholder="korisničko ime" name="username_forgot">
                </div>
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
