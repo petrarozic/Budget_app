@@ -19,7 +19,19 @@
             </tr>
           </thead>
           <tbody>
-
+            <?php
+              if( empty($inc_catList) )
+                  echo '<tr><td colspan="3">There are currently no subscribed expenses/incomes.</td></tr>';
+              else{
+                foreach($inc_catList as $t){
+                  echo '<tr>';
+                  echo '<td>'.$t.'</td>';
+                  echo '<td><button class="IconButtonC" id="EditIcon" name="Income" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
+                  echo '<td><form action="'.__SITE_URL.'/index.php?rt=category/removeCategory" method="post"  onclick="return checkDelete()"> <input type="hidden" name="name" value="'.$t.'"> <input type="hidden" name="type" value="Income"><button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td>';
+                  echo '</tr>';
+                  }
+                }
+            ?>
           </tbody>
         </table>
       </div>
@@ -37,7 +49,19 @@
             </tr>
           </thead>
           <tbody>
-
+            <?php
+              if( empty($exp_catList) )
+                  echo '<tr><td colspan="3">There are currently no subscribed expenses/incomes.</td></tr>';
+              else{
+                foreach($exp_catList as $t){
+                  echo '<tr>';
+                  echo '<td>'.$t.'</td>';
+                  echo '<td><button class="IconButtonC" id="EditIcon" name="Expense" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
+                  echo '<td><form action="'.__SITE_URL.'/index.php?rt=category/removeCategory" method="post"  onclick="return checkDelete()"> <input type="hidden" name="name" value="'.$t.'"> <input type="hidden" name="type" value="Expense"><button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td>';
+                  echo '</tr>';
+                  }
+                }
+            ?>
           </tbody>
         </table>
       </div>
@@ -45,4 +69,11 @@
   </div>
 </div>
 
+<script language="JavaScript" type="text/javascript">
+  function checkDelete(){
+      return confirm('By pressing OK you will delete selected category.');
+  }
+</script>
+
 <?php require_once __SITE_PATH . '/view/modal_addCategory.php'; ?>
+<?php require_once __SITE_PATH . '/view/modal_editCategory.php'; ?>

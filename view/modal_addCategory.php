@@ -13,8 +13,8 @@
               <label for="type_of_transaction">  Type of category </label>
               <select class="form-control" id="type" name="type" >
                 <option disabled="disabled" selected="selected" value="null"> Choose type </option>
-                <option value="Expense" <?php if( $flag == "expense") echo 'selected="selected"'; ?> > Expense </option>
-                <option value="Income" <?php if( $flag == "income") echo 'selected="selected"'; ?> > Income </option>
+                <option value="Expense"> Expense </option>
+                <option value="Income"> Income </option>
               </select>
             </div>
             <div class="form-group">
