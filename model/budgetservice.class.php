@@ -3,7 +3,9 @@
 class BudgetService
 {
 
-
+	/****************************************************************************/
+ 	//PROVJERA JE POSTOJI LI USERNAME U TABLICI USER
+ /*****************************************************************************/
 
 	function isAlreadyInDB($username )
 	{
@@ -20,6 +22,10 @@ class BudgetService
 			return true;
 		return false;
 	}
+
+	/****************************************************************************/
+ 	//DODAVANJE NOVOG KORISNIKA
+ /*****************************************************************************/
 
 	function insertUser($username, $password, $email, $reg_seq )
 	{
@@ -81,6 +87,9 @@ class BudgetService
 	}
 
 
+	/****************************************************************************/
+ 	//PROVJERA JE LI KORISNIK U BAZI
+ /*****************************************************************************/
   function isInDB( $username, $password ) //vraca false ako nije, inace user_id!
   {
     try
@@ -103,7 +112,9 @@ class BudgetService
   }
 
 
-
+	/****************************************************************************/
+ 	//SVI TROŠKOVI KORISNIKA
+ /*****************************************************************************/
 	function getExpensesById( $user_id ){
 			try{
 				$db = DB::getConnection();
@@ -123,7 +134,9 @@ class BudgetService
 	}
 
 
-	//vraca array sa svim primanjima za logiranog korisnika
+	/****************************************************************************/
+	 //SVA PRIMANJA KORISNIKA
+ /*****************************************************************************/
 	function getIncomesById( $user_id ){
 			try{
 					$db = DB::getConnection();
@@ -176,7 +189,9 @@ class BudgetService
 	}
 
 
-	//sve transakcije (ne pozivam funkcije za income i expense zbog oznaka za razlikovanje u view-u)
+	/****************************************************************************/
+	 //SVE TRANSAKCIJE KORISNIKA
+ /*****************************************************************************/
 function getTransactionsById($user_id){
 	$arr = array();
 
@@ -219,6 +234,10 @@ function getTransactionsById($user_id){
 	return $arr;
 	}
 
+
+	/****************************************************************************/
+ 	//BRISANJE TROŠKOVA
+ /*****************************************************************************/
 	function removeExpense($user_id, $expense_id ){
 		try
     {
@@ -229,6 +248,9 @@ function getTransactionsById($user_id){
     catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 	}
 
+	/****************************************************************************/
+ 	//BRISANJE PRIMANJA
+ /*****************************************************************************/
 	function removeIncome($user_id, $income_id ){
 
 		try
@@ -240,7 +262,9 @@ function getTransactionsById($user_id){
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 	}
 
-
+	/****************************************************************************/
+ 	//SVI PODACI IZ TABLICE USER ZA TRAŽENOG KORISNIKA
+ /*****************************************************************************/
 	function getUserbById( $user_id){
 		try
     {
@@ -260,7 +284,9 @@ function getTransactionsById($user_id){
 	}
 
 
-
+	/****************************************************************************/
+ 	//PROMJENA EMAILA
+ /*****************************************************************************/
 	function changeEmail($user_id, $new_email ){
 
 		try{
@@ -273,6 +299,9 @@ function getTransactionsById($user_id){
 		return;
 	}
 
+	/****************************************************************************/
+ 	//PROMJENA KORISNIČKOG IMENA
+ /*****************************************************************************/
 	function changeUsername($user_id, $new_username ){
 
 		try{
@@ -285,6 +314,9 @@ function getTransactionsById($user_id){
 		return;
 	}
 
+	/****************************************************************************/
+ 	//PROMJENA LOZINKE
+ /*****************************************************************************/
 	function changePassword( $user_id, $new_pass ){
 		try{
 			$user = DB::getConnection();
@@ -296,6 +328,9 @@ function getTransactionsById($user_id){
 		return;
 	}
 
+	/****************************************************************************/
+ 	//PROMJENA DNEVNOG LIMITA
+ /*****************************************************************************/
 	function changeDaily($user_id, $new_limit ){
 
 		try{
@@ -308,6 +343,9 @@ function getTransactionsById($user_id){
 		return;
 	}
 
+	/****************************************************************************/
+ 	//PROMJENA TJEDNOG LIMITA
+ /*****************************************************************************/
 	function changeWeekly($user_id, $new_limit ){
 
 		try{
@@ -320,6 +358,9 @@ function getTransactionsById($user_id){
 		return;
 	}
 
+	/****************************************************************************/
+ 	//PROMJENA MJESEČNOG LIMITA
+ /*****************************************************************************/
 	function changeMonthly($user_id, $new_limit ){
 
 		try{
@@ -332,6 +373,9 @@ function getTransactionsById($user_id){
 		return;
 	}
 
+	/****************************************************************************/
+ 	//BRISANJE KORISNIČKOG RAČUNA
+ /*****************************************************************************/
 	function accountDelete( $user_id ){
 
 		try{
@@ -353,6 +397,9 @@ function getTransactionsById($user_id){
 		return;
 	}
 
+	/****************************************************************************/
+ 	//ID KORISNIKA PREKO NJEGOVOG KORISNIČKOG IMENA
+ /*****************************************************************************/
 	function getUserId( $username ){
 		try{
 			$user = DB::getConnection();
@@ -365,6 +412,9 @@ function getTransactionsById($user_id){
 		return $str[0];
 	}
 
+	/****************************************************************************/
+ 	//EMAIL KORISNIKA PREKO NJEGOVOG KORISNIČKOG IMENA
+ /*****************************************************************************/
 	function getUserEmail( $username ){
 		try{
 			$user = DB::getConnection();
@@ -377,6 +427,9 @@ function getTransactionsById($user_id){
 		return $str[0];
 	}
 
+	/****************************************************************************/
+	//SVE KATEGORIJE KORISNIKA OVISNO O TIPU
+	/*****************************************************************************/
 	function getCategoriesById( $user_id, $tip ){
 		if( $tip == "Income" )
 			$type ="Primanja";
@@ -401,7 +454,9 @@ function getTransactionsById($user_id){
 		return $arr;
 	}
 
-
+	/****************************************************************************/
+	//DODAVANJE TRANSAKCIJE
+	/*****************************************************************************/
 	 function addTransaction($user_id, $type, $name, $category, $amount, $date, $description, $repeating){
 
 		 if( $type == "Expense" ){
@@ -437,6 +492,9 @@ function getTransactionsById($user_id){
 		 return;
 	 }
 
+	 /****************************************************************************/
+	 //
+	 /*****************************************************************************/
 	 function getTransactionById($user_id, $transaction_id, $type ){
 
 		 if( $type == "expense" || $type == "e" ){
@@ -475,6 +533,9 @@ function getTransactionsById($user_id){
 	 }
 
 
+	 /****************************************************************************/
+	 //UREĐIVANJE TRANSAKCIJE
+	 /*****************************************************************************/
 	 function editingTransaction($user_id, $type, $transaction_id, $name, $category, $amount, $date, $description){
 
 		 if ( $type == "Income"){
@@ -496,6 +557,10 @@ function getTransactionsById($user_id){
 
 	 }
 
+	 /****************************************************************************/
+		//DODAVANJE KATEGORIJE
+	/*****************************************************************************/
+
 	 function addCategory($user_id, $type, $name){
 		 if( $type == "Expense" ) $type= "Troskovi";
 		 else $type= "Primanja";
@@ -508,8 +573,52 @@ function getTransactionsById($user_id){
 		 }
 		 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 	 }
+
+
+	 /****************************************************************************/
+		//BRISANJE KATEGORIJE
+	/*****************************************************************************/
+
+	 function removeCategory( $user_id, $category_name, $category_type ){
+		 try{
+			 $user = DB::getConnection();
+			 $category = $user->prepare('DELETE FROM Category WHERE user_id = :user_id, category_name =:category_name, category_type = :category_type');
+			 $category->execute( array( 'user_id' => $user_id, 'category_name' => $category_name, 'category_type' => $category_type ) );
+
+				if($category_type === "Troskovi" ){
+					 $expense = $user->prepare('DELETE FROM Expense WHERE user_id = :user_id, category_name =:category_name' );
+					 $category->execute( array( 'user_id' => $user_id, 'category_name' => $category_name ) );
+				}
+				if( $category_type === "Primanja" ){
+					$income = $user->prepare('DELETE FROM Income WHERE user_id = :user_id, category_name =:category_name' );
+					$category->execute( array( 'user_id' => $user_id, 'category_name' => $category_name ) );
+				}
+		 }
+		 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+	 }
+
+	 /****************************************************************************/
+		//UREĐIVANJE KATEGORIJE
+	/*****************************************************************************/
+
+	 function editCategory( $user_id, $category_name, $category_type ){
+		 try{
+			 $user = DB::getConnection();
+
+			 $category = $user->prepare('UPDATE Category SET category_name = :new_name WHERE ( user_id LIKE :user_id) AND ( category_name LIKE :category_name) AND ( category_type LIKE :category_type)');
+			 $category->execute( array( 'new_name' => $_POST['name'], 'user_id' => $user_id, 'category_name' => $category_name, 'category_type' => $category_type ) );
+
+			 if($category_type === "Troskovi" ){
+					$expense = $user->prepare('UPDATE Expense SET category_name = :new_name WHERE ( user_id LIKE :user_id) AND ( category_name LIKE :category_name)');
+					$category->execute( array( 'new_name' => $_POST['name'], 'user_id' => $user_id, 'category_name' => $category_name ) );
+			 }
+			 if( $category_type === "Primanja" ){
+				 $income = $user->prepare('UPDATE Category SET category_name = :new_name WHERE ( user_id LIKE :user_id) AND ( category_name LIKE :category_name)');
+				 $category->execute( array( 'new_name' => $_POST['name'], 'user_id' => $user_id, 'category_name' => $category_name ) );
+			 }
+
+		 }
+		 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+	 }
 };
-
-
-
 ?>
