@@ -12,6 +12,31 @@
           else if(fl.toString() === '1')
               $.notify(mess, "success");
 
+        $(document).ready(function(){
+            var tip = 0;
+          $('#check_box').on("click",function(){
+          //treba ga prebaciti na profileController/changeCheckbox
+            $.ajax(
+              {
+                url: window.location.pathname+"?rt=profile/changeCheckbox",
+                data:
+                {
+                  tip : tip
+                },
+                //dataType: "json",
+                error: function( xhr, status )
+                {
+                  if( status !== null )
+                      console.log( "Greška prilikom Ajax poziva: " + status );
+                },
+                success: function( data )
+                {
+                    console.log("success");
+                }
+
+            });
+        });
+  });
 
   </script>
 
@@ -53,7 +78,10 @@
   <tr>
     <th> Notifications  </th>
     <td> I want to get notifications on my email address. </td>
-    <td>  <input type="checkbox" >  </td>
+    <?php if( $user->send_mail == 1)
+    echo '<td>  <input type="checkbox" id="check_box"  checked>  </td>';
+    else echo '<td>  <input type="checkbox"  id="check_box" >  </td>';
+    ?>
   </tr>
   <tr>
     <th> Delete account  </th>

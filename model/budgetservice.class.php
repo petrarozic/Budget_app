@@ -32,8 +32,8 @@ class BudgetService
 		try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare( 'INSERT INTO User(username, password, email, daily_limit, weekly_limit, monthly_limit, registration_sequence, has_registered) VALUES ' .
-												'(:username, :password, :email, 200, 1500, 5000, :reg_seq, 0)' );
+			$st = $db->prepare( 'INSERT INTO User(username, password, email, daily_limit, weekly_limit, monthly_limit, send_mail, registration_sequence, has_registered) VALUES ' .
+												'(:username, :password, :email, 200, 1500, 5000, 1, :reg_seq, 0)' );
 			$st->execute( array('username' => $username,
 												 'password' => password_hash( $password, PASSWORD_DEFAULT ),
 												 'email' => $email,
@@ -159,6 +159,23 @@ class BudgetService
 	/*******************************************************************************/
 	//RAČUNANJE PREKORAČENJA LIMITA
 	/*******************************************************************************/
+
+	function sendWarning( $type_of_limit ){
+
+		$user = $ls->getUserbById($_SESSION['user_id']);
+
+		$to       = $user->email;
+		$subject  = 'Warning - Budget-app';
+		$message  = 'Dear ' . $user->username . ",\n: You have passed your ".$type_of_limit;
+		$message .= ' limit. "\n"';
+		$headers  = 'From: rp2@studenti.math.hr' . "\r\n" .
+								'Reply-To: rp2@studenti.math.hr' . "\r\n" .
+								'X-Mailer: PHP/' . phpversion();
+
+		mail($to, $subject, $message, $headers);
+		exit();
+	}
+
 	function limits(){
 		$expenses  = $this->getExpensesById($_SESSION['user_id']);
 		$user_data = $this->getUserbById($_SESSION['user_id']);
@@ -183,9 +200,20 @@ class BudgetService
 						$weekly_sum += $row->expense_value;
 		 }
 		//u sesiju stavi prekoracenja
+		 $old_daily = $_SESSION['d_limit'];
 		 $_SESSION['d_limit'] = $user_data->daily_limit - $daily_sum;
+		 if( $old_daily >= 0 && $_SESSION['d_limit'] < 0 )
+		 			$this->sendWarning("daily limit");
+
+		 $old_weekly = $_SESSION['w_limit'];
 		 $_SESSION['w_limit'] = $user_data->weekly_limit - $weekly_sum;
+		 if( $old_weekly >= 0 && $_SESSION['w_limit'] < 0 )
+		 			$this->sendWarning("weekly limit");
+
+		 $old_monthly = $_SESSION['m_limit'];
 		 $_SESSION['m_limit'] = $user_data->monthly_limit - $monthly_sum;
+		 if( $old_monthly >= 0 && $_SESSION['m_limit'] < 0 )
+		 			$this->sendWarning("monthly limit");
 	}
 
 
@@ -277,7 +305,7 @@ function getTransactionsById($user_id){
 
     $row = $user_->fetch();
   	$user = new User( $row['user_id'], $row['username'], $row['password'], $row['email'],
-		 													$row['daily_limit'], $row['weekly_limit'], $row['monthly_limit'],
+		 													$row['daily_limit'], $row['weekly_limit'], $row['monthly_limit'],$row['send_mail'],
 															$row['registration_sequence'], $row['has_registered'] );
 
     return $user;
@@ -307,7 +335,7 @@ function getTransactionsById($user_id){
 		try{
 			$user = DB::getConnection();
 			$user_ = $user->prepare('UPDATE User SET username=:new_username WHERE user_id LIKE :user_id');
-			$user_->execute( array( 'new_username' => $new_username, 'user_id' => $user_id) );
+			$user_->execute( array( 'new_username' => $new_username, 'user_id' => $user_id ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
@@ -367,6 +395,32 @@ function getTransactionsById($user_id){
 			$user = DB::getConnection();
 			$user_ = $user->prepare('UPDATE User SET monthly_limit=:new_limit WHERE user_id LIKE :user_id');
 			$user_->execute( array( 'new_limit' => $new_limit, 'user_id' => $user_id) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		return;
+	}
+
+	/****************************************************************************/
+	//PROMJENA CHECKBOXA
+	/*****************************************************************************/
+	function changeCheckbox( $user_id ){
+		//dohvati stari send_mail iz baze
+
+			try{
+				$user = DB::getConnection();
+				$user_ = $user->prepare('SELECT send_mail FROM User WHERE user_id LIKE :user_id');
+				$user_->execute( array( 'user_id' => $user_id) );
+
+			}
+			catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+			//promjena
+		$old = $user_->fetch();
+		$new = 1 - $old[0];
+		try{
+			$user = DB::getConnection();
+			$user_ = $user->prepare('UPDATE User SET send_mail=:new WHERE user_id LIKE :user_id');
+			$user_->execute( array( 'new' => $new, 'user_id' => $user_id) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
