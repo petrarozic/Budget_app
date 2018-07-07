@@ -175,7 +175,6 @@ class BudgetService
 								'X-Mailer: PHP/' . phpversion();
 
 		mail($to, $subject, $message, $headers);
-		exit();
 	}
 
 	function limits(){

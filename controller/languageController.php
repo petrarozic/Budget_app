@@ -49,6 +49,11 @@ class languageController extends BaseController
           $this->registry->template->show( 'category_indexCRO' );
           break;
         }
+      case 'statistics' : {
+          $this->registry->template->show( 'statistics_indexCRO' );
+          break;
+        }
+
     }
   }
 
@@ -79,15 +84,14 @@ class languageController extends BaseController
           $this->registry->template->show( 'profile_index' );
           break;
         }
-      case 'statistics' : {
-          $this->registry->template->user = $ls->getUserbById($_SESSION['user_id']);
-          $this->registry->template->show( 'profile_index' );
-          break;
-        }
       case 'Category' : {
           $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
           $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
           $this->registry->template->show( 'category_index' );
+          break;
+        }
+      case 'statistics' : {
+          $this->registry->template->show( 'statistics_index' );
           break;
         }
     }
