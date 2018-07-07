@@ -4,17 +4,25 @@ $( document ).ready( function()
   } );
 
 function sortTable(event) {
+
+  var id =  $(this).attr('id');
+  if ( id == "incomeTable" )
+    var TableBody = $("#inT");
+  else if ( id == "expenseTable" )
+    var TableBody = $("#exT");
+  else TableBody = $('table tbody')
+
   //console.log("Sortiraj prema: " , event.currentTarget.innerText);
   var sortIndex = event.currentTarget.cellIndex;
   //console.log("Celija = " , sortIndex);
 
-  var brRedaka = $('table tbody').children().length;
+  var brRedaka = TableBody.children().length;
   //console.log("Br. podataka = ", brRedaka);
 
   //IDEJA --> izvucem svu dijecu u listu -- sortiram tu listu
   var listChildren = [];
   for (var i = 0; i < brRedaka; i++) {
-    listChildren.push($('table tbody').children().eq(i));
+    listChildren.push(TableBody.children().eq(i));
   }
 
   //SORT ALGORITHM
@@ -45,16 +53,17 @@ function sortTable(event) {
   //end SORT ALGORITHM
 
   //isprazni tijelo tablice
-  $('table tbody').children().remove();
+
+  TableBody.children().remove();
 
   //dodaj dijecu u tijelo tablice
   //ako nije bilo promjene(swap==false) onda vjv trazi suprotan sort (ASC/DECS)
   if (swap){
     for (var i = 0; i < brRedaka; i++)
-      $('table tbody').append(listChildren[i])
+      TableBody.append(listChildren[i])
   } else {
     for (var i = brRedaka -1 ; i >= 0; i--)
-      $('table tbody').append(listChildren[i])
+      TableBody.append(listChildren[i])
   }
   //dijeca dodana u tijelo tablice
 }

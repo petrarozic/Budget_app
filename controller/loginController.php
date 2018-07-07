@@ -5,16 +5,26 @@ class LoginController extends BaseController
 	public function index()
 	{
 
-		if(isset( $_POST['logout'] ) && (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG') )
+		if(isset( $_POST['logout'] ) )
 		{
-			unset( $username );
-			unset( $user_id );
-			session_unset();
-			session_destroy();
+			if ( (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG') ){
+				unset( $username );
+				unset( $user_id );
+				session_unset();
+				session_destroy();
+				$this->registry->template->l_flag = 0;
+				$this->registry->template->show( 'login_index' );
+			}
+			else {
+				$this->registry->template->l_flag = 1;
+				$this->registry->template->show( 'login_indexCRO' );
+			}
+		}
+		if ( (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG') ){
 			$this->registry->template->l_flag = 0;
 			$this->registry->template->show( 'login_index' );
 		}
-		else if ( $_SESSION['lang'] == 'CRO' ){
+		else {
 			$this->registry->template->l_flag = 1;
 			$this->registry->template->show( 'login_indexCRO' );
 		}
