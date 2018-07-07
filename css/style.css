@@ -1,12 +1,12 @@
-.body_{
-  /*background: BlanchedAlmond;*/
+container-fluid{
+  margin: 0px;
 }
 
 /***********************************
 * NASLOVNA TRAKA
- ***********************************/
+***********************************/
 .title{
-  background-color: #404040;/*#333333; /*#202020; /*#00994d*/
+  background-color: #404040;
   color: white;
   height: 8em;
   width: -webkit-fill-available; /*prilagoduje se browseru*/
@@ -16,8 +16,6 @@
 
 .title-name{
   font-size: 40px;
-  /*font-weight: bold;
-  font-family: 'Comic Sans MS';*/
   margin-left: 0.3em;
   display: inline;
 }
@@ -30,15 +28,15 @@
 
 /***********************************
 * ispis LIMITA
- ***********************************/
+***********************************/
 .info{
-  margin-bottom: 2em;
   margin-top: -2.5em;
+  margin-bottom: 2em;
+  margin-left: 10%;
   padding: 1em;
   background: rgba(0, 153, 77, 0.91);
   height: auto;
   width: 75%;
-  margin-left: 10%;
   box-shadow: 10px 10px 25px rgba(0, 153, 77, 0.8);
   border-radius: 15px;
 }
@@ -49,15 +47,14 @@
   }
 }
 
-
 .info-box{
-  background: rgba(255,222,173, 0.5);
-  border-radius: 10px;
-  padding: 0.5em 1em;
   text-align: center;
   margin: auto;
   margin-bottom: 0.5em;
   margin-top: 0.5em;
+  padding: 0.5em 1em;
+  background: rgba(255,222,173, 0.5);
+  border-radius: 10px;
 }
 
 .info-elem{
@@ -72,150 +69,267 @@
 }
 
 #plus{
-  background: rgba(255,222,173, 0.6);
   padding: 0.9em 2.1em;
-/*  box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.3);*/
+  background: rgba(255,222,173, 0.6);
 }
 
-
 td, th{
-text-align: center;
+  text-align: center;
 }
 
 .logout{
-display: inline;
+  display: inline;
 }
-
 
 /***********************************
 * LOG_IN page
- ***********************************/
- .col-centered{
-   float: none;
-   margin: auto;
-   }
+***********************************/
+.col-centered{
+ float: none;
+ margin: auto;
+}
 
- .log-body{
-   /*background-color: lightgrey;*/
- }
+.image{
+  margin:0;
+  margin-bottom: 13px;
+  opacity: 0.9;
+}
 
- .log-mainPart{
-   /*background: white;
-   padding: 10px;
-   border-radius: 15px;
-   border: 1px solid lightgrey;*/
- }
+.description{
+  border:1px solid lightgrey;
+  border-radius: 15px;
+  padding: 10px 0px;
+  margin: auto;
+  text-align: center;
+  max-width: 28rem;
+}
 
- .image{
-   margin:0;
-   margin-bottom: 13px;
-   opacity: 0.9;
- }
-
- .description{
-   border:1px solid lightgrey;
-   border-radius: 15px;
-   padding: 10px 0px;
-   margin: auto;
-   text-align: center;
-   max-width: 28rem;
- }
 /***********************************
 * NAVBAR- tj LINKOVI
- ***********************************/
- /*side_bar{
-   margin: 2em;
-   border-radius: 15px;
-   border: 1px solid lightgrey;
-   position: absolute;
-   width: 210px;
- }*/
+***********************************/
+.link-ul{
+  list-style-type: none;
+  margin-top:4em;
+  margin-left: 1em;
+  padding: 0;
+  border-radius: 15px;
+  border: 1px solid lightgrey;
+  min-width: 6.5em;
+}
 
- .link-ul{
-   list-style-type: none;
-   margin-top:4em;
-   margin-left: 1em;
-   border-radius: 15px;
-   border: 1px solid lightgrey;
-   padding: 0;
-   min-width: 6.5em;
- }
+.link-item{
+  margin: auto;
+  padding: 10px 5px;
+  text-align: center;
+}
 
- .link-item{
-   margin: auto;
-   padding: 10px 5px;
-   text-align: center;
- }
+.link-ul .link-item a{
+  text-decoration: none;
+  display: block;
+  color: #404040;
+}
 
- .link-ul .link-item a{
-   text-decoration: none;
-   display: block;
-   color: #404040;
- }
+.link-ul li:hover a{
+  font-weight: bold;
+}
 
- .link-ul li:hover a{
-   font-weight: bold;
- }
+.link-active a{
+  font-weight: bold;
+  color: black;
+}
 
- .link-active a{
-   font-weight: bold;
-   color: black;
- }
+#dropdownMenu{
+  background-color: #404040;
+  margin: auto;
+  float: right;
+}
 
- #dropdownMenu{
-   background-color: #404040;
-   margin: auto;
-   float: right;
- }
+#link-dropdown{
+  border-radius: 15px;
+  border: 1px solid lightgrey;
+}
 
- #link-dropdown{
-   border-radius: 15px;
-   border: 1px solid lightgrey;
- }
+#personal{
+  padding: 0;
+  margin: 0;
+  border: none;
+}
 
- #personal{
-   padding:0;
-   margin:0;
-   border: none;
- }
- /***********************************
- * BUTTONS
-  ***********************************/
+/***********************************
+* CATEGORY
+***********************************/
+.plusCategory{
+  margin: 1em;
+}
 
- .bgreen, .modal-footer #NewTransaction, .modal-footer  #EditTransaction{
-   border: none;
-   background-color: rgba(0, 153, 77, 0.9);
-   color: white;
+.plusCategory .AddButton{
+  border-radius: 15px;
+  background: rgba(0, 153, 77, 0.3);
+  padding: 0.5em;
+  width: 8em;
+}
 
- }
+.plusCategory .AddButton:hover{
+  background: rgba(0, 153, 77, 0.5);
+}
 
- /***********************************
- * Button for removing/editing  Button for adding transaction
-  ***********************************/
-  .IconButton, .IconButtonE, .AddButton, .ChangeButton{
-     background-color: Transparent;
-     background-repeat:no-repeat;
-     color: #888888;
-     border: none;
-     cursor:pointer;
-     overflow: hidden;
-     outline:none;
+.nameTable{
+  font-weight: bold;
+  margin-left: 1em;
+  color: rgb(0, 153, 77);
+}
+
+/***********************************
+* BUTTONS
+***********************************/
+.bgreen, .modal-footer #NewTransaction, .modal-footer  #EditTransaction, .modal-footer #NewCategory{
+  border: none;
+  background-color: rgba(0, 153, 77, 0.9);
+  color: white;
+}
+
+/***********************************
+* Button for removing/editing  Button for adding transaction
+***********************************/
+.IconButton, .IconButtonE, .AddButton, .IconButtonEC, .ChangeButton{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  color: #888888;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+
+.IconButton:hover, .IconButtonE:hover, .AddButton:hover, .IconButtonEC:hover, .ChangeButton:hover{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  color:black;
+}
+
+.changeLang{
+  float: right;
+}
+
+
+
+.far, .fas{
+  font-size: 22px;
+}
+
+/***********************************
+* TABLE
+***********************************/
+thead{
+  border: none;
+  overflow: hidden;
+  background-color: #8cd98c;
+}
+
+.table{
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  width: inherit;
+  height: inherit;
+}
+
+.table-responsive{
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.panel{
+  border-radius: 15px;
+  margin-left: -10px;
+  margin-right: 25px;
+  border: 1px solid lightgrey;
+  min-width: max-content;
+}
+
+.tgreen{
+  color:rgb(0,128,64);
+}
+
+.headerButton{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  font-weight: bold;
+}
+.headerButton:hover{
+  color: black;
+}
+
+.tred{
+  color:#b30000;
+}
+
+.sortable:hover{
+  cursor:ns-resize;
+}
+
+/***********************************
+* STATISTICS
+***********************************/
+.group {
+  border-right: 1px solid lightgrey;
+}
+
+.title_canvas{
+  font-size: 24px;
+  margin: 15px 0px 15px 0px;
+  text-align: center;
+}
+
+/***********************************
+* FOOTER
+***********************************/
+footer{
+  background-color: #404040;
+  color: white;
+}
+
+.footer-elem{
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 0.3em;
+  text-transform: uppercase;
+}
+
+.footer-elem-description{
+  font-size: 0.9em;
+}
+
+.fb_icon{
+  border-radius: 40%;
+  width: 40px;
+}
+
+.fb_icon:hover{
+  cursor:pointer;
+}
+
+/***********************************
+* TABLICA za male ekrane
+***********************************/
+@media all and (max-width: 800px) {
+  .removable {
+      display: none;
   }
-
-  .IconButton:hover, .IconButtonE:hover, .AddButton:hover, .ChangeButton:hover{
-     background-color: Transparent;
-     background-repeat:no-repeat;
-     border: none;
-     cursor:pointer;
-     overflow: hidden;
-     outline:none;
-     color:black;
+  .panel{
+      margin-left: 25px
   }
+}
 
-  .far, .fas{
-    font-size: 22px;
-  }
-
+<<<<<<< HEAD
   /***********************************
   * TABLE
    ***********************************/
@@ -310,3 +424,13 @@ display: inline;
     .fb_icon:hover{
       cursor:pointer;
     }
+=======
+@media all and (max-width: 400px) {
+  .Removable2 {
+    display: none;
+  }
+  .panel{
+    margin-left: 25px
+  }
+}
+>>>>>>> 3dec1ce145d59fc44afd5490be7ae6f85b08832a

@@ -5,6 +5,7 @@
   {
     $(".IconButtonE").on( "click", function()
     {
+        console.log("U trazeoj funkciji");
         var id = $(this).val();
         var type = $(this).attr("name");
         // dohvatiti podatke preko ajaxa iz baze - na osnovu id-a + flag?
@@ -25,13 +26,14 @@
           },
           success: function( data )
           {
-            console.log(data.id+", "+data.category+", "+data.user_id+", "+data.name+", "+data.value+", "+data.date+", "+data.description);
+            //console.log(data.id+", "+data.category+", "+data.user_id+", "+data.name+", "+data.value+", "+data.date+", "+data.description);
 
-            $("#EditTransaction #name").val(data.name);
-            $("#EditTransaction #amount").val(data.value);
-            $("#EditTransaction #description").val(data.description);
-            $("#EditTransaction #date").val(data.date);
-            $("#EditTransaction #TranId").val(id);
+
+            $(" #name").val(data.name);
+            $(" #amount").val(data.value);
+            $(" #description").val(data.description);
+            $(" #date").val(data.date);
+            $(" #TranId").val(id);
 
             if( type == "e" || type == "expense" ){
               type = "Expense";
@@ -43,7 +45,7 @@
 
             $.ajax(
               {
-              url: window.location.pathname+"?rt=transactions/CategoryForSelect",
+              url: window.location.pathname+"?rt=category/CategoryForSelect",
               data:
               {
                 tip : type
@@ -56,16 +58,15 @@
               },
               success: function( data_cat )
               {
-                var selekt = $("#EditTransaction #category");
+                var selekt = $(" #category");
                 selekt.html("");
                 for ( var i = 0; i < data_cat.length ; ++i){
-                  console.log("JKaregorij: " + data_cat[i]);
                   if ( data_cat[i] == DataCategory )
                     selekt.append('<option selected="selected">'+ data_cat[i] +'</option>');
                   else
                     selekt.append('<option>'+ data_cat[i] +'</option>');
                 }
-                $("#EditTransaction #type").val(type);
+                $(" #type").val(type);
               }
           });
           }

@@ -304,6 +304,7 @@ function line_chart_year()
 
 }
 
+
 function line_chart_month()
 {
   /*var chart = new CanvasJS.Chart("chartContainer", {
@@ -343,6 +344,10 @@ function line_chart_month()
 }
 </script>
 
+
+<?php
+  $flag = "statistics";
+?>
 
 
 <?php require_once __SITE_PATH . '/view/_footer.php'; ?>

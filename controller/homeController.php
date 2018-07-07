@@ -12,8 +12,10 @@ class HomeController extends BaseController
 
 		$this->registry->template->transactionsList = $ls->getTransactionsById($_SESSION['user_id']);
 		$this->registry->template->flag = "transactions";
-		$this->registry->template->show('_table');
-
+		if ( $_SESSION['lang'] == 'CRO' )
+			$this->registry->template->show('transactions_indexCRO');
+		else if ($_SESSION['lang'] == 'ENG' )
+			$this->registry->template->show('transactions_index');
 
 	}
 

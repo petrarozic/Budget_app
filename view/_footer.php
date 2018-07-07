@@ -1,5 +1,6 @@
       </div> <!--End of main part -->
     </div> <!--End of row -->
+  </div> <!--End of container -->
     <!--FOOTER -->
     <footer class="page-footer pt-1 mt-4">
       <div class="container text-center text-md-left">

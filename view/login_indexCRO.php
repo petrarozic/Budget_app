@@ -68,26 +68,23 @@
               <form class="" action="<?php echo __SITE_URL; ?>/index.php?rt=login/processLogin" method="post">
 
               <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">Korisničko ime</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Username">
               </div>
 
               <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Lozinka</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
               </div>
 
-              <button type="submit" class="btn bgreen float-right">LOG IN</button>
-              <button type="reset" class="btn btn-secondary float-right" style="margin-right: 5px;">Reset</button>
+              <button type="submit" class="btn bgreen float-right"> Ulogiraj se! </button>
+              <button type="reset" class="btn btn-secondary float-right" style="margin-right: 5px;">Resetiraj</button>
               <br><br>
-              <a data-toggle="modal" href="#forgot" class="float-right">Forgot password?</a>
+              <a data-toggle="modal" href="#forgot" class="float-right">Zaboravljena lozinka?</a>
               <br><br>
               <p style="text-align:center"> <?php //if(isset($lmessage)) echo $lmessage; ?> </p>
 
-
               <script>
-
-
                     var fll = <?php   if ( isset($lmessage)) echo json_encode($_SESSION['flag']);   else echo "2"; ?>;
                     var mess = <?php if ( isset($lmessage)) echo json_encode($lmessage);           else echo "undefined"; ?>;
 
@@ -97,8 +94,6 @@
 
                       else if(fll.toString() === '1')
                           $.notify(mess, "success");
-
-
               </script>
             </form>
             </div>
@@ -117,27 +112,26 @@
                 <form class="" action="<?php echo __SITE_URL; ?>/index.php?rt=login/processSignUp" method="post">
 
               <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                <label for="username">Korisničko ime</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Korisničko ime">
               </div>
 
               <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <label for="password">Lozinka</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Lozinka">
                 <small id="passwordHelpBlock" class="form-text text-muted">
-                  Your password must be 3-20 characters long, contain letters and numbers,
-                  and must not contain spaces, special characters, or emoji.
+                  Vaša lozinka se mora sastojati od 3 do 20 slova, brojeva, specijalnih znakova ili smajlica.
                 </small>
               </div>
 
               <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="email@example.com ">
-                  <small id="emailHelp" class="form-text text-muted">Need email for verification.</small>
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="email@primjer.com ">
+                  <small id="emailHelp" class="form-text text-muted"> Vaša email adresa je potrebna za verifikaciju računa.</small>
               </div>
 
-              <button type="submit" class="btn bgreen float-right">SIGN UP</button>
-              <button type="reset" class="btn btn-secondary float-right" style="margin-right: 5px;">Reset</button>
+              <button type="submit" class="btn bgreen float-right">Priključi se!</button>
+              <button type="reset" class="btn btn-secondary float-right" style="margin-right: 5px;">Resetiraj</button>
               <br>
               <br>
               <br>
@@ -169,7 +163,7 @@
     <div class="text-center">
     <img src="money.png" alt=" " width="215" class="image">
     </div>
-    <p class="description"> Budget-app is an application for tracking personal finances. <br> Spend smart and enjoy the app!</p>
+    <p class="description"> Budget-app je aplikacija za praćenje osobnih troškova. <br> Trošite pametno i uživajte u aplikaciji!</p>
     </div>
     </div>
 
@@ -187,25 +181,21 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title"> Forgot password </h5>
+            <h5 class="modal-title"> Zaboravljena lozinka </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-
-
           <div class="modal-body">
-
             <small id="passwordHelpBlock" class="form-text text-muted">
-              New password will be sent to your email. You can change it later.
+              Nova lozinka biti će poslana na Vašu email adresu.
             </small>
             <br>
             <form method="post" action="<?php echo __SITE_URL; ?>/index.php?rt=profile/forgotPassword">
               <div class="form-group">
-                <label for="username_forgot"> Your username: </label>
-                <input type="text" class="form-control" placeholder="username" name="username_forgot">
+                <label for="username_forgot"> Vaše Korisničko ime: </label>
+                <input type="text" class="form-control" placeholder="korisničko ime" name="username_forgot">
                </div>
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -216,7 +206,7 @@
       </div>
     </div>
 <?php
-  $_SESSION['lang'] = 'ENG';
+  $_SESSION['lang'] = 'CRO';
   $_SESSION['page'] = 'login';
-  require_once __SITE_PATH . '/view/_footer.php';
+  require_once __SITE_PATH . '/view/_footerCRO.php';
 ?>
