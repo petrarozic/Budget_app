@@ -69,4 +69,7 @@
   </div>
 </div>
 
-<?php require_once __SITE_PATH . '/view/modal_editTransaction.php'; ?>
+<?php
+  $_SESSION['lang'] = 'ENG';
+  require_once __SITE_PATH . '/view/modal_editTransaction.php';
+?>
