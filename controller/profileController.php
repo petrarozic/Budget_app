@@ -1,4 +1,19 @@
 <?php
+function sendJSONandExit( $message )
+{
+    header( 'Content-type:application/json;charset=utf-8' );
+    echo json_encode( $message );
+    flush();
+    exit( 0 );
+}
+
+function sendErrorAndExit( $messageText )
+{
+  $message = [];
+  $message[ 'error' ] = $messageText;
+
+  sendJSONandExit( $message );
+}
 
   class profileController extends BaseController{
 
@@ -360,6 +375,26 @@
       exit();
 
     }
+/*******************************************************************************/
+//PROMJENA send_mail U BAZI
+/*******************************************************************************/
+    function changeCheckbox(){
+      $ls = new BudgetService();
+
+      $ls->changeCheckbox( $_SESSION['user_id'] );
+
+      if(  !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' ){
+        $this->registry->template->show( 'profile_index' );
+      }
+      else if( $_SESSION['lang'] == 'CRO' ){
+        $this->registry->template->show( 'profile_indexCRO' );
+      }
+
+
+
+    }
+    //funkcija za slanje maila kada je prekoracen limit
+
 
     function accountDelete(){
        $ls = new BudgetService();

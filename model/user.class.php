@@ -16,10 +16,10 @@
 
 
   class User{
-    protected $user_id, $username, $password, $email, $weekly_limit, $daily_limit, $monthly_limit, $registration_sequence, $has_registered;
+    protected $user_id, $username, $password, $email, $weekly_limit, $daily_limit, $monthly_limit, $send_mail, $registration_sequence, $has_registered;
 
     function __construct($user_id_, $username_, $password_, $email_, $daily_limit_,
-                        $weekly_limit_, $monthly_limit_, $registration_sequence_, $has_registered_){
+                        $weekly_limit_, $monthly_limit_, $send_mail_, $registration_sequence_, $has_registered_){
       $this->user_id                = $user_id_;
       $this->username               = $username_;
       $this->password               = $password_;
@@ -27,20 +27,11 @@
       $this->daily_limit            = $daily_limit_;
       $this->weekly_limit           = $weekly_limit_;
       $this->monthly_limit          = $monthly_limit_;
+      $this->send_mail              = $send_mail_;
       $this->registration_sequence  = $registration_sequence_;
       $this->has_registered         = $has_registered_;
     }
 
-/*
-    function __construct($user_id_, $username_, $password_, $email_, $registration_sequence_, $has_registered_){
-      $this->user_id                = $user_id;
-      $this->username               = $username_;
-      $this->password               = $password_;
-      $this->email                  = $email_;
-      $this->registration_sequence  = $registration_sequence_;
-      $this->has_registered         = $has_registered_;
-    }
-*/
 
     function __get( $variable ) {
       return $this->$variable;
