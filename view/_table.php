@@ -73,3 +73,4 @@
   $_SESSION['lang'] = 'ENG';
   require_once __SITE_PATH . '/view/modal_editTransaction.php';
 ?>
+<?php require_once __SITE_PATH . '/view/_footer.php'; ?>
