@@ -22,7 +22,9 @@
     <link rel="icon" href="<?php echo __SITE_URL;?>/budget.ico" type="image/x-icon">
 
   </head>
-<?php $_SESSION['lang'] = 'ENG'?>
+
+<?php     $_SESSION['lang'] = 'CRO'; ?>
+
 <body class="body_">
   <div class="title">
     <span class="title-name">Budget-app</span>
@@ -35,27 +37,25 @@
        <li class="link-item
              <?php if ($extension === 'profile') echo "link-active"; ?>
          ">
-       <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=profile">PROFILE</a>
+       <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=profile">PROFIL</a>
        </li>
        <li class="link-item">
-         <form method="post" action="<?php echo __SITE_URL;?>/index.php?rt=language/goToENGPage" style="display:inline;"> <button type="submit" class="IconButton"> <img src="Brit.png" alt=" " width="20" class="logo"> </button> </form>
+         <form method="post" action="<?php echo __SITE_URL;?>/index.php?rt=language/goToENGPage"  style="display:inline;"> <button type="submit" class="IconButton"> <img src="Brit.png" alt=" " width="20" class="logo"> </button> </form>
          <form method="post" action="<?php echo __SITE_URL;?>/index.php?rt=language/goToCROPage" style="display:inline;"> <button type="submit" class="IconButton"> <img src="Cro.png" alt=" " width="20" class="logo"> </button> </form>
        </li>
        <li class="link-item">
-         <?php if ($_SESSION['lang'] == 'ENG' )
-           echo '<form class="logout" action="'.__SITE_URL.'/index.php?rt=language/goToLoginENG" method="post">';
-           else if ($_SESSION['lang'] == 'CRO' )
-           echo '<form class="logout" action="'.__SITE_URL.'/index.php?rt=language/goToLoginCRO" method="post">';
-          ?>
+         <form class="logout" action="<?php echo __SITE_URL; ?>/index.php?rt=login" method="post">
            <input type="hidden" name="logout">
-           <button type="submit" class="btn btn-outline-dark">logout</button>
+           <button type="submit" class="btn btn-outline-dark">Odjava</button>
          </form>
        </li>
      </ul>
     </div>
   </div>
 
-  <?php require_once __SITE_PATH . '/view/_activPage.php'; ?>
+  <?php
+
+    require_once __SITE_PATH . '/view/_activPage.php'; ?>
 
 <div class="container-fluid">
   <div class="row">
@@ -64,67 +64,64 @@
         <li class="link-item
               <?php if ($extension === 'home') echo "link-active"; ?>
         ">
-          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=home">HOME</a>
+          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=home">POČETNA</a>
         </li>
         <li class="link-item
               <?php if ($extension === 'incomes') echo "link-active"; ?>
           ">
-          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/incomes">INCOMES</a>
+          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/incomes">PRIHODI</a>
         </li>
         <li class="link-item
               <?php if ($extension === 'expenses') echo "link-active"; ?>
           ">
-          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/expenses">EXPENSES</a>
+          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=transactions/expenses">TROŠKOVI</a>
         </li>
         <li class="link-item
               <?php if ($extension === 'statistics') echo "link-active"; ?>
           ">
-          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=statistics">STATISTICS</a>
-        </li>
-        <li class="link-item
-              <?php if ($extension === 'category') echo "link-active"; ?>
-          ">
-          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=category">CATEGORY</a>
+          <a class="" href="<?php echo __SITE_URL; ?>/index.php?rt=statistics">STATISTIKA</a>
         </li>
      </ul>
-   </div>
 
-   <?php require_once __SITE_PATH . '/view/modal_addTransaction.php'; ?>
+     <div class="plusCategory">
+       <button class="AddButton" type="submit" name="AddCategory" data-toggle="modal" data-target="#AddCategoryCRO" > <i class="fas fa-plus" style="font-size:2em;"></i></button>
+     </div>
+   </div>
 
    <div class="col-xs-6 col-sm-9 col-md-10 col-lg-10 pull-right">
     <div class="info">
       <div class="row">
         <div class="info-box" id="plus">
-          <button class="AddButton" type="submit" name="AddTransaction" data-toggle="modal" data-target="#AddTransactionModal" > <i class="fas fa-plus" style="font-size:2em;"></i></button>
+          <button class="AddButton" type="submit" name="AddTransaction" data-toggle="modal" data-target="#AddTransactionModalCRO" > <i class="fas fa-plus" style="font-size:2em;"></i></button>
         </div>
         <!-- ovdje treba dodatiprae vrijednosti za prekoracenje-->
         <div class="info-box">
           <?php  if($_SESSION['d_limit'] >= 0){
-          echo '<span class="info-elem"> Daily limit: </span>';
+          echo '<span class="info-elem"> Dnevni limit: </span>';
           echo '<span class="info-amount">+'.$_SESSION['d_limit'].'</span>';
         }
         else{
-          echo '<span class="info-elem" style="color: #b30000"> Daily limit: </span>';
+          echo '<span class="info-elem" style="color: #b30000"> Dnevni limit: </span>';
           echo '<span class="info-amount" style="color: #b30000">'.$_SESSION['d_limit'].'</span>';
         }?>
         </div>
         <div class="info-box">
           <?php  if( $_SESSION['w_limit'] >= 0 ){
-          echo '<span class="info-elem"> Weekly limit: </span>';
+          echo '<span class="info-elem"> Tjedni limit: </span>';
           echo '<span class="info-amount">+'.$_SESSION['w_limit'].'</span>';
         }
         else{
-          echo '<span class="info-elem" style="color: #b30000"> Weekly limit: </span>';
+          echo '<span class="info-elem" style="color: #b30000"> Tjedni limit: </span>';
           echo '<span class="info-amount" style="color: #b30000">'.$_SESSION['w_limit'].'</span>';
         }?>
         </div>
         <div class="info-box">
           <?php  if($_SESSION['m_limit'] >= 0){
-          echo '<span class="info-elem"> Monthly limit: </span>';
+          echo '<span class="info-elem"> Mjesečni limit: </span>';
           echo '<span class="info-amount">+'.$_SESSION['m_limit'].'</span>';
         }
         else{
-          echo '<span class="info-elem" style="color: #b30000"> Monthly limit: </span>';
+          echo '<span class="info-elem" style="color: #b30000"> Mjesečni limit: </span>';
           echo '<span class="info-amount" style="color: #b30000">'.$_SESSION['m_limit'].'</span>';
         }?>
         </div>
