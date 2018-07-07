@@ -196,8 +196,8 @@
             <br>
             <form method="post" action="<?php echo __SITE_URL; ?>/index.php?rt=profile/forgotPassword">
               <div class="form-group">
-                <label for="username_forgot"> Your username: </label>
-                <input type="text" class="form-control" placeholder="username" name="username_forgot">
+                <label for="username_forgot"> Vaše Korisničko ime: </label>
+                <input type="text" class="form-control" placeholder="korisničko ime" name="username_forgot">
                </div>
 
           </div>
