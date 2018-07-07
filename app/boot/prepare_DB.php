@@ -18,6 +18,7 @@ try
 		'daily_limit double, ' . //daily_limit
 		'weekly_limit double, ' . //weekly_limit
 		'monthly_limit double, '. //monthly_limit
+		'send_mail int, '.
 		'registration_sequence varchar(20) NOT NULL, ' .
 		'has_registered int )'
 	);
@@ -80,7 +81,7 @@ try
 		'user_id int NOT NULL ,' .			// user_id
 		'category_name varchar(20) NOT NULL ,' .	// category_name
 		'category_type varchar(20) NOT NULL,'.	// category_type
-		'PRIMARY KEY(user_id, category_name) )'
+		'PRIMARY KEY(user_id, category_name, category_type) )'
 	);
 
 	$st->execute();
@@ -114,12 +115,12 @@ catch( PDOException $e ) { exit( "PDO error #5: " . $e->getMessage() ); }
 
 try
 {
-	$st = $db->prepare( 'INSERT INTO User ( username, password, email, daily_limit, weekly_limit, monthly_limit, registration_sequence, has_registered) VALUES( :username, :password, :email, :daily_limit, :weekly_limit, :mjesecni_limit, :r_s, :h_r)' );
+	$st = $db->prepare( 'INSERT INTO User ( username, password, email, daily_limit, weekly_limit, monthly_limit, send_mail, registration_sequence, has_registered) VALUES( :username, :password, :email, :daily_limit, :weekly_limit, :mjesecni_limit, :send_mail, :r_s, :h_r)' );
 
- 	$st->execute( array( 'username' => 'sara',   'password' => password_hash( 'sara', PASSWORD_DEFAULT ) ,  'email' => 's@ara.com'  ,  'daily_limit' => '400.00',  'weekly_limit' => '800.00' ,  'mjesecni_limit' => '5100.00',  'r_s' => 'abc',  'h_r' => '1' ) );
- 	$st->execute( array( 'username' => 'petra',  'password' => password_hash( 'petra', PASSWORD_DEFAULT ),  'email' => 'p@etra.com' ,  'daily_limit' => '370.00',  'weekly_limit' => '980.00' ,  'mjesecni_limit' => '6000.00',  'r_s' => 'abc',  'h_r' => '1' ) );
- 	$st->execute( array( 'username' => 'paula',  'password' => password_hash( 'paula', PASSWORD_DEFAULT ),  'email' => 'p@aula.com' ,  'daily_limit' => '500.00',  'weekly_limit' => '800.00' ,  'mjesecni_limit' => '5100.00',  'r_s' => 'abc',  'h_r' => '1' ) );
- 	$st->execute( array( 'username' => 'ana',    'password' => password_hash( 'ana', PASSWORD_DEFAULT )  ,  'email' => 'a@na.com'  ,  'daily_limit' => '400.00',  'weekly_limit' => '900.00' ,  'mjesecni_limit' => '5000.00',  'r_s' => 'abc',  'h_r' => '1' ) );
+ 	$st->execute( array( 'username' => 'sara',   'password' => password_hash( 'sara', PASSWORD_DEFAULT ) ,  'email' => 's@ara.com'  ,  'daily_limit' => '400.00',  'weekly_limit' => '800.00' ,  'mjesecni_limit' => '5100.00', 'send_mail' => '0', 'r_s' => 'abc',  'h_r' => '1' ) );
+ 	$st->execute( array( 'username' => 'petra',  'password' => password_hash( 'petra', PASSWORD_DEFAULT ),  'email' => 'p@etra.com' ,  'daily_limit' => '370.00',  'weekly_limit' => '980.00' ,  'mjesecni_limit' => '6000.00',  'send_mail' => '0', 'r_s' => 'abc',  'h_r' => '1' ) );
+ 	$st->execute( array( 'username' => 'paula',  'password' => password_hash( 'paula', PASSWORD_DEFAULT ),  'email' => 'p@aula.com' ,  'daily_limit' => '500.00',  'weekly_limit' => '800.00' ,  'mjesecni_limit' => '5100.00',  'send_mail' => '0', 'r_s' => 'abc',  'h_r' => '1' ) );
+ 	$st->execute( array( 'username' => 'ana',    'password' => password_hash( 'ana', PASSWORD_DEFAULT )  ,  'email' => 'a@na.com'  ,  'daily_limit' => '400.00',  'weekly_limit' => '900.00' ,  'mjesecni_limit' => '5000.00',  'send_mail' => '0', 'r_s' => 'abc',  'h_r' => '1' ) );
  }
 catch( PDOException $e ) { exit( "PDO error [User]: " . $e->getMessage() ); }
 

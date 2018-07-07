@@ -1,3 +1,19 @@
+<script>
+
+      console.log("u scriptu");
+      var fl = <?php if ( isset($message)) echo json_encode($_SESSION['flag']); else echo "2";?>;
+      var mess = <?php if ( isset($message)) echo json_encode($message); else echo "undefined";?>;
+
+        if(fl.toString() === '0')
+            $.notify(mess, "error");
+
+        else if(fl.toString() === '1')
+            $.notify(mess, "success");
+
+
+</script>
+
+
 <div class="plusCategory">
   <button class="AddButton" type="submit" name="AddCategory" data-toggle="modal" data-target="#AddCategory" >
       <i class="fas fa-plus"></i>
@@ -26,7 +42,7 @@
                 foreach($inc_catList as $t){
                   echo '<tr>';
                   echo '<td>'.$t.'</td>';
-                  echo '<td><button class="IconButtonC" id="EditIcon" name="Income" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
+                  echo '<td><button class="IconButtonE" id="EditIcon" name="Income" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
                   echo '<td><form action="'.__SITE_URL.'/index.php?rt=category/removeCategory" method="post"  onclick="return checkDelete()"> <input type="hidden" name="name" value="'.$t.'"> <input type="hidden" name="type" value="Income"><button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td>';
                   echo '</tr>';
                   }
@@ -56,7 +72,7 @@
                 foreach($exp_catList as $t){
                   echo '<tr>';
                   echo '<td>'.$t.'</td>';
-                  echo '<td><button class="IconButtonC" id="EditIcon" name="Expense" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
+                  echo '<td><button class="IconButtonE" id="EditIcon" name="Expense" data-toggle="modal" data-target="#EditCategory" value="'.$t.'" ><i class="far fa-edit"></i></button></td>';
                   echo '<td><form action="'.__SITE_URL.'/index.php?rt=category/removeCategory" method="post"  onclick="return checkDelete()"> <input type="hidden" name="name" value="'.$t.'"> <input type="hidden" name="type" value="Expense"><button type=submit class="IconButton" > <i class="far fa-trash-alt"></i> </button> </form> </td>';
                   echo '</tr>';
                   }

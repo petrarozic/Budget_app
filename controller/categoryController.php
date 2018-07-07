@@ -58,7 +58,11 @@ class categoryController extends BaseController
     }
     else {
       $type = $_POST['type'];
-      $this->registry->template->addingTransaction = $ls->addCategory($user_id, $type, $name);
+      $test = $ls->addCategory($user_id, $type, $name);
+      if($test === 'false'){
+        $_SESSION['flag'] = 0;
+        $this->registry->template->message = 'Category with given name already exists.';
+      }
     }
 
     $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
@@ -72,8 +76,11 @@ class categoryController extends BaseController
     $ls = new BudgetService();
     $user_id = $_SESSION['user_id'];
 
-    $this->registry->template->removeCategory = $ls->removeCategory( $user_id, $category_name, $category_type );
-
+    $test = $ls->removeCategory( $user_id, $category_name, $category_type );
+    if($test === 'false'){
+      $_SESSION['flag'] = 0;
+      $this->registry->template->message = 'First you need to delete all transactions with given category name.';
+    }
     $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
     $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
     $this->registry->template->show('category_index');
@@ -85,7 +92,7 @@ class categoryController extends BaseController
     $ls = new BudgetService();
     $user_id = $_SESSION['user_id'];
 
-    if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $name )){
+    if( !preg_match( '/^[A-Za-z0-9_@\\-\\.\\, ]{1,20}$/' , $category_name )){
       $this->registry->template->message = "Name of category cannot be empty and must consist of at most 20 letters or numbers." ;
       $_SESSION['flag'] = 0;
     }

@@ -564,14 +564,31 @@ function getTransactionsById($user_id){
 	 function addCategory($user_id, $type, $name){
 		 if( $type == "Expense" ) $type= "Troskovi";
 		 else $type= "Primanja";
+
+		//provjera postoji li vec ta kategorija
+		try
+	 		{
+	 			$db = DB::getConnection();
+	 			$category = $db->prepare( 'SELECT category_name FROM Category WHERE ( user_id = :user_id ) AND ( category_name = :name ) AND ( category_type = :type )' );
+	 			$category->execute( array( 'user_id' => $user_id, 'name' => $name, 'type' => $type ) );
+
+	 		}
+ 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		//vec postoji ta kategorija za taj tip i usera
+ 		if( $category->rowCount() !== 0 )
+ 			return false;
+
+
 		 try{
 			 $db = DB::getConnection();
 
 			 $st = $db->prepare( 'INSERT INTO Category(user_id, category_name, category_type )
 			 VALUES (:user_id, :category_name, :category_type)' );
-			 $st->execute( array( "user_id" => $user_id, "category_name" => $name, "category_type" => $type) );
+			 $st->execute( array( 'user_id' => $user_id, 'category_name' => $name, 'category_type' => $type) );
 		 }
 		 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+		 return true;
 	 }
 
 
@@ -580,21 +597,33 @@ function getTransactionsById($user_id){
 	/*****************************************************************************/
 
 	 function removeCategory( $user_id, $category_name, $category_type ){
-		 try{
-			 $user = DB::getConnection();
-			 $category = $user->prepare('DELETE FROM Category WHERE user_id = :user_id, category_name =:category_name, category_type = :category_type');
-			 $category->execute( array( 'user_id' => $user_id, 'category_name' => $category_name, 'category_type' => $category_type ) );
 
-				if($category_type === "Troskovi" ){
-					 $expense = $user->prepare('DELETE FROM Expense WHERE user_id = :user_id, category_name =:category_name' );
-					 $category->execute( array( 'user_id' => $user_id, 'category_name' => $category_name ) );
-				}
-				if( $category_type === "Primanja" ){
-					$income = $user->prepare('DELETE FROM Income WHERE user_id = :user_id, category_name =:category_name' );
-					$category->execute( array( 'user_id' => $user_id, 'category_name' => $category_name ) );
-				}
+		if( $category_type == "Income" )
+ 			$type ="Primanja";
+ 		else {
+ 			$type = "Troskovi";
+ 		}
+
+		try
+		{
+			$db = DB::getConnection();
+			$ex = $db->prepare( 'SELECT category_name FROM Expense WHERE ( user_id=:user_id ) AND ( category_name = :name )' );
+			$ex->execute( array( 'user_id' => $user_id, 'name' => $category_name ) );
+			$in = $db->prepare( 'SELECT category_name FROM Income WHERE ( user_id=:user_id ) AND ( category_name = :name )' );
+			$in->execute( array( 'user_id' => $user_id, 'name' => $category_name ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		if( $ex->rowCount() !== 0 || $in->rowCount() !== 0 )
+			return false;
+
+		try{
+			 $user = DB::getConnection();
+			 $category = $user->prepare('DELETE FROM Category WHERE ( user_id = :user_id ) AND ( category_name =:category_name ) AND ( category_type = :category_type )');
+			 $category->execute( array( 'user_id' => $user_id, 'category_name' => $category_name, 'category_type' => $type ) );
 		 }
 		 catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+		 return true;
 	 }
 
 	 /****************************************************************************/
@@ -602,6 +631,13 @@ function getTransactionsById($user_id){
 	/*****************************************************************************/
 
 	 function editCategory( $user_id, $category_name, $category_type ){
+
+		 if( $category_type == "Income" )
+  			$type ="Primanja";
+  		else {
+  			$type = "Troskovi";
+  		}
+
 		 try{
 			 $user = DB::getConnection();
 
