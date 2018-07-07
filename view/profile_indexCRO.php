@@ -54,7 +54,10 @@
   <tr>
     <th> Obavijesti  </th>
     <td> Želim primati obavijesti na svoju email adresu. </td>
-    <td>  <input type="checkbox" >  </td>
+    <?php if( $user->send_mail == 1)
+    echo '<td>  <input type="checkbox" id="check_box"  checked>  </td>';
+    else echo '<td>  <input type="checkbox"  id="check_box" >  </td>';
+    ?>
   </tr>
   <tr>
     <th> Obriši račun  </th>

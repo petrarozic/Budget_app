@@ -29,12 +29,12 @@
         <table class="table">
           <thead>
             <tr>
-              <th class="sortable" style="text-align:center; border:none;">  IME  </th>
+              <th class="sortable" id="incomeTable" style="text-align:center; border:none;">  IME  </th>
               <th style="text-align:center; border:none;"> <!-- EDIT --> </th>
               <th style="text-align:center; border:none;"> <!-- REMOVE --> </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="inT">
             <?php
               if( empty($inc_catList) )
                   echo '<tr><td colspan="3">Trenutno ne postoji ni jedna kategorija primitaka.</td></tr>';
@@ -59,12 +59,12 @@
         <table class="table">
           <thead>
             <tr>
-              <th class="sortable" style="text-align:center; border:none;">  IME  </th>
+              <th class="sortable" id="expenseTable" style="text-align:center; border:none;">  IME  </th>
               <th style="text-align:center; border:none;"> <!-- EDIT --> </th>
               <th style="text-align:center; border:none;"> <!-- REMOVE --> </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="exT">
             <?php
               if( empty($exp_catList) )
                   echo '<tr><td colspan="3">Trenutno ne postoji ni jedna kategorija troškova.</td></tr>';
