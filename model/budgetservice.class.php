@@ -162,7 +162,9 @@ class BudgetService
 
 	function sendWarning( $type_of_limit ){
 
-		$user = $ls->getUserbById($_SESSION['user_id']);
+		$user = $this->getUserbById($_SESSION['user_id']);
+		//$user_id = $_SESSION['user_id'];
+
 
 		$to       = $user->email;
 		$subject  = 'Warning - Budget-app';
@@ -173,7 +175,6 @@ class BudgetService
 								'X-Mailer: PHP/' . phpversion();
 
 		mail($to, $subject, $message, $headers);
-		exit();
 	}
 
 	function limits(){

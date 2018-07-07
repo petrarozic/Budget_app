@@ -18,7 +18,13 @@ function sendErrorAndExit( $messageText )
 
 class StatisticsController extends BaseController
 {
-	public function index(){$this->registry->template->show('statistics_index');}
+	public function index(){
+    if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG'  )
+      $this->registry->template->show('statistics_index');
+    else if ( $_SESSION['lang'] == 'CRO'  )
+      $this->registry->template->show('statistics_indexCRO');
+
+  }
 
 	function getFirst(){
 		$ls = new BudgetService();

@@ -1,26 +1,28 @@
-<?php require_once __SITE_PATH . '/view/_header.php';
-$_SESSION['page'] = 'statistics';
-$_SESSION['lang'] = 'ENG';
- ?>
+<?php require_once __SITE_PATH . '/view/_headerCRO.php';
+
+  $_SESSION['page'] = 'statistics';
+  $_SESSION['lang'] = 'CRO';
+
+?>
 
   <div class="row">
     <div class="col-md-2 pull-right card"  style="margin: 20px; border-radius: 25px;">
      <div class="card-body">
       <div class="radio">
-        Type of transactions:
+        Tip transakcije:
         <br>
-        <input type="radio" name="transaction" value="expense" checked style="margin-top: 7px;"> expenses
-        <input type="radio" name="transaction" value="income" style="margin-left:15px;"> incomes
+        <input type="radio" name="transaction" value="expense" checked style="margin-top: 7px;"> troškovi
+        <input type="radio" name="transaction" value="income" style="margin-left:15px;"> prihodi
       </div>
      </div>
     </div>
     <div class="col-md-2 pull-left card"  style="margin: 20px; border-radius: 25px;">
       <div class="card-body">
         <div class="radio">
-          Time period:
+          Vremenski period:
           <br>
-          <input type="radio" name="period" value="month" checked style="margin-top: 7px;"> month
-          <input type="radio" name="period" value="year" style="margin-left:15px;"> year
+          <input type="radio" name="period" value="month" checked style="margin-top: 7px;"> mjesec
+          <input type="radio" name="period" value="year" style="margin-left:15px;"> godina
         </div>
       </div>
     </div>
@@ -37,10 +39,10 @@ $_SESSION['lang'] = 'ENG';
 <div class="row">
   <div class="col-md-6 pull-left group" style="padding-top:20px; margin: 40px 0px;">
       <table class="table">
-        <tr><th>Total: </th> <td id="total"></td></tr>
-        <tr><th>Average amount: </th> <td id="average"></td></tr>
-        <tr><th>Average per day: </th> <td id="apd"></td></tr>
-        <tr><th>Biggest: </th> <td id="biggest"></td></tr>
+        <tr><th>Ukupno: </th> <td id="total"></td></tr>
+        <tr><th>Prosječni iznos: </th> <td id="average"></td></tr>
+        <tr><th>Prosječni iznos po danu: </th> <td id="apd"></td></tr>
+        <tr><th>Najveći iznos: </th> <td id="biggest"></td></tr>
       </table>
 
       <br>
@@ -350,8 +352,8 @@ function line_chart_month()
 
 <?php
 $_SESSION['page'] = 'statistics';
-$_SESSION['lang'] = 'ENG';
+$_SESSION['lang'] = 'CRO';
 ?>
 
 
-<?php require_once __SITE_PATH . '/view/_footer.php'; ?>
+<?php require_once __SITE_PATH . '/view/_footerCRO.php'; ?>
