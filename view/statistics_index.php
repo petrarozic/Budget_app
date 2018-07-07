@@ -1,3 +1,5 @@
+<?php require_once __SITE_PATH . '/view/_header.php'; ?>
+
 <div class="row">
 <div class="col-md-6 pull-left group">
 <div class="container">
@@ -185,3 +187,5 @@ chart.render();
 <?php
   $flag = "statistics";
 ?>
+
+<?php require_once __SITE_PATH . '/view/_footer.php'; ?>
