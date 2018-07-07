@@ -1,191 +1,353 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
-<div class="row">
-<div class="col-md-6 pull-left group">
-<div class="container">
   <div class="row">
-  <div class="col-md-5 pull-left card"  style="margin: 20px; border-radius: 25px;">
-   <div class="card-body">
-    <div class="radio">
-      Choose time period:
-      <br>
-      <select>
-        <option value="week">this week</option>
-        <option value="month" selected>this month</option>
-        <option value="year">this year</option>
-        <option value="beginning">since first use of app</option>
-      </select>
+    <div class="col-md-2 pull-right card"  style="margin: 20px; border-radius: 25px;">
+     <div class="card-body">
+      <div class="radio">
+        Type of transactions:
+        <br>
+        <input type="radio" name="transaction" value="expense" checked style="margin-top: 7px;"> expenses
+        <input type="radio" name="transaction" value="income" style="margin-left:15px;"> incomes
+      </div>
+     </div>
     </div>
-   </div>
-  </div>
-
-  <div class="col-md-5 pull-right card"  style="margin: 20px; border-radius: 25px;">
-   <div class="card-body">
-    <div class="radio">
-      Choose type of transactions:
-      <br>
-      <input type="radio" name="transaction" value="expense" checked> expenses
-      <input type="radio" name="transaction" value="income"> incomes
+    <div class="col-md-2 pull-left card"  style="margin: 20px; border-radius: 25px;">
+      <div class="card-body">
+        <div class="radio">
+          Time period:
+          <br>
+          <input type="radio" name="period" value="month" checked style="margin-top: 7px;"> month
+          <input type="radio" name="period" value="year" style="margin-left:15px;"> year
+        </div>
+      </div>
     </div>
-   </div>
+
+    <div class="col-md-2 pull-right card"  style="margin-top: 40px; margin-left: 35px; border:none;">
+  <div id="choose">
+    <button class="ChangeButton" id="left"> <i class="fas fa-angle-left"></i></button>
+    <span id="time"> </span>
+    <button class="ChangeButton" id="right"> <i class="fas fa-angle-right"></i></button>
   </div>
-  </div>
 </div>
+ </div>
 
-
-<table class="table">
-  <tr><th>Total: </th> <td><?php echo $total; ?> kn</td></tr>
-  <tr><th>Average: </th> <td><?php echo $average; ?> kn</td></tr>
-  <tr><th>Average per day: </th> <td><?php echo $apd; ?> kn</td></tr>
-  <tr><th>Biggest: </th> <td><?php echo $biggest; ?> kn</td></tr>
-</table>
-
-<script>
-$(document).ready(function() {
-    $("input[type=radio][name=transaction]").change(function() {
-        if (this.value == 'expense') {
-            //header( 'Location: ' . __SITE_URL . '/index.php?rt=home'); ajax! sa get šaljemo dvije vrijednosti i primamo sve što treba
-        }
-        else if (this.value == 'income') {
-            alert("income");
-        }
-    });
-});
-</script>
-
-<br>
-<div class="text-center">
-<canvas height="230" width="230" id="myCanvas"></canvas>
-<script> //bit će neki bolji
-var data = [{
-  label: "food",
-  value: 100,
-  color: 'lightgreen'
-}, {
-  label: "bills",
-  value: 120,
-  color: 'yellow'
-}, {
-  label: "shoes",
-  value: 80,
-  color: 'lightpink'
-}];
-
-var total = 0;
-for (obj of data) {
-  total += obj.value;
-}
-
-var canvas = document.getElementById('myCanvas');
-var ctx = canvas.getContext('2d');
-var previousRadian;
-var middle = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
-  radius: canvas.height / 2,
-};
-
-
-
-
-for (obj of data) {
-  previousRadian = previousRadian || 0;
-  obj.percentage = parseInt((obj.value / total) * 100)
-
-  ctx.beginPath();
-  ctx.fillStyle = obj.color;
-  obj.radian = (Math.PI * 2) * (obj.value / total);
-  ctx.moveTo(middle.x, middle.y);
-  //middle.radius - 2 is to add border between the background and the pie chart
-  ctx.arc(middle.x, middle.y, middle.radius - 2, previousRadian, previousRadian + obj.radian, false);
-  ctx.closePath();
-  ctx.fill();
-  ctx.save();
-  ctx.translate(middle.x, middle.y);
-  ctx.fillStyle = "black";
-  ctx.font = middle.radius / 10 + "px Arial";
-  ctx.rotate(previousRadian + obj.radian);
-  var labelText = "'" + obj.label + "' " + obj.percentage  + "%";
-  ctx.fillText(labelText, ctx.measureText(labelText).width / 2, 0);
-  ctx.restore();
-
-
-
-
-  previousRadian += obj.radian;
-}
-</script>
-</div>
-
-</div>
-<div class="col-md-6 pull-right">
 <div class="row">
-<div class="class=col-md-5 card" style="margin: 20px; border-radius: 25px;">
-  <div class="card-body">
-   <div class="radio">
-     Choose time period:
-     <br>
-     <select>
-       <option value="month" selected>this month</option>
-       <option value="year">this year</option>
-     </select>
-   </div>
+  <div class="col-md-6 pull-left group" style="padding-top:20px; margin: 40px 0px;">
+      <table class="table">
+        <tr><th>Total: </th> <td id="total"></td></tr>
+        <tr><th>Average amount: </th> <td id="average"></td></tr>
+        <tr><th>Average per day: </th> <td id="apd"></td></tr>
+        <tr><th>Biggest: </th> <td id="biggest"></td></tr>
+      </table>
+
+      <br>
+      <div class="text-center">
+      <canvas height="230" width="230" id="myCanvas"></canvas>
+      </div>
+  </div>
+
+  <div class="col-md-6 pull-right group" style="padding-top:20px; margin: 40px 0px;">
+      <div class="text-center">
+      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+      </div>
   </div>
 </div>
-</div>
-<div class="title_canvas"> Monthly transactions </div>
+
 <script>
-window.onload = function () {
+var months = ["January","February","March","April","May","June","July","August","September","October","November"," 	December"];
+var d = new Date();
+var current_y = d.getFullYear();
+var current_m = d.getMonth();
+var first_m; //mjesec i godina prve transakcije usera (za ranije nema smisla raditi statistiku)
+var first_y;
+get_first(); // "puni" first_m i first_y
+var y = current_y; //4 "zastave" -> uvijek znamo gleda li se mjesec ili godina, income ili expense, koji se mjesec gleda i koja godina (mjesec po potrebi)
+var m = current_m;
+var p = 1; //defaultno je period month (0 je year)
+var t = 1; //defaultno je transakcija expense (0 je income)
+var flag = 1; //jos jedna zastava -> sluzi da ne crtamo line chart ako smo samo promijenili type of transactions ; 0 = ne treba se crtati line chart
+$( document ).ready( function()
+{
+    $("#time").html(months[m] + " " + y);
+    inform();
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
-	animationEnabled: true,
-/*	title:{
-		text: "Share Value - 2016"
-	},*/
-	axisX: {
-		interval: 1,
-		intervalType: "month",
-		valueFormatString: "MMM"
-	},
-	axisY:{
-		valueFormatString: "$#0"
-	},
-	data: [{
-		type: "line",
-		markerSize: 12,
-		xValueFormatString: "MMM, YYYY",
-		yValueFormatString: "$###.#",
-		dataPoints: [
-			{ x: new Date(2016, 00, 1), y: 61, indexLabel: "gain", markerType: "triangle",  markerColor: "#6B8E23" },
-			{ x: new Date(2016, 01, 1), y: 71, indexLabel: "gain", markerType: "triangle",  markerColor: "#6B8E23" },
-			{ x: new Date(2016, 02, 1) , y: 55, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-			{ x: new Date(2016, 03, 1) , y: 50, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-			{ x: new Date(2016, 04, 1) , y: 65, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-			{ x: new Date(2016, 05, 1) , y: 85, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-			{ x: new Date(2016, 06, 1) , y: 68, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-			{ x: new Date(2016, 07, 1) , y: 28, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-			{ x: new Date(2016, 08, 1) , y: 34, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-			{ x: new Date(2016, 09, 1) , y: 24, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-			{ x: new Date(2016, 10, 1) , y: 44, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-			{ x: new Date(2016, 11, 1) , y: 34, indexLabel: "loss", markerType: "cross", markerColor: "tomato" }
-		]
-	}]
+    $("#right").on( "click", next); // sljedeci mjesec/godina, zove inform
+    $("#left").on("click", previous);
+    $("input[type=radio][name=transaction]").on("change", transaction_changed) //promijeni t, zove inform
+    $("input[type=radio][name=period]").on("change", period_changed) //promijeni p, promijeni #time,  zove inform
+    //inform uvijek poziva crtanje grafova
 });
-chart.render();
 
-} // <canvas height="450" width="550" style="border: solid 0.5px lightgrey;" id="canvas"></canvas>
+next = function()
+{
+  if(p){ //gleda se mjesec
+    if(y == current_y && m == current_m)
+      return;
+    if(m == 11){m = 0; ++y;}
+    else ++m;
+    $("#time").html(months[m] + " " + y);
+  }
+  else{ //gleda se godina
+    if(y == current_y)
+      return;
+    ++y;
+    $("#time").html(y);
+  }
+  inform();
+}
+
+previous = function()
+{
+  if(p){ //gleda se mjesec
+    if(y == first_y && m == first_m)
+       return;
+    if(m == 0){m = 11; --y;}
+    else --m;
+    $("#time").html(months[m] + " " + y);
+  }
+  else{ //gleda se godina
+    if(y == first_y)
+      return;
+    --y;
+    $("#time").html(y);
+  }
+  inform();
+}
+
+transaction_changed = function()
+{
+  t = 1 - t;
+  flag = 0;
+  inform();
+}
+
+period_changed = function()
+{
+  p = 1 - p;
+  m = current_m;
+  y = current_y;
+  if(p) $("#time").html(months[m] + " " + y);
+  else $("#time").html(y);
+  inform();
+}
+
+function inform()
+{
+  $.ajax(
+      {
+        url: window.location.pathname+"?rt=statistics/getInform",
+        data:
+        {
+          p:p,
+          t:t,
+          m:m,
+          y:y
+        },
+        dataType: "json",
+        error: function( xhr, status )
+        {
+          if( status !== null )
+             console.log( "Greška prilikom Ajax poziva: " + status);
+        },
+        success: function(data)
+        {
+          $("#total").html(data.total + "  kn");
+          $("#average").html(data.average + "  kn");
+          $("#apd").html(data.apd + "  kn");
+          $("#biggest").html(data.biggest + "  kn");
+          pie_chart();
+          if(flag){
+            if(p)
+              line_chart_month();
+            else
+              line_chart_year();
+          }
+          flag = 1;
+        }
+      });
+}
+
+function get_first()
+{
+   $.ajax(
+      {
+        url: window.location.pathname+"?rt=statistics/getFirst",
+        data:{},
+        dataType: "json",
+        error: function( xhr, status )
+        {
+          if( status !== null )
+             console.log( "Greška prilikom Ajax poziva: " + status);
+        },
+        success: function(data)
+        {
+          first_m = data.month;
+          first_y = data.year;
+        }
+      });
+}
+
+function pie_chart() //da su pravi podaci i legenda
+{
+  var data = [{
+    label: "food",
+    value: 100,
+    color: 'lightgreen'
+  }, {
+    label: "bills",
+    value: 120,
+    color: 'yellow'
+  }, {
+    label: "shoes",
+    value: 80,
+    color: 'lightpink'
+  }];
+
+  var total = 0;
+  for (obj of data) {
+    total += obj.value;
+  }
+
+  var canvas = document.getElementById('myCanvas');
+  var ctx = canvas.getContext('2d');
+  var previousRadian = 0;
+  var radius = canvas.height / 2;
+  var middle = {
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+  };
+
+  var radian;
+  var percentage;
+  for (obj of data){
+    percentage = Math.round(obj.value/total * 100);
+
+    ctx.beginPath();
+    ctx.fillStyle = obj.color;
+    radian = (Math.PI * 2) * (obj.value / total);
+    ctx.moveTo(middle.x, middle.y);
+    ctx.arc(middle.x, middle.y, radius, previousRadian, previousRadian + radian);
+    ctx.fill();
+
+    ctx.save();
+    ctx.translate(middle.x, middle.y);
+    ctx.fillStyle = "black";
+    ctx.font = "16px Arial";
+    ctx.rotate(previousRadian + radian);
+    var labelText = percentage  + "%";
+    ctx.fillText(labelText, radius/2 - 20, -2);
+    ctx.restore();
+
+    previousRadian += radian;
+  }
+}
+
+
+function line_chart_year()
+{
+  var line = [];
+  $.ajax(
+     {
+       url: window.location.pathname+"?rt=statistics/lineChartYear",
+       data:{
+         y:y
+       },
+       dataType: "json",
+       error: function( xhr, status )
+       {
+         if( status !== null )
+            console.log( "Greška prilikom Ajax poziva: " + status);
+       },
+       success: function(data)
+       {
+         line = data.line;
+         console.log(line);
+       }
+     });
+
+     //document wait
+  var colors = [];
+  var shape = [];
+  var chart = new CanvasJS.Chart("chartContainer", {
+  	theme: "light2",
+  	animationEnabled: true,
+  	axisX: {
+  		interval: 1,
+  		intervalType: "month",
+  		valueFormatString: "MMM"
+  	},
+  	axisY:{
+  		valueFormatString: "# kn"
+  	},
+  	data: [{
+  		type: "line",
+  		markerSize: 10,
+  		xValueFormatString: "MMM, YYYY",
+  		yValueFormatString: "# kn",
+  		dataPoints: [
+  			{ x: new Date(y, 00, 1), y: 40, markerType: "circle",  markerColor: "rgba(0, 153, 77, 0.8)" },
+  			{ x: new Date(y, 01, 1), y: 20, indexLabel: "loos", markerType: "cross",  markerColor: "rgba(179, 0, 0, 0.7)" },
+  			{ x: new Date(y, 02, 1) , y: 55, indexLabel: "loss", markerType: "cross", markerColor: "rgba(0, 153, 77, 0.8)" },
+  			{ x: new Date(y, 03, 1) , y: 50, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: new Date(y, 04, 1) , y: 65, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
+  			{ x: new Date(y, 05, 1) , y: 85, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
+  			{ x: new Date(y, 06, 1) , y: 68, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: new Date(y, 07, 1) , y: 28, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: new Date(y, 08, 1) , y: 34, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
+  			{ x: new Date(y, 09, 1) , y: 24, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: new Date(y, 10, 1) , y: 44, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
+  			{ x: new Date(y, 11, 1) , y: 34, indexLabel: "loss", markerType: "cross", markerColor: "tomato" }
+  		]
+  	}]
+  });
+  chart.render();
+
+}
+
+
+function line_chart_month()
+{
+  /*var chart = new CanvasJS.Chart("chartContainer", {
+  	theme: "light2",
+  	animationEnabled: true,
+  	axisX: {
+  		interval: 1,
+  		intervalType: "month",
+  		valueFormatString: "MMM"
+  	},
+  	axisY:{
+  		valueFormatString: " # kn"
+  	},
+  	data: [{
+  		type: "line",
+  		markerSize: 12,
+  		xValueFormatString: "MMM, YYYY",
+  		yValueFormatString: "###.# kn",
+  		dataPoints: [
+  			{ x: 1, y: 61, markerType: "circle",  markerColor: "#6B8E23" },
+  			{ x: 2, y: 71, indexLabel: "gain", markerType: "triangle",  markerColor: "#6B8E23" },
+  			{ x: 3 , y: 55, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: 4 , y: 50, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: new Date(2016, 04, 1) , y: 65, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
+  			{ x: new Date(2016, 05, 1) , y: 85, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
+  			{ x: new Date(2016, 06, 1) , y: 68, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: new Date(2016, 07, 1) , y: 28, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: new Date(2016, 08, 1) , y: 34, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
+  			{ x: new Date(2016, 09, 1) , y: 24, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
+  			{ x: new Date(2016, 10, 1) , y: 44, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
+  			{ x: new Date(2016, 11, 1) , y: 34, indexLabel: "loss", markerType: "cross", markerColor: "tomato" }
+  		]
+  	}]
+  });
+  chart.render();*/
+
+}
 </script>
-<div class="text-center">
- <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-</div>
-
-</div>
-</div>
 
 
 <?php
   $flag = "statistics";
 ?>
+
 
 <?php require_once __SITE_PATH . '/view/_footer.php'; ?>
