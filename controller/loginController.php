@@ -15,8 +15,11 @@ class LoginController extends BaseController
 		//$this->registry->template->lmessage = '';
 		//$this->registry->template->smessage = '';
 		$this->registry->template->l_flag = 1;
-		$this->registry->template->show( 'login_index' );
-	}
+
+		if(  !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+				$this->registry->template->show( 'login_index' );
+		else if ( $_SESSION['lang'] == 'CRO' )
+			$this->registry->template->show( 'login_indexCRO' );	}
 
 	public function processLogin()
 	{
