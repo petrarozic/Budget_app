@@ -3,10 +3,6 @@
   /********************************
    * Troškovi korisnika
 
-   PITANJA/NAPOMENE
-     User--> pamtimo mu id
-     Ponavljanja --> nema toga
-
    ATRIBUTI
       'expense_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
       'category_name varchar(20) NOT NULL,' .
@@ -16,6 +12,7 @@
       'expense_date date NOT NULL,' .
       'expense_description varchar(50)
    ********************************/
+   
   class Expense {
     protected $expense_id, $category_name, $user_id,
         $expense_name, $expense_value, $expense_date,  $expense_description;
