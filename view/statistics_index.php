@@ -1,7 +1,4 @@
-<?php require_once __SITE_PATH . '/view/_header.php';
-$_SESSION['page'] = 'statistics';
-$_SESSION['lang'] = 'ENG';
- ?>
+<?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
   <div class="row">
     <div class="col-md-2 pull-right card"  style="margin: 20px; border-radius: 25px;">
@@ -239,15 +236,14 @@ var colorArray = ['#4dc9c9', 'rgb(230, 228, 102)','rgb(105, 198, 94)', 'rgba(212
               Data[i]['color'] = colorArray[i];
          }
 
-// ZApocinje
 
   if ( Data.length == 0 ){
     var canvas = document.getElementById('myCanvas');
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
-    ctx.font = "20px Arial";
-    ctx.fillText("There are no transactions in selected period", 10, canvas.height/2 -100);
+    ctx.font = "17px Arial";
+    ctx.fillText("There are no transactions in selected period.", 10, canvas.height/2 -100);
   }
   else{
 
@@ -291,12 +287,6 @@ var colorArray = ['#4dc9c9', 'rgb(230, 228, 102)','rgb(105, 198, 94)', 'rgba(212
     }
 
 
-    ctx.beginPath();
-    ctx.lineWidth="1";
-    ctx.strokeStyle="#bdc2bb";
-    ctx.rect( (canvas.width/2), 20, 200, canvas.height-40 );
-    ctx.stroke();
-    ctx.closePath();
     ctx.restore();
     var i = 20;
     for (obj of Data){
@@ -315,7 +305,6 @@ var colorArray = ['#4dc9c9', 'rgb(230, 228, 102)','rgb(105, 198, 94)', 'rgba(212
 
   }
 
-// Zavrsava
        }
      });
 }
@@ -326,9 +315,10 @@ function line_chart_year()
   var line = [];
   $.ajax(
      {
-       url: window.location.pathname+"?rt=statistics/lineChartYear",
+       url: window.location.pathname+"?rt=statistics/lineChart",
        data:{
-         y:y
+         y:y,
+         flag:'year'
        },
        dataType: "json",
        error: function( xhr, status )
@@ -338,94 +328,175 @@ function line_chart_year()
        },
        success: function(data)
        {
-         line = data.line;
-         console.log(line);
-       }
-     });
+        line = data.line;
+        console.log(line);
 
-     //document wait
-  var colors = [];
-  var shape = [];
-  var chart = new CanvasJS.Chart("chartContainer", {
-  	theme: "light2",
-  	animationEnabled: true,
-  	axisX: {
-  		interval: 1,
-  		intervalType: "month",
-  		valueFormatString: "MMM"
-  	},
-  	axisY:{
-  		valueFormatString: "# kn"
-  	},
-  	data: [{
-  		type: "line",
-  		markerSize: 10,
-  		xValueFormatString: "MMM, YYYY",
-  		yValueFormatString: "# kn",
-  		dataPoints: [
-  			{ x: new Date(y, 00, 1), y: 40, markerType: "circle",  markerColor: "rgba(0, 153, 77, 0.8)" },
-  			{ x: new Date(y, 01, 1), y: 20, indexLabel: "loos", markerType: "cross",  markerColor: "rgba(179, 0, 0, 0.7)" },
-  			{ x: new Date(y, 02, 1) , y: 55, indexLabel: "loss", markerType: "cross", markerColor: "rgba(0, 153, 77, 0.8)" },
-  			{ x: new Date(y, 03, 1) , y: 50, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: new Date(y, 04, 1) , y: 65, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-  			{ x: new Date(y, 05, 1) , y: 85, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-  			{ x: new Date(y, 06, 1) , y: 68, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: new Date(y, 07, 1) , y: 28, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: new Date(y, 08, 1) , y: 34, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-  			{ x: new Date(y, 09, 1) , y: 24, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: new Date(y, 10, 1) , y: 44, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-  			{ x: new Date(y, 11, 1) , y: 34, indexLabel: "loss", markerType: "cross", markerColor: "tomato" }
-  		]
-  	}]
-  });
-  chart.render();
+        var colors = ["#b8b894"];
+        var shapes = ["circle"];
+        var type = [""];
 
+        var i;
+        for (i = 1; i < line.length; ++i) {
+          if((line[i] - line[i-1]) > 0){
+            colors[i] = "rgba(0, 153, 77, 0.8)";
+            shapes[i] = "circle";
+            type[i] = "gain";
+          }
+          else if((line[i] - line[i-1]) === 0){
+            colors[i] = "#b8b894";
+            shapes[i] = "circle";
+            type[i] = "";
+          }
+          else{
+            colors[i] = "rgba(179, 0, 0, 0.7)";
+            shapes[i] = "cross";
+            type[i] = "loos";
+          }
+        }
+        var chart = new CanvasJS.Chart("chartContainer", {
+        	theme: "light2",
+        	animationEnabled: true,
+        	axisX: {
+        		interval: 1,
+        		intervalType: "month",
+        		valueFormatString: "MMM"
+        	},
+        	axisY:{
+        		valueFormatString: "# kn"
+        	},
+        	data: [{
+        		type: "line",
+        		markerSize: 10,
+        		xValueFormatString: "MMM, YYYY",
+        		yValueFormatString: "# kn",
+        		dataPoints: [
+        			{ x: new Date(y, 00, 1), y: line[0], indexLabel: type[0], markerType: shapes[0],  markerColor: colors[0] },
+        			{ x: new Date(y, 01, 1), y: line[1], indexLabel: type[1], markerType: shapes[1],  markerColor: colors[1] },
+        			{ x: new Date(y, 02, 1) , y: line[2], indexLabel: type[2], markerType: shapes[2],  markerColor: colors[2] },
+        			{ x: new Date(y, 03, 1) , y: line[3], indexLabel: type[3], markerType: shapes[3],  markerColor: colors[3] },
+        			{ x: new Date(y, 04, 1) , y: line[4], indexLabel: type[4], markerType: shapes[4],  markerColor: colors[4] },
+        			{ x: new Date(y, 05, 1) , y: line[5], indexLabel: type[5], markerType: shapes[5],  markerColor: colors[5] },
+        			{ x: new Date(y, 06, 1) , y: line[6], indexLabel: type[6], markerType: shapes[6],  markerColor: colors[6] },
+        			{ x: new Date(y, 07, 1) , y: line[7], indexLabel: type[7], markerType: shapes[7],  markerColor: colors[7] },
+        			{ x: new Date(y, 08, 1) , y: line[8], indexLabel: type[8], markerType: shapes[8],  markerColor: colors[8] },
+        			{ x: new Date(y, 09, 1) , y: line[9], indexLabel: type[9], markerType: shapes[9],  markerColor: colors[9] },
+        			{ x: new Date(y, 10, 1) , y: line[10], indexLabel: type[10], markerType: shapes[10],  markerColor: colors[10] },
+        			{ x: new Date(y, 11, 1) , y: line[11], indexLabel: type[11], markerType: shapes[11],  markerColor: colors[11] }
+        		]
+        	}]
+        });
+      chart.render();
+      }
+    });
 }
-
 
 function line_chart_month()
 {
-  /*var chart = new CanvasJS.Chart("chartContainer", {
-  	theme: "light2",
-  	animationEnabled: true,
-  	axisX: {
-  		interval: 1,
-  		intervalType: "month",
-  		valueFormatString: "MMM"
-  	},
-  	axisY:{
-  		valueFormatString: " # kn"
-  	},
-  	data: [{
-  		type: "line",
-  		markerSize: 12,
-  		xValueFormatString: "MMM, YYYY",
-  		yValueFormatString: "###.# kn",
-  		dataPoints: [
-  			{ x: 1, y: 61, markerType: "circle",  markerColor: "#6B8E23" },
-  			{ x: 2, y: 71, indexLabel: "gain", markerType: "triangle",  markerColor: "#6B8E23" },
-  			{ x: 3 , y: 55, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: 4 , y: 50, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: new Date(2016, 04, 1) , y: 65, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-  			{ x: new Date(2016, 05, 1) , y: 85, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-  			{ x: new Date(2016, 06, 1) , y: 68, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: new Date(2016, 07, 1) , y: 28, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: new Date(2016, 08, 1) , y: 34, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-  			{ x: new Date(2016, 09, 1) , y: 24, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-  			{ x: new Date(2016, 10, 1) , y: 44, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-  			{ x: new Date(2016, 11, 1) , y: 34, indexLabel: "loss", markerType: "cross", markerColor: "tomato" }
-  		]
-  	}]
-  });
-  chart.render();*/
+  var line = [];
+  $.ajax(
+     {
+       url: window.location.pathname+"?rt=statistics/lineChart",
+       data:{
+         y:y,
+         m:m,
+         flag:'month'
+       },
+       dataType: "json",
+       error: function( xhr, status )
+       {
+         if( status !== null )
+            console.log( "Greška prilikom Ajax poziva: " + status);
+       },
+       success: function(data)
+       {
+        line = data.line;
+        console.log(line);
 
+        var colors = ["rgba(0, 153, 77, 0.8)"];
+        var shapes = ["circle"];
+        var type = [""];
+
+        var i;
+        for (i = 1; i < line.length; ++i) {
+          if(line[i] === 'undefined'){
+            shapes[i] = "none";
+          }
+          else if((line[i] - line[i-1]) > 0){
+            colors[i] = "rgba(0, 153, 77, 0.8)";
+            shapes[i] = "circle";
+            type[i] = "gain";
+          }
+          else if((line[i] - line[i-1]) === 0){
+            colors[i] = "rgba(0, 153, 77, 0.8)";
+            shapes[i] = "circle";
+            type[i] = "";
+          }
+          else{
+            colors[i] = "rgba(179, 0, 0, 0.7)";
+            shapes[i] = "cross";
+            type[i] = "loos";
+          }
+        }
+        var chart = new CanvasJS.Chart("chartContainer", {
+        	theme: "light2",
+        	animationEnabled: true,
+        	///axisX: {
+        		//interval: 1,
+        		//intervalType: "month",
+        		//valueFormatString: "MMM"
+        	//},
+        	//axisY:{
+        //		valueFormatString: "# kn"
+        //	},
+        	data: [{
+        		type: "line",
+        		markerSize: 10,
+        		//xValueFormatString: "MMM, YYYY",
+        		//yValueFormatString: "# kn",
+        		dataPoints: [
+        			{ x: 1, y: line[0], indexLabel: type[0], markerType: shapes[0], markerColor: colors[0] },
+              { x: 2, y: line[1], indexLabel: type[1], markerType: shapes[1], markerColor: colors[1] },
+              { x: 3, y: line[2], indexLabel: type[2], markerType: shapes[2], markerColor: colors[2] },
+              { x: 4, y: line[3], indexLabel: type[3], markerType: shapes[3], markerColor: colors[3] },
+              { x: 5, y: line[4], indexLabel: type[4], markerType: shapes[4], markerColor: colors[4] },
+              { x: 6, y: line[5], indexLabel: type[5], markerType: shapes[5], markerColor: colors[5] },
+              { x: 7, y: line[6], indexLabel: type[6], markerType: shapes[6], markerColor: colors[6] },
+              { x: 8, y: line[7], indexLabel: type[7], markerType: shapes[7], markerColor: colors[7] },
+              { x: 9, y: line[8], indexLabel: type[8], markerType: shapes[8], markerColor: colors[8] },
+              { x: 10, y: line[9], indexLabel: type[9], markerType: shapes[9], markerColor: colors[9] },
+              { x: 11, y: line[10], indexLabel: type[10], markerType: shapes[10], markerColor: colors[10] },
+              { x: 12, y: line[11], indexLabel: type[11], markerType: shapes[11], markerColor: colors[11] },
+              { x: 13, y: line[12], indexLabel: type[12], markerType: shapes[12], markerColor: colors[12] },
+              { x: 14, y: line[13], indexLabel: type[13], markerType: shapes[13], markerColor: colors[13] },
+              { x: 15, y: line[14], indexLabel: type[14], markerType: shapes[14], markerColor: colors[14] },
+              { x: 16, y: line[15], indexLabel: type[15], markerType: shapes[15], markerColor: colors[15] },
+              { x: 17, y: line[16], indexLabel: type[16], markerType: shapes[16], markerColor: colors[16] },
+              { x: 18, y: line[17], indexLabel: type[17], markerType: shapes[17], markerColor: colors[17] },
+              { x: 19, y: line[18], indexLabel: type[18], markerType: shapes[18], markerColor: colors[18] },
+              { x: 20, y: line[19], indexLabel: type[19], markerType: shapes[19], markerColor: colors[19] },
+              { x: 21, y: line[20], indexLabel: type[20], markerType: shapes[20], markerColor: colors[20] },
+              { x: 22, y: line[21], indexLabel: type[21], markerType: shapes[21], markerColor: colors[21] },
+              { x: 23, y: line[22], indexLabel: type[22], markerType: shapes[22], markerColor: colors[22] },
+              { x: 24, y: line[23], indexLabel: type[23], markerType: shapes[23], markerColor: colors[23] },
+              { x: 25, y: line[24], indexLabel: type[24], markerType: shapes[24], markerColor: colors[24] },
+              { x: 26, y: line[25], indexLabel: type[25], markerType: shapes[25], markerColor: colors[25] },
+              { x: 27, y: line[26], indexLabel: type[26], markerType: shapes[26], markerColor: colors[26] },
+              { x: 28, y: line[27], indexLabel: type[27], markerType: shapes[27], markerColor: colors[27] },
+              { x: 29, y: line[28], indexLabel: type[28], markerType: shapes[28], markerColor: colors[28] },
+              { x: 30, y: line[29], indexLabel: type[29], markerType: shapes[29], markerColor: colors[29] },
+              { x: 31, y: line[30], indexLabel: type[30], markerType: shapes[30], markerColor: colors[30] },
+        		]
+        	}]
+        });
+      chart.render();
+      }
+    });
 }
 </script>
 
 
 <?php
-$_SESSION['page'] = 'statistics';
-$_SESSION['lang'] = 'ENG';
+  $flag = "statistics";
 ?>
 
 
