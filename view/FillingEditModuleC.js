@@ -1,12 +1,8 @@
-
   // na klik botuna IkonaEdit - > pokrenuti ovu skriptu
-
-  $( document ).ready( function()
-  {
-    $(".IconButtonEC").on( "click", function()
-    {
-        console.log("Edit");
-
+  //prilikom uredivanja odredene kategorije
+    //ova skripta dohvaća potrebne vrijednosti za ispunjavanje inputa
+  $( document ).ready( function(){
+    $(".IconButtonEC").on( "click", function(){
         var name = $(this).val();
         var type = $(this).attr("name");
 

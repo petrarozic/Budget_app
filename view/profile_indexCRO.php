@@ -3,68 +3,62 @@
 ?>
 
   <script>
+    var fl = <?php if ( isset($smessage)) echo json_encode($_SESSION['flag']); else echo "2";?>;
+    var mess = <?php if ( isset($smessage)) echo json_encode($smessage); else echo "undefined";?>;
 
-        var fl = <?php if ( isset($smessage)) echo json_encode($_SESSION['flag']); else echo "2";?>;
-        var mess = <?php if ( isset($smessage)) echo json_encode($smessage); else echo "undefined";?>;
+    if(fl.toString() === '0')
+        $.notify(mess, "error");
 
-          if(fl.toString() === '0')
-              $.notify(mess, "error");
-
-          else if(fl.toString() === '1')
-              $.notify(mess, "success");
-
-
+    else if(fl.toString() === '1')
+        $.notify(mess, "success");
   </script>
 
-
-
 <div class="omotac">
-
-<table class="table">
-  <tr>
-    <th> Korisničko ime </th>
-    <td>  <?php echo $user->username; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_pass" data-toggle="modal" data-target="#changeUsername" > <i class="far fa-edit"></i></button>  </td>
-  </tr>
-  <tr>
-    <th> Email </th>
-    <td> <?php echo $user->email; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_email" data-toggle="modal" data-target="#changeEmail" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Lozinka  </th>
-    <td> ******** </td>
-    <td> <button class = "IconButton" type="button" name="new_pass" data-toggle="modal" data-target="#changePassword" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Dnevni limit </th>
-    <td>  <?php echo $user->daily_limit; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_daily" data-toggle="modal" data-target="#changeDaily" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Tjedni limit </th>
-    <td>  <?php echo $user->weekly_limit; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_weekly" data-toggle="modal" data-target="#changeWeekly" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Mjesečni limit </th>
-    <td>  <?php echo $user->monthly_limit; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_monthly" data-toggle="modal" data-target="#changeMonthly" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Obavijesti  </th>
-    <td> Želim primati obavijesti na svoju email adresu. </td>
-    <?php if( $user->send_mail == 1)
-    echo '<td>  <input type="checkbox" id="check_box"  checked>  </td>';
-    else echo '<td>  <input type="checkbox"  id="check_box" >  </td>';
-    ?>
-  </tr>
-  <tr>
-    <th> Obriši račun  </th>
-    <td> Želim obrisati ovaj korisnički račun.. </td>
-    <td> <button class = "IconButton" type="button"  data-toggle="modal" data-target="#accountDelete" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th> Korisničko ime </th>
+      <td>  <?php echo $user->username; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_pass" data-toggle="modal" data-target="#changeUsername" > <i class="far fa-edit"></i></button>  </td>
+    </tr>
+    <tr>
+      <th> Email </th>
+      <td> <?php echo $user->email; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_email" data-toggle="modal" data-target="#changeEmail" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Lozinka  </th>
+      <td> ******** </td>
+      <td> <button class = "IconButton" type="button" name="new_pass" data-toggle="modal" data-target="#changePassword" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Dnevni limit </th>
+      <td>  <?php echo $user->daily_limit; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_daily" data-toggle="modal" data-target="#changeDaily" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Tjedni limit </th>
+      <td>  <?php echo $user->weekly_limit; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_weekly" data-toggle="modal" data-target="#changeWeekly" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Mjesečni limit </th>
+      <td>  <?php echo $user->monthly_limit; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_monthly" data-toggle="modal" data-target="#changeMonthly" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Obavijesti  </th>
+      <td> Želim primati obavijesti na svoju email adresu. </td>
+      <?php if( $user->send_mail == 1)
+      echo '<td>  <input type="checkbox" id="check_box"  checked>  </td>';
+      else echo '<td>  <input type="checkbox"  id="check_box" >  </td>';
+      ?>
+    </tr>
+    <tr>
+      <th> Obriši račun  </th>
+      <td> Želim obrisati ovaj korisnički račun.. </td>
+      <td> <button class = "IconButton" type="button"  data-toggle="modal" data-target="#accountDelete" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+  </table>
 </div>
 
 <!--- Modal for new username --->

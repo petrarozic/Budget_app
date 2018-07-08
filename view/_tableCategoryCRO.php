@@ -1,18 +1,14 @@
 <script>
+  console.log("u scriptu");
+  var fl = <?php if ( isset($message)) echo json_encode($_SESSION['flag']); else echo "2";?>;
+  var mess = <?php if ( isset($message)) echo json_encode($message); else echo "undefined";?>;
 
-      console.log("u scriptu");
-      var fl = <?php if ( isset($message)) echo json_encode($_SESSION['flag']); else echo "2";?>;
-      var mess = <?php if ( isset($message)) echo json_encode($message); else echo "undefined";?>;
+    if(fl.toString() === '0')
+        $.notify(mess, "error");
 
-        if(fl.toString() === '0')
-            $.notify(mess, "error");
-
-        else if(fl.toString() === '1')
-            $.notify(mess, "success");
-
-
+    else if(fl.toString() === '1')
+        $.notify(mess, "success");
 </script>
-
 
 <div class="plusCategory">
   <button class="AddButton" type="submit" name="AddCategory" data-toggle="modal" data-target="#AddCategoryCRO" >
