@@ -39,7 +39,7 @@ class StatisticsController extends BaseController
   function lineChart(){
 		$ls = new BudgetService();
 		$user_id = $_SESSION['user_id'];
-    if($_GET['flag'] === 'month')
+    if($_GET['flag'] == 'month')
       $time = $ls->lineMonth($user_id, $_GET['m'], $_GET['y']);
     else
 		  $time = $ls->lineYear($user_id, $_GET['y']);

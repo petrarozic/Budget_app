@@ -1,4 +1,5 @@
 <?php
+  $flag = "profile";
   require_once "_headerCRO.php";
 ?>
 

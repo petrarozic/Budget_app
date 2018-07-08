@@ -162,6 +162,7 @@ class BudgetService
 
 	function sendWarning( $type_of_limit ){
 
+		$ls = new BudgetService;
 		$user = $ls->getUserbById($_SESSION['user_id']);
 
 		$to       = $user->email;
@@ -748,7 +749,7 @@ function getTransactionsById($user_id){
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
 		$n = cal_days_in_month(CAL_GREGORIAN, $m + 1, $y); //niz će biti dug onoliko koliko ima dana u mjesecu*/
-		$line = array_fill(0, $n, 0);
+		//$line = array_fill(0, $n, 0);
 	/*	while( $row = $st->fetch() )
 		{
 			$day = $row['day(income_date)'] - 1;
@@ -767,6 +768,7 @@ function getTransactionsById($user_id){
 			$day = $row['day(expense_date)'] - 1;
 			$line[$day] -= $row['expense_value'];
 		}*/
+
 		return $line;
 	}
 

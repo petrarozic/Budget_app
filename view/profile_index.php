@@ -1,4 +1,6 @@
-<?php require_once __SITE_PATH . '/view/_header.php'; ?>
+<?php
+  $flag ="profile";
+require_once __SITE_PATH . '/view/_header.php'; ?>
 
 
   <script>
