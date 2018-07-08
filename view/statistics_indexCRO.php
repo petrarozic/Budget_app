@@ -1,4 +1,6 @@
-<?php require_once __SITE_PATH . '/view/_headerCRO.php';
+<?php
+  $flag = "statistic";
+  require_once __SITE_PATH . '/view/_headerCRO.php';
 
   $_SESSION['page'] = 'statistics';
   $_SESSION['lang'] = 'CRO';

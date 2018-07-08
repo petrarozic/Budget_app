@@ -1,15 +1,12 @@
-
   // na klik botuna IkonaEdit - > pokrenuti ovu skriptu
-
-  $( document ).ready( function()
-  {
-    $(".IconButtonE").on( "click", function()
-    {
-        console.log("U trazeoj funkciji");
+  //prilikom uredivanja odredene transakcije
+    //ova skripta dohvaća potrebne vrijednosti za ispunjavanje inputa
+  $( document ).ready( function(){
+    $(".IconButtonE").on( "click", function(){
         var id = $(this).val();
         var type = $(this).attr("name");
-        // dohvatiti podatke preko ajaxa iz baze - na osnovu id-a + flag?
 
+        // dohvatiti podatke preko ajaxa iz baze - na osnovu id-a + flag?
         $.ajax(
           {
           url: window.location.pathname+"?rt=transactions/getTransactionById",
@@ -26,9 +23,6 @@
           },
           success: function( data )
           {
-            //console.log(data.id+", "+data.category+", "+data.user_id+", "+data.name+", "+data.value+", "+data.date+", "+data.description);
-
-
             $(" #name").val(data.name);
             $(" #amount").val(data.value);
             $(" #description").val(data.description);
@@ -71,9 +65,5 @@
           });
           }
         });
-
-        //  trebam znati je li income ili expense kako bi mogla pravu tablicu updatati
     });
-
-
   });

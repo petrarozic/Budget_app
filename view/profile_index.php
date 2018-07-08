@@ -1,94 +1,91 @@
-<?php require_once __SITE_PATH . '/view/_header.php'; ?>
+<?php
+  $flag ="profile";
+require_once __SITE_PATH . '/view/_header.php'; ?>
 
 
   <script>
+    var fl = <?php if ( isset($smessage)) echo json_encode($_SESSION['flag']); else echo "2";?>;
+    var mess = <?php if ( isset($smessage)) echo json_encode($smessage); else echo "undefined";?>;
 
-        var fl = <?php if ( isset($smessage)) echo json_encode($_SESSION['flag']); else echo "2";?>;
-        var mess = <?php if ( isset($smessage)) echo json_encode($smessage); else echo "undefined";?>;
+    if(fl.toString() === '0')
+        $.notify(mess, "error");
 
-          if(fl.toString() === '0')
-              $.notify(mess, "error");
+    else if(fl.toString() === '1')
+        $.notify(mess, "success");
 
-          else if(fl.toString() === '1')
-              $.notify(mess, "success");
-
-        $(document).ready(function(){
-            var tip = 0;
-          $('#check_box').on("click",function(){
-          //treba ga prebaciti na profileController/changeCheckbox
-            $.ajax(
-              {
-                url: window.location.pathname+"?rt=profile/changeCheckbox",
-                data:
-                {
-                  tip : tip
-                },
-                //dataType: "json",
-                error: function( xhr, status )
-                {
-                  if( status !== null )
-                      console.log( "Greška prilikom Ajax poziva: " + status );
-                },
-                success: function( data )
-                {
-                    console.log("success");
-                }
-
-            });
+    $(document).ready(function(){
+      var tip = 0;
+      $('#check_box').on("click",function(){
+      //treba ga prebaciti na profileController/changeCheckbox
+        $.ajax(
+          {
+            url: window.location.pathname+"?rt=profile/changeCheckbox",
+            data:
+            {
+              tip : tip
+            },
+            //dataType: "json",
+            error: function( xhr, status )
+            {
+              if( status !== null )
+                  console.log( "Greška prilikom Ajax poziva: " + status );
+            },
+            success: function( data )
+            {
+                console.log("success");
+            }
         });
-  });
+      });
+    });
 
   </script>
 
-
-
 <div class="omotac">
-
-<table class="table">
-  <tr>
-    <th> Username </th>
-    <td>  <?php echo $user->username; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_pass" data-toggle="modal" data-target="#changeUsername" > <i class="far fa-edit"></i></button>  </td>
-  </tr>
-  <tr>
-    <th> Email </th>
-    <td> <?php echo $user->email; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_email" data-toggle="modal" data-target="#changeEmail" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Password  </th>
-    <td> ******** </td>
-    <td> <button class = "IconButton" type="button" name="new_pass" data-toggle="modal" data-target="#changePassword" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Daily limit </th>
-    <td>  <?php echo $user->daily_limit; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_daily" data-toggle="modal" data-target="#changeDaily" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Weekly limit </th>
-    <td>  <?php echo $user->weekly_limit; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_weekly" data-toggle="modal" data-target="#changeWeekly" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Monthly limit </th>
-    <td>  <?php echo $user->monthly_limit; ?> </td>
-    <td> <button class = "IconButton" type="button" name="new_monthly" data-toggle="modal" data-target="#changeMonthly" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-  <tr>
-    <th> Notifications  </th>
-    <td> I want to get notifications on my email address. </td>
-    <?php if( $user->send_mail == 1)
-    echo '<td>  <input type="checkbox" id="check_box"  checked>  </td>';
-    else echo '<td>  <input type="checkbox"  id="check_box" >  </td>';
-    ?>
-  </tr>
-  <tr>
-    <th> Delete account  </th>
-    <td> I want to delete my user account.. </td>
-    <td> <button class = "IconButton" type="button"  data-toggle="modal" data-target="#accountDelete" > <i class="far fa-edit"></i></button> </td>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th> Username </th>
+      <td>  <?php echo $user->username; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_pass" data-toggle="modal" data-target="#changeUsername" > <i class="far fa-edit"></i></button>  </td>
+    </tr>
+    <tr>
+      <th> Email </th>
+      <td> <?php echo $user->email; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_email" data-toggle="modal" data-target="#changeEmail" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Password  </th>
+      <td> ******** </td>
+      <td> <button class = "IconButton" type="button" name="new_pass" data-toggle="modal" data-target="#changePassword" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Daily limit </th>
+      <td>  <?php echo $user->daily_limit; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_daily" data-toggle="modal" data-target="#changeDaily" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Weekly limit </th>
+      <td>  <?php echo $user->weekly_limit; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_weekly" data-toggle="modal" data-target="#changeWeekly" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Monthly limit </th>
+      <td>  <?php echo $user->monthly_limit; ?> </td>
+      <td> <button class = "IconButton" type="button" name="new_monthly" data-toggle="modal" data-target="#changeMonthly" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+    <tr>
+      <th> Notifications  </th>
+      <td> I want to get notifications on my email address. </td>
+      <?php if( $user->send_mail == 1)
+      echo '<td>  <input type="checkbox" id="check_box"  checked>  </td>';
+      else echo '<td>  <input type="checkbox"  id="check_box" >  </td>';
+      ?>
+    </tr>
+    <tr>
+      <th> Delete account  </th>
+      <td> I want to delete my user account.. </td>
+      <td> <button class = "IconButton" type="button"  data-toggle="modal" data-target="#accountDelete" > <i class="far fa-edit"></i></button> </td>
+    </tr>
+  </table>
 </div>
 
 <!--- Modal for new username --->

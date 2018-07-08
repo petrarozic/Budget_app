@@ -1,4 +1,6 @@
-<?php require_once __SITE_PATH . '/view/_header.php'; ?>
+<?php
+  $flag ="statistic";
+  require_once __SITE_PATH . '/view/_header.php'; ?>
 
   <div class="row">
     <div class="col-md-3 pull-right card"  style="margin: 20px; border-radius: 25px;">

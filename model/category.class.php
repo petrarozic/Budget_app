@@ -1,14 +1,12 @@
 <?php
 
-  // ATRIBUTI
+  /*ATRIBUTI
 
-  /*
   'id_korisnika int NOT NULL ,' .
   'kategorija_naziv varchar(20) NOT NULL ,' .
   'vrsta varchar(20) NOT NULL,'.
   'PRIMARY KEY(id_korisnika, kategorija_naziv) )'
   */
-
 
   class Category{
     protected $user_id, $category_name, $category_type;

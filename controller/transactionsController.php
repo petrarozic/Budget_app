@@ -173,6 +173,27 @@ function sendErrorAndExit( $messageText )
         else if ($_SESSION['lang'] == 'ENG' )
           $this->registry->template->show('transactions_index');
         }
+        else if ( $_POST['SubmitButton'] == "profile" ){
+          $this->registry->template->transactionsList = $ls->getUserbById( $user_id );
+          if ( $_SESSION['lang'] == 'CRO' )
+            $this->registry->template->show('profile_indexCRO');
+          else if ($_SESSION['lang'] == 'ENG' )
+            $this->registry->template->show('profile_index');
+          }
+        else if ( $_POST['SubmitButton'] == "category" ){
+          $this->registry->template->exp_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Expense" );
+          $this->registry->template->inc_catList = $ls->getCategoriesById( $_SESSION['user_id'], "Income" );
+          if ( $_SESSION['lang'] == 'CRO' )
+            $this->registry->template->show('category_indexCRO');
+          else if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' )
+            $this->registry->template->show('category_index');
+          }
+        else if ( $_POST['SubmitButton'] == "statistic" ){
+          if ( !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG'  )
+            $this->registry->template->show('statistics_index');
+          else if ( $_SESSION['lang'] == 'CRO'  )
+            $this->registry->template->show('statistics_indexCRO');
+          }
     }
 
 

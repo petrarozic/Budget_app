@@ -162,6 +162,7 @@ class BudgetService
 
 	function sendWarning( $type_of_limit ){
 
+		$ls = new BudgetService;
 		$user = $ls->getUserbById($_SESSION['user_id']);
 
 		$to       = $user->email;

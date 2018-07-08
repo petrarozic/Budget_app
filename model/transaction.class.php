@@ -2,7 +2,8 @@
 
   /********************************
    * Sve transakcije korisnika
-*/
+   ********************************/
+   
   class Transaction{
     protected $tr_id, $category_name, $user_id,
         $tr_name, $tr_value, $tr_date,  $tr_description, $tr_type;
