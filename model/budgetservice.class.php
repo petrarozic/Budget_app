@@ -166,8 +166,8 @@ class BudgetService
 
 		$to       = $user->email;
 		$subject  = 'Warning - Budget-app';
-		$message  = 'Dear ' . $user->username . ",\n: You have passed your ".$type_of_limit;
-		$message .= ' limit. "\n"';
+		$message  = 'Dear ' . $user->username . ",\n You have exceed your ".$type_of_limit;
+		$message .= '. \n';
 		$headers  = 'From: rp2@studenti.math.hr' . "\r\n" .
 								'Reply-To: rp2@studenti.math.hr' . "\r\n" .
 								'X-Mailer: PHP/' . phpversion();
@@ -642,7 +642,7 @@ function getTransactionsById($user_id){
 	function ExpenseInMonth($user_id, $m, $y){
 		try{
 			 $db = DB::getConnection();
-			 $st = $db->prepare( 'SELECT expense_value, category_name FROM  Expense WHERE user_id=:id AND YEAR(expense_date)=:year AND MONTH(expense_date)=:month' );
+			 $st = $db->prepare( 'SELECT expense_value FROM  Expense WHERE user_id=:id AND YEAR(expense_date)=:year AND MONTH(expense_date)=:month' );
 			 $st->execute( array( 'id' => $user_id, 'year'=> $y, 'month'=> $m + 1) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
@@ -659,7 +659,7 @@ function getTransactionsById($user_id){
 	function ExpenseInYear($user_id, $y){
 		try{
 			 $db = DB::getConnection();
-			 $st = $db->prepare( 'SELECT expense_value, category_name FROM  Expense WHERE user_id=:id AND YEAR(expense_date)=:year' );
+			 $st = $db->prepare( 'SELECT expense_value FROM  Expense WHERE user_id=:id AND YEAR(expense_date)=:year' );
 			 $st->execute( array( 'id' => $user_id, 'year'=> $y ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
@@ -676,7 +676,7 @@ function getTransactionsById($user_id){
 	function IncomeInMonth($user_id, $m, $y){
 		try{
 			 $db = DB::getConnection();
-			 $st = $db->prepare( 'SELECT income_value, category_name FROM  Income WHERE user_id=:id AND year(income_date)=:year AND month(income_date)=:month' );
+			 $st = $db->prepare( 'SELECT income_value FROM  Income WHERE user_id=:id AND year(income_date)=:year AND month(income_date)=:month' );
 			 $st->execute( array( 'id' => $user_id, 'year'=> $y, 'month'=> $m + 1) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
@@ -694,7 +694,7 @@ function getTransactionsById($user_id){
 	function IncomeInYear($user_id, $y){
 		try{
 			 $db = DB::getConnection();
-			 $st = $db->prepare( 'SELECT income_value, category_name FROM  Income WHERE user_id=:id AND year(income_date)=:year' );
+			 $st = $db->prepare( 'SELECT income_value FROM  Income WHERE user_id=:id AND year(income_date)=:year' );
 			 $st->execute( array( 'id' => $user_id, 'year'=> $y ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
@@ -738,6 +738,7 @@ function getTransactionsById($user_id){
 		return $line;
 	}
 
+
 	function lineMonth($user_id, $m, $y){
 	/*	try{
 			 $db = DB::getConnection();
@@ -768,6 +769,95 @@ function getTransactionsById($user_id){
 		}*/
 		return $line;
 	}
+
+	function getPieData($user_id, $t, $p, $m, $y){
+
+		if( $t == 0 ) // income
+		{
+			if ( $p == 0 )	// year
+			{
+				try{
+					 $db = DB::getConnection();
+					 $st = $db->prepare( 'SELECT income_value, category_name FROM  Income WHERE user_id=:id AND year(income_date)=:year' );
+					 $st->execute( array( 'id' => $user_id, 'year'=> $y ) );
+				}
+				catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+				$incomes = array();
+				$i = 0;
+				while( $row = $st->fetch() )
+				{
+					$incomes[$i]['value'] = $row['income_value'];
+					$incomes[$i]['category'] = $row['category_name'];
+					$i++;
+				}
+				return $incomes;
+			}
+			else if ( $p == 1 )	// mjesec
+			{
+				try{
+					 $db = DB::getConnection();
+					 $st = $db->prepare( 'SELECT income_value, category_name FROM  Income WHERE user_id=:id AND year(income_date)=:year AND month(income_date)=:month' );
+					 $st->execute( array( 'id' => $user_id, 'year'=> $y, 'month'=> $m + 1) );
+				}
+				catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+				$incomes = array();
+				$i = 0;
+				while( $row = $st->fetch() )
+				{
+					$incomes[$i]['value'] = $row['income_value'];
+					$incomes[$i]['category'] = $row['category_name'];
+					$i++;
+				}
+				return $incomes;
+			}
+		}
+		else if( $t == 1 ) //expense
+		{
+			if ( $p == 0 ) // year
+			{
+				try{
+					 $db = DB::getConnection();
+					 $st = $db->prepare( 'SELECT expense_value, category_name FROM  Expense WHERE user_id=:id AND YEAR(expense_date)=:year' );
+					 $st->execute( array( 'id' => $user_id, 'year'=> $y ) );
+				}
+				catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+				$expenses = array();
+				$i = 0;
+				while( $row = $st->fetch() )
+				{
+					$expenses[$i]['value'] = $row['expense_value'];
+					$expenses[$i]['category'] = $row['category_name'];
+					$i++;
+				}
+				return $expenses;
+			}
+			else if ( $p == 1 )	// mjesec
+			{
+				try{
+					 $db = DB::getConnection();
+					 $st = $db->prepare( 'SELECT expense_value, category_name FROM  Expense WHERE user_id=:id AND YEAR(expense_date)=:year AND MONTH(expense_date)=:month' );
+					 $st->execute( array( 'id' => $user_id, 'year'=> $y, 'month'=> $m + 1) );
+				}
+				catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+				$expenses = array();
+				$i = 0;
+				while( $row = $st->fetch() )
+				{
+					$expenses[$i]['value'] = $row['expense_value'];
+					$expenses[$i]['category'] = $row['category_name'];
+					$i++;
+				}
+				return $expenses;
+			}
+		}
+		return $a;
+	}
+
+
 
  /*DODAVANJE KATEGORIJE*/
 function addCategory($user_id, $type, $name){

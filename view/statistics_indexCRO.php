@@ -47,7 +47,7 @@
 
       <br>
       <div class="text-center">
-      <canvas height="230" width="230" id="myCanvas"></canvas>
+      <canvas height="300" width="500" id="myCanvas"></canvas>
       </div>
   </div>
 
@@ -194,58 +194,134 @@ function get_first()
 
 function pie_chart() //da su pravi podaci i legenda
 {
-  var data = [{
-    label: "food",
-    value: 100,
-    color: 'lightgreen'
-  }, {
-    label: "bills",
-    value: 120,
-    color: 'yellow'
-  }, {
-    label: "shoes",
-    value: 80,
-    color: 'lightpink'
-  }];
+// tip transakcije : t (0 income, 1 expense), perod :  p (0 godina, 1 mjesec ), godina : y, mjesec : m
+$.ajax(
+   {
+     url: window.location.pathname+"?rt=statistics/getPieData",
+     data:{
+       type : t,
+       period : p,
+       month : m,
+       year : y
+     },
+     dataType: "json",
+     error: function( xhr, status )
+     {
+       if( status !== null ) {
+          console.log( "Greška prilikom Ajax poziva: " + status);
+          }
+     },
+     success: function(data)
+     {
+
+// Color array
+
+
+
+
+var colorArray = ['#4ea8a8', 'rgb(209, 162, 191)','rgb(124, 215, 113)', 'rgba(244, 114, 7, 0.85)', 'Darkcyan',
+                'Darkseagreen', 'Darkseagreen', 'Peru', '#6680B3', '#66991A',
+                '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+                '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+                '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+                '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+                '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+                '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+                '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#00B3E6',
+                '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+
+       var Data = [];
+       for( var i = 0; i < data[0].length ; i++){
+         Data[i] = [];
+       }
+
+       for( var i = 0; i < data[0].length ; i++){
+          Data[i]['label'] = data[0][i];
+          Data[i]['value'] = Number(data[1][i]);
+            Data[i]['color'] = colorArray[i];
+       }
+
+// ZApocinje
+
+if ( Data.length == 0 ){
+  var canvas = document.getElementById('myCanvas');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "black";
+  ctx.font = "20px Arial";
+  ctx.fillText("U odabranom periodu ne postoji transakcija.", 50 , canvas.height/2 - 100);
+}
+else{
 
   var total = 0;
-  for (obj of data) {
+  for (obj of Data) {
     total += obj.value;
   }
 
   var canvas = document.getElementById('myCanvas');
   var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   var previousRadian = 0;
-  var radius = canvas.height / 2;
+  var radius = canvas.height / 3;
   var middle = {
-    x: canvas.width / 2,
+    x: canvas.width / 4,
     y: canvas.height / 2,
   };
 
   var radian;
   var percentage;
-  for (obj of data){
+  for (obj of Data){
     percentage = Math.round(obj.value/total * 100);
 
     ctx.beginPath();
     ctx.fillStyle = obj.color;
     radian = (Math.PI * 2) * (obj.value / total);
-    ctx.moveTo(middle.x, middle.y);
+    ctx.moveTo(middle.x , middle.y);
     ctx.arc(middle.x, middle.y, radius, previousRadian, previousRadian + radian);
     ctx.fill();
 
     ctx.save();
     ctx.translate(middle.x, middle.y);
     ctx.fillStyle = "black";
-    ctx.font = "16px Arial";
+    ctx.font = "12px Arial";
     ctx.rotate(previousRadian + radian);
     var labelText = percentage  + "%";
-    ctx.fillText(labelText, radius/2 - 20, -2);
+    ctx.fillText(labelText, radius/2 + 10, -2);
     ctx.restore();
 
     previousRadian += radian;
   }
+
+
+  ctx.beginPath();
+  ctx.lineWidth="1";
+  ctx.strokeStyle="##bdc2bb";
+  ctx.rect( (canvas.width/2), 20, 200, canvas.height-40 );
+  ctx.stroke();
+  ctx.closePath();
+  ctx.restore();
+  var i = 20;
+  for (obj of Data){
+    ctx.beginPath();
+    ctx.fillStyle = obj.color;
+    ctx.fillRect((canvas.width/2) + 20, 20  + i, 20, 20);
+    ctx.fill();
+    ctx.fillStyle = "black";
+    ctx.font = "16px Arial";
+    ctx.fillText(obj.label , canvas.width/2 + 55, 37 + i);
+    i+=30;
+    ctx.closePath();
+  }
+
+  ctx.stroke();
+
 }
+
+// Zavrsava
+     }
+   });
+}
+
 
 
 function line_chart_year()

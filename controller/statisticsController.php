@@ -102,6 +102,35 @@ class StatisticsController extends BaseController
 		sendJSONandExit( $message );
 	}
 
+  function getPieData(){
+    $ls = new BudgetService();
+
+    $message = "proba";
+    $t = $_GET['type'];
+    $p = $_GET['period'];
+    $m = $_GET['month'];
+    $y = $_GET['year'];
+    $user_id = $_SESSION['user_id'];
+
+    $data = $ls->getPieData($user_id, $t, $p, $m, $y);
+
+    $final[0] = [];
+    $i = 0;
+    $final[1] = [];
+    foreach ($data as $trans) {
+      if ( array_search ( $trans['category'] , $final[0]) === FALSE ){
+        $final[0][$i] = $trans['category'];
+        $final[1][$i] = $trans['value'];
+        $i++;
+      }
+      else{
+        $j = array_search ( $trans['category'] , $final[0]);
+        $final[1][$j] += $trans['value'];
+      }
+    }
+
+    sendJSONandExit($final);
+  }
 
 
 };
