@@ -740,16 +740,16 @@ function getTransactionsById($user_id){
 
 
 	function lineMonth($user_id, $m, $y){
-	/*	try{
+		try{
 			 $db = DB::getConnection();
 			 $st = $db->prepare( 'SELECT income_value, day(income_date) FROM  Income WHERE user_id=:id AND month(income_date)=:month AND year(income_date)=:year' );
 			 $st->execute( array( 'id' => $user_id, 'month' => $m + 1, 'year'=> $y ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
-		$n = cal_days_in_month(CAL_GREGORIAN, $m + 1, $y); //niz će biti dug onoliko koliko ima dana u mjesecu*/
+		$n = cal_days_in_month(CAL_GREGORIAN, $m + 1, $y); //niz će biti dug onoliko koliko ima dana u mjesecu
 		$line = array_fill(0, $n, 0);
-	/*	while( $row = $st->fetch() )
+		while( $row = $st->fetch() )
 		{
 			$day = $row['day(income_date)'] - 1;
 			$line[$day] += $row['income_value'];
@@ -757,7 +757,7 @@ function getTransactionsById($user_id){
 
 		try{
 			 $db2 = DB::getConnection();
-			 $st2 = $db2->prepare( 'SELECT expense_value, month(expense_date) FROM  Expense WHERE user_id=:id AND month(expense_date)=:month AND year(expense_date)=:year' );
+			 $st2 = $db2->prepare( 'SELECT expense_value, day(expense_date) FROM  Expense WHERE user_id=:id AND month(expense_date)=:month AND year(expense_date)=:year' );
 			 $st2->execute( array( 'id' => $user_id, 'month' => $m + 1, 'year'=> $y ) );
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
@@ -766,7 +766,7 @@ function getTransactionsById($user_id){
 		{
 			$day = $row['day(expense_date)'] - 1;
 			$line[$day] -= $row['expense_value'];
-		}*/
+		}
 		return $line;
 	}
 

@@ -1,13 +1,13 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
   <div class="row">
-    <div class="col-md-2 pull-right card"  style="margin: 20px; border-radius: 25px;">
+    <div class="col-md-3 pull-right card"  style="margin: 20px; border-radius: 25px;">
      <div class="card-body">
       <div class="radio">
         Type of transactions:
         <br>
         <input type="radio" name="transaction" value="expense" checked style="margin-top: 7px;"> expenses
-        <input type="radio" name="transaction" value="income" style="margin-left:15px;"> incomes
+        <input type="radio" name="transaction" value="income" style="margin-left:10px;"> incomes
       </div>
      </div>
     </div>
@@ -17,12 +17,12 @@
           Time period:
           <br>
           <input type="radio" name="period" value="month" checked style="margin-top: 7px;"> month
-          <input type="radio" name="period" value="year" style="margin-left:15px;"> year
+          <input type="radio" name="period" value="year" style="margin-left:10px;"> year
         </div>
       </div>
     </div>
 
-    <div class="col-md-2 pull-right card"  style="margin-top: 40px; margin-left: 35px; border:none;">
+    <div class="col-md-3 pull-right card"  style="margin-top: 40px; margin-left: 35px; border:none;">
   <div id="choose">
     <button class="ChangeButton" id="left"> <i class="fas fa-angle-left"></i></button>
     <span id="time"> </span>
@@ -412,7 +412,7 @@ function line_chart_month()
         line = data.line;
         console.log(line);
 
-        var colors = ["rgba(0, 153, 77, 0.8)"];
+        var colors = ["#b8b894"];
         var shapes = ["circle"];
         var type = [""];
 
@@ -427,7 +427,7 @@ function line_chart_month()
             type[i] = "gain";
           }
           else if((line[i] - line[i-1]) === 0){
-            colors[i] = "rgba(0, 153, 77, 0.8)";
+            colors[i] = "#b8b894";
             shapes[i] = "circle";
             type[i] = "";
           }
@@ -440,19 +440,14 @@ function line_chart_month()
         var chart = new CanvasJS.Chart("chartContainer", {
         	theme: "light2",
         	animationEnabled: true,
-        	///axisX: {
-        		//interval: 1,
-        		//intervalType: "month",
-        		//valueFormatString: "MMM"
-        	//},
-        	//axisY:{
-        //		valueFormatString: "# kn"
-        //	},
+
+        	axisY:{
+        		valueFormatString: "# kn"
+        	},
         	data: [{
         		type: "line",
         		markerSize: 10,
-        		//xValueFormatString: "MMM, YYYY",
-        		//yValueFormatString: "# kn",
+        		yValueFormatString: "# kn",
         		dataPoints: [
         			{ x: 1, y: line[0], indexLabel: type[0], markerType: shapes[0], markerColor: colors[0] },
               { x: 2, y: line[1], indexLabel: type[1], markerType: shapes[1], markerColor: colors[1] },
