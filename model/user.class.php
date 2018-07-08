@@ -1,19 +1,17 @@
 <?php
 
-// ATRIBUTI
+  /* ATRIBUTI
 
-/*
-'id_korisnika int NOT NULL PRIMARY KEY AUTO_INCREMENT, ' .
-'username varchar(20) NOT NULL, ' .
-'password varchar(225) NOT NULL, ' .
-'email varchar(50), ' .					//korisnik ne moraunijeti e-mail adresu
-'dnevni_limit double, ' .
-'tjedni_limit double, ' .
-'mjesecni_limit double, '.
-'registration_sequence varchar(20) NOT NULL, ' .
-'has_registered int )'
-*/
-
+  'id_korisnika int NOT NULL PRIMARY KEY AUTO_INCREMENT, ' .
+  'username varchar(20) NOT NULL, ' .
+  'password varchar(225) NOT NULL, ' .
+  'email varchar(50), ' .					//korisnik ne moraunijeti e-mail adresu
+  'dnevni_limit double, ' .
+  'tjedni_limit double, ' .
+  'mjesecni_limit double, '.
+  'registration_sequence varchar(20) NOT NULL, ' .
+  'has_registered int )'
+  */
 
   class User{
     protected $user_id, $username, $password, $email, $weekly_limit, $daily_limit, $monthly_limit, $send_mail, $registration_sequence, $has_registered;
@@ -31,7 +29,6 @@
       $this->registration_sequence  = $registration_sequence_;
       $this->has_registered         = $has_registered_;
     }
-
 
     function __get( $variable ) {
       return $this->$variable;

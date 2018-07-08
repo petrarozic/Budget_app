@@ -1,6 +1,5 @@
-$( document ).ready( function()
-    {
-
+//prilikom odabira tipa transakcije mijenjaju se kategorije u select dijelu
+$( document ).ready( function(){
       $("#CateType").on("change", function(){
         var tip = $(this).val();
         console.log("tip je :" +tip );

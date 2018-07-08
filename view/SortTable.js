@@ -53,7 +53,6 @@ function sortTable(event) {
   //end SORT ALGORITHM
 
   //isprazni tijelo tablice
-
   TableBody.children().remove();
 
   //dodaj dijecu u tijelo tablice

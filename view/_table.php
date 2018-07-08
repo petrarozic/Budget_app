@@ -6,22 +6,16 @@
   }
 </script>
 
-<?php //if ( isset($message) ) echo $message; ?>
 <script>
+  var fl = <?php if ( isset($message)) echo json_encode($_SESSION['flag']); else echo "2";?>;
+  var mess = <?php if ( isset($message)) echo json_encode($message); else echo "undefined";?>;
 
-      console.log("u scriptu");
-      var fl = <?php if ( isset($message)) echo json_encode($_SESSION['flag']); else echo "2";?>;
-      var mess = <?php if ( isset($message)) echo json_encode($message); else echo "undefined";?>;
+    if(fl.toString() === '0')
+        $.notify(mess, "error");
 
-        if(fl.toString() === '0')
-            $.notify(mess, "error");
-
-        else if(fl.toString() === '1')
-            $.notify(mess, "success");
-
-
+    else if(fl.toString() === '1')
+        $.notify(mess, "success");
 </script>
-
 
 <div class="panel">
   <div class="table-responsive">
@@ -53,7 +47,7 @@
               echo '<button class="IconButtonE" id="EditIcon" name="'.$flag.'" data-toggle="modal" data-target="#EditTransaction" value="'.$t->income_id.'" ><i class="far fa-edit"></i></button></td>';
               echo '<td> <form action="'.__SITE_URL.'/index.php?rt=transactions/removeIncome" method="post"  onclick="return checkDelete()"> <input type="hidden" name="income" value="'.$t->income_id.'"> <button type=submit class="IconButton" >  <i class="far fa-trash-alt"> </i> </button> </form></td></tr>';
             }
-            else /*if($flag === "transactions")*/{
+            else{
               if($t->tr_type === 'e')
               echo '<tr><td class="removable" >'.$t->category_name.'</td><td>'.$t->tr_name.'</td><td class="tred">'.$t->tr_value.'</td><td class="Removable2">'.$t->tr_date.'</td><td class="removable">'.$t->tr_description.'</td><td>';
               else

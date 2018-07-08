@@ -1,11 +1,7 @@
 <?php
 
   /********************************
-   * Primanje korisnika
-
-   PITANJA/NAPOMENE
-     User--> pamtimo mu id
-     Ponavljanja --> nema toga
+   * Primanja korisnika
 
    ATRIBUTI
      'id_primanja int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
