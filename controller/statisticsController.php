@@ -36,13 +36,24 @@ class StatisticsController extends BaseController
 		sendJSONandExit( $message );
 	}
 
-  function lineChartYear(){
+  function lineChart(){
 		$ls = new BudgetService();
 		$user_id = $_SESSION['user_id'];
-		$time = $ls->lineYear($user_id, $_GET['y']);
-    //$time = array(1,2,3);
+    if($_GET['flag'] === 'month')
+      $time = $ls->lineMonth($user_id, $_GET['m'], $_GET['y']);
+    else
+		  $time = $ls->lineYear($user_id, $_GET['y']);
     $message = [];
-		$message[ 'line' ] = $time;
+    $time1 = array();
+    $ind = 0;
+    foreach($time as $i){
+      if($ind)
+        $time1[$ind] = $time1[$ind - 1] + $i;
+      else
+       $time1[$ind] = $i;
+      ++$ind;
+    }
+		$message[ 'line' ] = $time1;
 		sendJSONandExit( $message );
 	}
 
