@@ -295,7 +295,7 @@ else{
 
   ctx.beginPath();
   ctx.lineWidth="1";
-  ctx.strokeStyle="#1d221a";
+  ctx.strokeStyle="##bdc2bb";
   ctx.rect( (canvas.width/2), 20, 200, canvas.height-40 );
   ctx.stroke();
   ctx.closePath();

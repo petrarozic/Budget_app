@@ -293,7 +293,7 @@ var colorArray = ['#4dc9c9', 'rgb(230, 228, 102)','rgb(105, 198, 94)', 'rgba(212
 
     ctx.beginPath();
     ctx.lineWidth="1";
-    ctx.strokeStyle="#1d221a";
+    ctx.strokeStyle="#bdc2bb";
     ctx.rect( (canvas.width/2), 20, 200, canvas.height-40 );
     ctx.stroke();
     ctx.closePath();
