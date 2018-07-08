@@ -164,12 +164,6 @@ function sendErrorAndExit( $messageText )
         $this->registry->template->success = $ls->changePassword( $id, $new_pass);
         $_SESSION['flag'] = 1;
 
-        if(  !isset($_SESSION['lang']) || $_SESSION['lang'] == 'ENG' ){
-          $this->registry->template->smessage = "New password has been sent to your email.";
-        }
-        else if( $_SESSION['lang'] == 'CRO' ){
-        $this->registry->template->smessage = "Nova lozinka je poslana na Vašu email adresu.";
-        }
 
         $this->registry->template->user = $ls->getUserbById($id);
 
