@@ -168,8 +168,8 @@ class BudgetService
 
 		$to       = $user->email;
 		$subject  = 'Warning - Budget-app';
-		$message  = 'Dear ' . $user->username . ",\n: You have passed your ".$type_of_limit;
-		$message .= ' limit. "\n"';
+		$message  = 'Dear ' . $user->username . ",\n You have exceed your ".$type_of_limit;
+		$message .= '. \n';
 		$headers  = 'From: rp2@studenti.math.hr' . "\r\n" .
 								'Reply-To: rp2@studenti.math.hr' . "\r\n" .
 								'X-Mailer: PHP/' . phpversion();
